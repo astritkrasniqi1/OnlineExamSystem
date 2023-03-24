@@ -41,7 +41,7 @@
                         <button class="btn btn-lg btn-login text-uppercase fw-bold mb-2" style="background: #1d1b31;color:white" type="submit">Log in</button>
                         <div class=" my-3 row d-flex justify-content-between">
                           <a class="small col" href="#" style="color:#1d1b31">Forgot password?</a>
-                          <p class="login-heading mb-4 col-auto">Don't have an account? <a href="signup.html" style="color:#1d1b31">Register here</a></p>
+                          <p class="login-heading mb-4 col-auto">Don't have an account? <a href="signup.php" style="color:#1d1b31">Register here</a></p>
                         </div>
                       </div>
       
