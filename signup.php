@@ -10,6 +10,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </head>
 <body>
+<?php
+  require 'signupLogic.php';
+?>
+
     <div class="container-fluid ps-md-0">
         <div class="row g-0">
           <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
@@ -20,16 +24,25 @@
                   <div class="col-md-9 col-lg-8 mx-auto">
                     <h2 class="text-center login-heading mb-5 fw-bold">Online Exam</h2>
                     <!-- Sign In Form -->
-                    <form>
+                    <form method="post">
+                    <?php 
+                        if(isset($error)){
+                            foreach($error as $error){
+                                echo '<div class="alert alert-danger" role="alert">'
+                                    .$error
+                                .'</div>';
+                            }
+                        }
+                    ?>
                       <div style="display:flex; flex-direction: row; justify-content: center;gap: 10px;">
                       <div class="form-check col">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <input class="form-check-input" type="radio" value="0" name="userType" id="professor">
                         <label class="form-check-label" for="flexRadioDefault1">
                            Professor
                         </label>
                       </div>
                       <div class="form-check mb-3 col">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                        <input class="form-check-input" type="radio" value="1" name="userType" id="student">
                         <label class="form-check-label" for="flexRadioDefault2">
                           Student
                         </label>
@@ -37,28 +50,28 @@
                     </div>
                     <div style="display:flex; justify-content: space-between;gap:10px;">
                         <div class="col form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+                            <input type="text" class="form-control" name="firstName" id="firstName" placeholder="FirstName">
                             <label for="floatingInput">First Name</label>
                         </div>
                         <div class="col form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+                            <input type="text" class="form-control" name="lastName" id="lastName" placeholder="LastName">
                             <label for="floatingInput">Last Name</label>
                         </div>
                     </div> 
                     <div class="col form-floating mb-3">
-                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                        <input type="email" class="form-control" name="emailAddress" id="emailAddress" placeholder="name@example.com">
                         <label for="floatingInput">Email Address</label>
                     </div>
                       <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+                        <input type="text" class="form-control" name="username" id="username" placeholder="Username">
                         <label for="floatingInput">Username</label>
                       </div>
                       <div class="form-floating mb-3">
-                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Password">
                         <label for="floatingPassword">Password</label>
                       </div>
                       <div class="form-floating mb-3">
-                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                        <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="Password">
                         <label for="floatingPassword">Confirm Password</label>
                       </div>
       
@@ -70,7 +83,7 @@
                       </div>
       
                       <div class="d-grid">
-                        <button class="btn btn-lg btn-login text-uppercase fw-bold mb-2" style="background: #1d1b31;color:white" type="submit">Sign up</button>
+                        <button class="btn btn-lg btn-login text-uppercase fw-bold mb-2" name="signupBtn" style="background: #1d1b31;color:white" type="submit">Sign up</button>
                         <div class=" mt-3 row d-flex justify-content-between">
                           <a class="small col" href="#" style="color:#1d1b31"></a>
                           <p class="login-heading mb-4 col-auto"><a href="login.php" style="color:#1d1b31">I have an account</a></p>

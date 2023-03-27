@@ -1,0 +1,107 @@
+
+.overview{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin:4rem 8rem;
+    padding:0;
+    border-radius: 24px;
+}
+.overview a{
+    text-decoration: none;
+    color: black;
+    border-radius:5px;
+    width:300px;
+    padding: 2rem;
+    background:white;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+.overview a:nth-child(1){
+    background:#93ccad;
+}
+.overview a:nth-child(2){
+    background:#bab0ea;
+}
+.overview a:nth-child(3){
+    background:#f7b28f;
+}
+
+.overview a:nth-child(4){
+    background:#9cadd2;
+}
+
+
+.overview a div{
+    display: flex;
+    flex-direction: row;
+    align-items:baseline;
+    gap: 5px;
+    align-items: center;
+}
+.overview a div div{
+    display: flex;
+    flex-direction: column;
+    align-items: normal;
+}
+.overview a div i{
+    font-size: 4rem;
+}
+.overview a div div span{
+    font-size:14px;
+    color:black;
+}
+.overview a div div h5{
+    font-size:25px;
+    margin: 0;
+}
+
+.recentExam{
+    margin:1rem 8rem;
+    background: white;
+    padding: 2rem;
+    border-radius: 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.recentExam h3{
+    border-bottom: 2px solid gray;
+    
+}
+.recentExam .recentExamContent{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.recentExam .recentExamContent .statsContainer{
+    display: flex;
+    flex-direction: column;
+    width: auto;
+}
+.recentExam .recentExamContent .statsContainer{
+    border-right: 2px solid gray;
+}
+.recentExam .recentExamContent .statsContainer:last-child{
+    border-right: none;
+}
+
+.pageTitleContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 1.5rem 8rem;
+    align-items: center;
+}
+.pageTitleContainer div a{
+    text-decoration: none;
+    color:white;
+    background:#e96d7f;
+    padding:10px;
+    border-radius:5px;
+
+}
+
+.pageTitleContainer div h2{
+   margin:0;
+
+}

@@ -1,16 +1,33 @@
-<?php
-$servername = "127.0.0.1:3308";
-$username = "root";
-$password = "";
-$dbname = "onlineexam";
+<?php 
+    @include 'config.php';
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+    session_start();
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+    if(isset($_POST['loginBtn'])){
+        $username = mysqli_real_escape_string($conn, $_POST['username']);
+        $password = md5($_POST['password']);
 
-echo "Connected successfully";
+        $sql = "Select * from users where Username='$username' and Password='$password'";
+
+        $result = mysqli_query($conn, $sql);
+
+        if(mysqli_num_rows($result)> 0){
+            $row = mysqli_fetch_array($result);
+            if($row['UserType'] == '0'){
+                $_SESSION['professorUsername'] = $row['FirstName'] .' ' .$row['LastName'];
+                header("Location:professor/Dashboard.php");
+            }
+            elseif($row['UserType'] == '1'){
+                $_SESSION['studentUsername'] = $row['FirstName'] .' ' .$row['LastName'];
+                header('Location: studentDashboard.php');
+            }
+        }
+        else{
+            $error[] = "Incorrect username or password";
+        }
+
+    }
+
+
+
 ?>
