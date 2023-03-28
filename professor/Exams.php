@@ -24,7 +24,7 @@
 </body>
 
 <section>
-<div class="pageTitleContainer" >
+<div class="pageTitleContainer" >   
                <div>
                     <h2>
                     <?php

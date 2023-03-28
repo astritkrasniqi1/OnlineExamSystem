@@ -39,7 +39,7 @@
 
         </div>
 
-    <div class="overview">
+    <div class="overview" style="flex-wrap:wrap;">
         <a href="#"><div>
             <i class='bx bx-user'></i>
             <div class="col-auto">
@@ -64,6 +64,13 @@
             </div>
         </a>
         <a href="#"><div>
+            <i class='bx bx-user'></i>
+            <div class="col-auto"><span>New Students</span>
+            <h5>400</h5></div>
+            
+        </div>
+        </a>
+        <a href="#" style="margin-top: 20px;background: #e96d7f;"><div>
             <i class='bx bx-user'></i>
             <div class="col-auto"><span>Subjects</span>
             <h5>400</h5></div>
