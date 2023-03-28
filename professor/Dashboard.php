@@ -17,10 +17,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="professorDashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="professorDashboard.css" media="all" type="text/css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
-<body style="background: #f6f6f8">
+<body style="background:#f1f1f3;">
     <?php @include 'navbar.php' ?>
 <section>
         <div class="pageTitleContainer" >
@@ -38,10 +39,9 @@
                </div>
 
         </div>
-
     <div class="overview" style="flex-wrap:wrap;">
-        <a href="#"><div>
-            <i class='bx bx-user'></i>
+        <a href="#" class=""><div>
+            <i class="fa-solid fa-user-graduate" style="color:#f7b092;"></i>&nbsp;
             <div class="col-auto">
             <span>Total Students</span>
             <h5>400</h5>
@@ -49,32 +49,38 @@
         </div>
         </a>
         
-        <a href="#"><div>
-            <i class='bx bx-user'></i>
+        <a href="#" class=""><div>
+        <i class="fa-solid fa-user-check" style="color:#53b7ec;"></i>&nbsp;
             <div class="col-auto"><span>Active Students</span>
             <h5>400</h5></div>
             
         </div>
         </a>
-        <a href="#">
+        <a href="#" class="">
             <div>
-            <i class='bx bx-user'></i>
-            <div class="col-auto"><span>Active Exams</span>
+            <i class="fa-solid fa-user-xmark" style="color:#e96d7f;"></i>&nbsp;
+            <div class="col-auto"><span>Offline Students</span>
             <h5>400</h5></div>    
             </div>
         </a>
-        <a href="#"><div>
-            <i class='bx bx-user'></i>
+        <a href="#" class="">
+            <div>
+            <i class="fa-solid fa-user-plus" style="color:#93ccad;"></i>&nbsp;
             <div class="col-auto"><span>New Students</span>
+            <h5>400</h5></div>    
+            </div>
+        </a>
+        <a href="#" class=""><div>
+        <i class="fa-solid fa-newspaper" style="color:#b9b1e5;"></i> &nbsp;
+            <div class="col-auto"><span>Active Exams</span>
             <h5>400</h5></div>
             
         </div>
         </a>
-        <a href="#" style="margin-top: 20px;background: #e96d7f;"><div>
-            <i class='bx bx-user'></i>
+        <a href="#" class="" style=""><div>
+        <i class="fa-solid fa-book" style="color:#a3abb6;"></i>&nbsp;
             <div class="col-auto"><span>Subjects</span>
             <h5>400</h5></div>
-            
         </div>
         </a>
     </div>
