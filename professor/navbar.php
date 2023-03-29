@@ -30,7 +30,7 @@
 <body>
 <nav>
     <div class="logo-container col-auto">
-        <a href="professorDashboard.php"><h3>OXS</h3></a>
+        <a href="Dashboard.php"><h3>OXS</h3></a>
         <ul>
             <li><a href="Dashboard.php" class="dashboard active">Dashboard</a></li>
             <li><a href="Exams.php" class="exams">Exams</a></li>
