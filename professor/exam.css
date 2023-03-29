@@ -1,0 +1,157 @@
+.examOverview{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: space-between;
+    padding:0;
+    margin: 4rem 8rem;
+    border-radius: 5px;
+    flex-wrap: wrap;
+    background: white;
+    padding: 2rem;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.examOverview a{
+    text-decoration: none;
+    color: black;
+    border-radius:5px;
+    width:350px;
+    padding: 2rem;
+    background:white;
+    border: 1px solid lightgray;
+}
+.examOverview .examResults {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+}
+.examOverview .examResults div h3{
+    margin:0;
+} 
+.examOverview .examName select{
+    padding: 5px;
+    width: 250px;
+    border-radius: 5px;
+    border:1px solid gray;
+}
+
+
+.examOverview .examCards{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: space-between;
+    padding:0;
+    border-radius: 24px;
+    flex-wrap: wrap;
+    background: white;
+}
+.examOverview .examCards a{
+    text-decoration: none;
+    color: black;
+    border-radius:5px;
+    width:350px;
+    padding: 2rem;
+    background:white;
+    border: 1px solid lightgray;
+}
+
+.studentResultTable{
+    margin:1rem 8rem;
+}
+
+.studentResultTable table tbody tr{
+    background: white;
+    border: 1px solid lightgray;
+    border-bottom: 5px solid #f1f1f3;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.filters{
+    margin: 0 8rem;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+.filters div input{
+    padding: 5px;
+    width: 300px;
+    outline: none;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+.filters div input::placeholder{
+    color: lightgray;
+}
+
+.filters div select{
+    padding: 5px;
+    width: 200px;
+    outline: none;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+.filters div select::placeholder{
+    color: lightgray;
+}
+
+.filters div button{
+    padding: 5px 10px;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    background: #111965;
+    color: white;
+}
+
+@media screen and (max-width: 960px){
+    .examOverview a{
+        text-decoration: none;
+        color: black;
+        border-radius:5px;
+        width:300px;
+        padding: 2rem;
+        background:white;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    }
+}
+@media screen and (max-width: 768px){
+    .examOverview a{
+        text-decoration: none;
+        color: black;
+        border-radius:5px;
+        width:250px;
+        padding: 2rem;
+        background:white;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    }
+}
+
+.examOverview a div{
+    display: flex;
+    flex-direction: row;
+    align-items:baseline;
+    gap: 5px;
+    align-items: center;
+}
+.examOverview a div div{
+    display: flex;
+    flex-direction: column;
+    align-items: normal;
+}
+.examOverview a div i{
+    font-size: 4rem;
+}
+.examOverview a div div span{
+    font-size:14px;
+    color:gray;
+}
+.examOverview a div div h5{
+    font-size:25px;
+    margin: 0;
+}
