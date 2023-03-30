@@ -15,6 +15,7 @@
             $row = mysqli_fetch_array($result);
             if($row['UserType'] == '0'){
                 $_SESSION['professorUsername'] = $row['FirstName'] .' ' .$row['LastName'];
+                $_SESSION['professorID'] = $row['Id'];
                 $update = "UPDATE users SET Status='1' WHERE Id={$row['Id']}";
                 mysqli_query($conn, $update);
                 header("Location:professor/Dashboard.php");

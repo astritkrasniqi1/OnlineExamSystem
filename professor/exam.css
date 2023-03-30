@@ -58,17 +58,50 @@
     border: 1px solid lightgray;
 }
 
+
+/*Student Result Table */
+
 .studentResultTable{
-    margin:1rem 8rem;
+    margin:0 8rem;
 }
 
+.studentResultTable table{
+    border-collapse:separate;
+    border-spacing: 0 10px;
+}
 .studentResultTable table tbody tr{
-    background: white;
-    border: 1px solid lightgray;
-    border-bottom: 5px solid #f1f1f3;
-    border-radius: 5px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    background:white;
+}
+.studentResultTable table tbody tr td{
+    border-top:1px solid lightgray;
+    border-bottom:1px solid lightgray;
+}
+.studentResultTable table tbody tr td:first-child{
+    border-top:1px solid lightgray;
+    border-bottom:1px solid lightgray;
+    border-left: 1px solid lightgray;
+    border-radius: 5px 0 0 5px;
+}
+th{
+    font-weight: 550;
+    color: gray;
+}
+td{
+    font-weight: 550;
+}
+.studentResultTable table tbody tr td:last-child{
+    border-top:1px solid lightgray;
+    border-bottom:1px solid lightgray;
+    border-right: 1px solid lightgray;
+    border-radius: 0 5px 5px 0;
+}
+.studentResultTable table thead tr{
+    border-style: none;
+    border-color: #f1f1f3;
+}
+.studentResultTable table tbody tr td span{
+    padding: 5px 15px;
+    border-radius: 20px;
 }
 
 .filters{
