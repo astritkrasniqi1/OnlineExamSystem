@@ -19,6 +19,7 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="professorDashboard.css" media="all" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body style="background:#f1f1f3;">
@@ -108,6 +109,52 @@
         </div>
     </div>
 
+    <div class="filters">
+        <div><input type="search" placeholder="Search student" /></div>
+        <div>
+            <select>
+                <option>All</option>
+            </select>
+            <button>
+                Filter&nbsp;<i class="bi bi-filter"></i>
+            </button>
+        </div>
+    </div>
+
+
+    <div class="studentTable">
+        <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Student Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td scope="row">1</td>
+                <td>Mark</td>
+                <td>mark25@gmail.com</td>
+                <td><span>Active</span></td>
+                </tr>
+                <tr>
+                <td scope="row">2</td>
+                <td>Jacob</td>
+                <td>jacob_1@gmail.com</td>
+                <td><span>Offline</span></td>
+                </tr>
+                <tr>
+                <td scope="row">3</td>
+                <td>Larry the Bird</td>
+                <td>larry_bird@gmail.com</td>
+                <td><span>Active</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
 </section>
 </body>
 
@@ -119,5 +166,19 @@
             $('nav .logo-container ul li a.subjects').removeClass('active');
             $('nav .logo-container ul li a.students').removeClass('active');
     })
+
+    const tdList = document.querySelectorAll('td span');
+  
+    tdList.forEach((td) => {
+        if (td.textContent === 'Active') {
+        td.style.backgroundColor = '#ddf1fb';
+        td.style.color = '#53b7ec';
+        td.style.border = '1px solid #53b7ec';
+        } else if (td.textContent === 'Offline') {
+        td.style.backgroundColor = '#fbe2e5';
+        td.style.color = '#e96d7f';
+        td.style.border = '1px solid #e96d7f';
+        }
+    });
 </script>
 </html>
