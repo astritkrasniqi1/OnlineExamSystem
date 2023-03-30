@@ -179,6 +179,7 @@ th{
 }
 td{
     font-weight: 550;
+    vertical-align: middle;
 }
 .studentTable table tbody tr td:last-child{
     border-top:1px solid lightgray;
@@ -193,12 +194,15 @@ td{
 .studentTable table tbody tr td span{
     padding: 5px 15px;
     border-radius: 20px;
+    display: flex;
+    width: 90px;
+    justify-content: center;
 }
 
 /*Filters for the students table*/
 
 .filters{
-    margin: 4rem 8rem 0 8rem;
+    margin: 0rem 8rem 0 8rem;
     display:flex;
     flex-direction: row;
     justify-content: space-between;
@@ -234,6 +238,55 @@ td{
     border: none;
     background: #111965;
     color: white;
+}
+
+
+
+.activeExamsTable{
+    margin:0 8rem;
+}
+
+.activeExamsTable table{
+    border-collapse:separate;
+    border-spacing: 0 10px;
+}
+.activeExamsTable table tbody tr{
+    background:white;
+}
+.activeExamsTable table tbody tr td{
+    border-top:1px solid lightgray;
+    border-bottom:1px solid lightgray;
+}
+.activeExamsTable table tbody tr td:first-child{
+    border-top:1px solid lightgray;
+    border-bottom:1px solid lightgray;
+    border-left: 1px solid lightgray;
+    border-radius: 5px 0 0 5px;
+}
+th{
+    font-weight: 550;
+    color: gray;
+}
+td{
+    font-weight: 550;
+    vertical-align: middle;
+}
+.activeExamsTable table tbody tr td:last-child{
+    border-top:1px solid lightgray;
+    border-bottom:1px solid lightgray;
+    border-right: 1px solid lightgray;
+    border-radius: 0 5px 5px 0;
+}
+.activeExamsTable table thead tr{
+    border-style: none;
+    border-color: #f1f1f3;
+}
+.activeExamsTable table tbody tr td span{
+    padding: 5px 15px;
+    border-radius: 20px;
+    display: flex;
+    width: 90px;
+    justify-content: center;
 }
 
 

@@ -109,8 +109,10 @@
         </div>
     </div>
 
+    <div style="margin:4rem 8rem 1rem 8rem;"><span style="font-size:1.5rem; border-bottom:3px solid #f7b092;">Students' Table</span></div>
+
     <div class="filters">
-        <div><input type="search" placeholder="Search student" /></div>
+        <div><input type="search" placeholder="Search student"/></div>
         <div>
             <select>
                 <option>All</option>
@@ -120,7 +122,6 @@
             </button>
         </div>
     </div>
-
 
     <div class="studentTable">
         <table class="table">
@@ -149,6 +150,69 @@
                 <td scope="row">3</td>
                 <td>Larry the Bird</td>
                 <td>larry_bird@gmail.com</td>
+                <td><span>New</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+    
+    <div style="margin:4rem 8rem 1rem 8rem;"><span style="font-size:1.5rem; border-bottom:3px solid #b9b1e5;">Active Exams</span></div>
+
+    <div class="filters">
+        <div><input type="search" placeholder="Search your exams"/></div>
+        <div>
+            <select>
+                <option>All</option>
+            </select>
+            <button>
+                Filter&nbsp;<i class="bi bi-filter"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="activeExamsTable">
+        <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Exam Title</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Professor</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td scope="row">1</td>
+                <td>Test 1</td>
+                <td>Mathematics</td>
+                <td>Filan Fisteku</td>
+                <td>12/03/2023 14:00</td>
+                <td>2 Hours</td>
+                <td><span>Active</span></td>
+                </tr>
+                <tr>
+                <td scope="row">2</td>
+                <td>Test 2</td>
+                <td>Mathematics</td>
+                <td>Filan Fisteku</td>
+                <td>12/03/2023 12:30</td>
+                <td>2 Hours</td>
+                <td><span>Active</span></td>
+                </tr>
+                <tr>
+                <td scope="row">3</td>
+                <td>Test 3</td>
+                <td>Mathematics</td>
+                <td>Filan Fisteku</td>
+                <td>12/03/2023 9:30</td>
+                <td>2 Hours</td>
                 <td><span>Active</span></td>
                 </tr>
             </tbody>
@@ -167,9 +231,10 @@
             $('nav .logo-container ul li a.students').removeClass('active');
     })
 
-    const tdList = document.querySelectorAll('td span');
+    const studentTableTdList = document.querySelectorAll('.studentTable table tbody tr td span');
+    const activeExamsTdList = document.querySelectorAll('.activeExamsTable table tbody tr td span');
   
-    tdList.forEach((td) => {
+    studentTableTdList.forEach((td) => {
         if (td.textContent === 'Active') {
         td.style.backgroundColor = '#ddf1fb';
         td.style.color = '#53b7ec';
@@ -178,7 +243,19 @@
         td.style.backgroundColor = '#fbe2e5';
         td.style.color = '#e96d7f';
         td.style.border = '1px solid #e96d7f';
+        }else if (td.textContent === 'New') {
+        td.style.backgroundColor = '#e9f5ef';
+        td.style.color = '#93ccad';
+        td.style.border = '1px solid #93ccad';
         }
+    });
+
+    activeExamsTdList.forEach((td) => {
+        if (td.textContent === 'Active') {
+        td.style.backgroundColor = '#f1effa';
+        td.style.color = '#b9b1e5';
+        td.style.border = '1px solid #b9b1e5';
+    }
     });
 </script>
 </html>
