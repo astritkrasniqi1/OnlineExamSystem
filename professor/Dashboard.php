@@ -51,8 +51,8 @@
         </a>
         
         <a href="#" class=""><div>
-        <i class="fa-solid fa-user-check" style="color:#53b7ec;"></i>&nbsp;
-            <div class="col-auto"><span>Active Students</span>
+        <i class="fa-solid fa-user-check" style="color:#93ccad;"></i>&nbsp;
+            <div class="col-auto"><span>Online Students</span>
             <h5>400</h5></div>
             
         </div>
@@ -66,7 +66,7 @@
         </a>
         <a href="#" class="">
             <div>
-            <i class="fa-solid fa-user-plus" style="color:#93ccad;"></i>&nbsp;
+            <i class="fa-solid fa-user-plus" style="color:#53b7ec;"></i>&nbsp;
             <div class="col-auto"><span>New Students</span>
             <h5>400</h5></div>    
             </div>
@@ -109,7 +109,7 @@
         </div>
     </div>
 
-    <div style="margin:4rem 8rem 1rem 8rem;"><span style="font-size:1.5rem; border-bottom:3px solid #f7b092;">Students' Table</span></div>
+    <div style="margin:4rem 8rem 1rem 8rem;"><span style="font-size:1.5rem; border-bottom:3px solid #f7b092;">Students</span></div>
 
     <div class="filters">
         <div><input type="search" placeholder="Search student"/></div>
@@ -138,7 +138,7 @@
                 <td scope="row">1</td>
                 <td>Mark</td>
                 <td>mark25@gmail.com</td>
-                <td><span>Active</span></td>
+                <td><span>Online</span></td>
                 </tr>
                 <tr>
                 <td scope="row">2</td>
@@ -235,7 +235,7 @@
     const activeExamsTdList = document.querySelectorAll('.activeExamsTable table tbody tr td span');
   
     studentTableTdList.forEach((td) => {
-        if (td.textContent === 'Active') {
+        if (td.textContent === 'New') {
         td.style.backgroundColor = '#ddf1fb';
         td.style.color = '#53b7ec';
         td.style.border = '1px solid #53b7ec';
@@ -243,7 +243,7 @@
         td.style.backgroundColor = '#fbe2e5';
         td.style.color = '#e96d7f';
         td.style.border = '1px solid #e96d7f';
-        }else if (td.textContent === 'New') {
+        }else if (td.textContent === 'Online') {
         td.style.backgroundColor = '#e9f5ef';
         td.style.color = '#93ccad';
         td.style.border = '1px solid #93ccad';
