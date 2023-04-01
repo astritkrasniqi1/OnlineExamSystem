@@ -112,6 +112,7 @@ td{
     margin: 1.5rem 8rem;
     align-items: center;
 }
+
 #openFormButton {
     background-color:#e96d7f;
     color: white;
@@ -119,11 +120,15 @@ td{
     border: none;
     cursor: pointer;
     border-radius: 5px;
+
   }
 
   #openFormButton:hover {
     background-color: #e96d7f;
   }
+
+ 
+  
 
 
 

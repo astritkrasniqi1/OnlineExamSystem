@@ -28,7 +28,7 @@
 </head>
 <body>
     <?php @include 'navbar.php' ?>
-    <div class="pageTitleContainer" >   
+  <div class="pageTitleContainer" >   
                <div>
                     <h2>
                     <?php
@@ -38,28 +38,25 @@
                     ?>
                     </h2>
                </div>
-               <button id="openFormButton"><i class='bx bx-plus'></i>&nbsp;Add New Subject</button>
-
+               <button id="openFormButton"><i class='bx bx-plus'></i>&nbsp;Creat New Subject</button>
                <form id="inputForm">
                <label for="name">Subject Name:</label>
                <input type="text" id="name" name="name" required>
                <br>
-   
+
                <input type="submit" value="Add">
                 </form>
                <script>
-                document.getElementById("openFormButton").addEventListener("click", function() {
-      document.getElementById("openFormButton").style.display = "none";
-      document.getElementById("inputForm").style.display = "block";
-    });
-  </script>
+               document.getElementById("openFormButton").addEventListener("click", function() {
+               document.getElementById("inputForm").style.display = "block";   });
+               </script>
 
-        </div>
+  </div>
 
-        
-
-
-    <div class="filters">
+   
+               
+   <div class="filters">
+  
         <div><input type="search" placeholder="Search subject" /></div>
         <div>
             <select>
@@ -69,7 +66,7 @@
                 Filter&nbsp;<i class="bi bi-filter"></i>
             </button>
         </div>
-    </div>
+  </div>
 
     <div class="subjectTable">
     <table class="table ">
