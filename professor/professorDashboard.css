@@ -199,6 +199,22 @@ td{
     justify-content: center;
 }
 
+td a.edit{
+    text-decoration: none;
+    color:#111965;
+    border:1px solid lightgray;
+    border-radius: 20px;
+    padding: 5px 15px;
+}
+
+td a.delete{
+    text-decoration: none;
+    color:#e96d7f;
+    border:1px solid lightgray;
+    border-radius: 20px;
+    padding: 5px 15px;
+}
+
 /*Filters for the students table*/
 
 .filters{

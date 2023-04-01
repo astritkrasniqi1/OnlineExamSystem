@@ -26,7 +26,7 @@
     }
   </style>
 </head>
-<body>
+<body style="background:#f1f1f3;">
     <?php @include 'navbar.php' ?>
     <div class="pageTitleContainer" >   
                <div>
@@ -44,16 +44,8 @@
                <label for="name">Subject Name:</label>
                <input type="text" id="name" name="name" required>
                <br>
-   
                <input type="submit" value="Add">
-                </form>
-               <script>
-                document.getElementById("openFormButton").addEventListener("click", function() {
-      document.getElementById("openFormButton").style.display = "none";
-      document.getElementById("inputForm").style.display = "block";
-    });
-  </script>
-
+              </form>
         </div>
 
         
@@ -71,8 +63,8 @@
         </div>
     </div>
 
-    <div class="subjectTable">
-    <table class="table ">
+<div class="subjectTable">
+  <table class="table ">
   <thead>
     <tr>
       <th scope="col">ID</th>
@@ -121,5 +113,9 @@
             $('nav .logo-container ul li a.subjects').addClass('active');
             $('nav .logo-container ul li a.students').removeClass('active');
     })
+    document.getElementById("openFormButton").addEventListener("click", function() {
+      document.getElementById("openFormButton").style.display = "none";
+      document.getElementById("inputForm").style.display = "block";
+    });
 </script>
 </html>
