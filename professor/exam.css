@@ -32,9 +32,10 @@
 } 
 .examOverview .examName select{
     padding: 5px;
-    width: 250px;
+    width: 180px;
     border-radius: 5px;
-    border:1px solid gray;
+    border:1px solid lightgray;
+    outline: none;
 }
 
 
