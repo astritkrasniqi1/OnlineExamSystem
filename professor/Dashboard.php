@@ -131,7 +131,6 @@
                 <th scope="col">Student Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Status</th>
-                <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -140,30 +139,18 @@
                 <td>Mark</td>
                 <td>mark25@gmail.com</td>
                 <td><span>Online</span></td>
-                <td> 
-                <a href="" class="edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
-                    <a href="" class="delete"><i class="fa-solid fa-trash-can"></i>&nbsp;Delete</a>
-                </td>
                 </tr>
                 <tr>
                 <td scope="row">2</td>
                 <td>Jacob</td>
                 <td>jacob_1@gmail.com</td>
                 <td><span>Offline</span></td>
-                <td> 
-                <a href="" class="edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
-                    <a href="" class="delete"><i class="fa-solid fa-trash-can"></i>&nbsp;Delete</a>
-                </td>
                 </tr>
                 <tr>
                 <td scope="row">3</td>
                 <td>Larry the Bird</td>
                 <td>larry_bird@gmail.com</td>
                 <td><span>New</span></td>
-                <td> 
-                <a href="" class="edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
-                    <a href="" class="delete"><i class="fa-solid fa-trash-can"></i>&nbsp;Delete</a>
-                </td>
                 </tr>
             </tbody>
         </table>
