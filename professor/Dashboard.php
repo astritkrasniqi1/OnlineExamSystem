@@ -77,7 +77,7 @@
             
         </div>
         </a>
-        <a href="#" class=""><div>
+        <a href="subjects.php" class=""><div>
         <i class="fa-solid fa-book" style="color:#a3abb6;"></i>&nbsp;
             <div class="col-auto"><span>Subjects</span>
             <h5>400</h5></div>
