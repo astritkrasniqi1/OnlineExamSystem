@@ -1,3 +1,13 @@
+<?php 
+    @include 'config.php';
+
+    session_start();
+
+    if(!isset($_SESSION['professorUsername'])){
+        header('Location:login.php');
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
