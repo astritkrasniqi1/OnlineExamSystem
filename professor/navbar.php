@@ -42,7 +42,11 @@
     </div>
     <div class="profile-container col-auto">
         <div>
-            <span>Hi, <?php echo $_SESSION['professorUsername'] ?></span>
+            <span class="profile-name" style="display:flex; align-items:center;">Hi, <?php echo $_SESSION['professorUsername'] ?>&nbsp; <i onclick="OpenDropdown();" class='bx bx-chevron-down' style="cursor:pointer;font-size:20px;"></i></span>
+            <div class="profile-dropdown" style="display:none;">
+                <a href="../logoutLogic.php"><i class='bx bx-exit' ></i>&nbsp;Logout</a>
+            </div>
+
         </div>
     </div>
 </nav>
@@ -52,5 +56,15 @@
 <script>
     const dropdownElementList = document.querySelectorAll('.dropdown-toggle');
     const dropdownList = [...dropdownElementList].map(dropdownToggleEl => new bootstrap.Dropdown(dropdownToggleEl));
+
+    var profileDropdown = document.querySelector('.profile-dropdown');
+    function OpenDropdown(){
+        if(profileDropdown.style.display === 'none'){
+            profileDropdown.style.display = 'flex';
+        }else{
+            profileDropdown.style.display = 'none';
+        }
+    }
+
 </script>
 </html>

@@ -36,13 +36,13 @@
                     ?>
                       <div style="display:flex; flex-direction: row; justify-content: center;gap: 10px;">
                       <div class="form-check col">
-                        <input class="form-check-input" type="radio" value="0" name="userType" id="professor">
+                        <input class="form-check-input" required type="radio" value="0" name="userType" id="professor">
                         <label class="form-check-label" for="flexRadioDefault1">
                            Professor
                         </label>
                       </div>
                       <div class="form-check mb-3 col">
-                        <input class="form-check-input" type="radio" value="1" name="userType" id="student">
+                        <input class="form-check-input" required type="radio" value="1" name="userType" id="student">
                         <label class="form-check-label" for="flexRadioDefault2">
                           Student
                         </label>
@@ -50,28 +50,28 @@
                     </div>
                     <div style="display:flex; justify-content: space-between;gap:10px;">
                         <div class="col form-floating mb-3">
-                            <input type="text" class="form-control" name="firstName" id="firstName" placeholder="FirstName">
+                            <input type="text" class="form-control" required name="firstName" id="firstName" placeholder="FirstName">
                             <label for="floatingInput">First Name</label>
                         </div>
                         <div class="col form-floating mb-3">
-                            <input type="text" class="form-control" name="lastName" id="lastName" placeholder="LastName">
+                            <input type="text" class="form-control" required name="lastName" id="lastName" placeholder="LastName">
                             <label for="floatingInput">Last Name</label>
                         </div>
                     </div> 
                     <div class="col form-floating mb-3">
-                        <input type="email" class="form-control" name="emailAddress" id="emailAddress" placeholder="name@example.com">
+                        <input type="email" class="form-control" required name="emailAddress" id="emailAddress" placeholder="name@example.com">
                         <label for="floatingInput">Email Address</label>
                     </div>
                       <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="username" id="username" placeholder="Username">
+                        <input type="text" class="form-control" required name="username" id="username" placeholder="Username">
                         <label for="floatingInput">Username</label>
                       </div>
                       <div class="form-floating mb-3">
-                        <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                        <input type="password" class="form-control" required name="password" id="password" placeholder="Password">
                         <label for="floatingPassword">Password</label>
                       </div>
                       <div class="form-floating mb-3">
-                        <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="Password">
+                        <input type="password" class="form-control" required name="confirmPassword" id="confirmPassword" placeholder="Password">
                         <label for="floatingPassword">Confirm Password</label>
                       </div>
       

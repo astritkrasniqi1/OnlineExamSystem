@@ -134,14 +134,14 @@
   </thead>
   <tbody>
     <tr>
-      <th scope="row">1</th>
+      <td scope="row">1</td>
       <td>Mark</td>
       <td>Passed</td>
       <td>96%</td>
       <td>10</td>
     </tr>
     <tr>
-      <th scope="row">2</th>
+      <td scope="row">2</td>
       <td>Jacob</td>
       <td>Passed</td>
       <td>95%</td>
@@ -149,7 +149,7 @@
 
     </tr>
     <tr>
-      <th scope="row">3</th>
+      <td scope="row">3</td>
       <td>Larry the Bird</td>
       <td>Passed</td>
       <td>100%</td>
