@@ -48,10 +48,13 @@
                 </form>
                <script>
                document.getElementById("openFormButton").addEventListener("click", function() {
-               document.getElementById("inputForm").style.display = "block";   });
+               document.getElementById("inputForm").style.display = "block";  });
+             
                </script>
-
   </div>
+
+             
+  
 
    
                
