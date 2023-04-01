@@ -28,6 +28,7 @@
 </head>
 <body style="background:#f1f1f3;">
     <?php @include 'navbar.php' ?>
+    <section>
   <div class="pageTitleContainer" >   
                <div>
                     <h2>
@@ -38,8 +39,9 @@
                     ?>
                     </h2>
                </div>
+              
                <button id="openFormButton"><i class='bx bx-plus'></i>&nbsp;Creat New Subject</button>
-               <form id="inputForm">
+                <form id="inputForm">
                <label for="name">Subject Name:</label>
                <input type="text" id="name" name="name" required>
                <br>
@@ -48,11 +50,14 @@
                 </form>
                <script>
                 document.getElementById("openFormButton").addEventListener("click", function() {
-          document.getElementById("inputForm").style.display = "block";
+                document.getElementById("inputForm").style.display = "block";
           });
              </script>
+           
 
         </div>
+
+       
 
              
   
