@@ -84,14 +84,7 @@
        
        
     </div>
-    <div class="bestSubjects">
-        <h3>The top subject at the moment will depend on various factors,including personal interests,career aspirations,and the current job market.<br>Here are some of the best according to our experience:<br> 
-        </h3>
-        
-
-
-
-    </div>
+    
    
     
 </section>
