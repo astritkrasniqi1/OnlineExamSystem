@@ -79,6 +79,14 @@
     margin: 1.5rem 8rem;
     align-items: center;
 }
+.pageTitleContainer div a{
+    text-decoration: none;
+    color:white;
+    background:#e96d7f;
+    padding:10px;
+    border-radius:5px;
+
+}
 
 
 

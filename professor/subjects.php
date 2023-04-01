@@ -16,7 +16,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Subject.css">
+    <link rel="stylesheet" href="Subjects.css">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -25,17 +25,21 @@
     <?php @include 'navbar.php' ?>
 </body>
 <section>
-    <div class="pageTitleContainer">  
-        <div>
-           <h2>
-              <?php
-                $currentPage = basename($_SERVER['PHP_SELF']);
-                $pageTitle = str_replace(".php", "", $currentPage);
-                echo $pageTitle;  
-               ?>
-            </h2>
+<div class="pageTitleContainer" >   
+               <div>
+                    <h2>
+                    <?php
+                          $currentPage = basename($_SERVER['PHP_SELF']);
+                          $pageTitle = str_replace(".php", "", $currentPage);
+                          echo $pageTitle;  
+                    ?>
+                    </h2>
+               </div>
+               <div>
+                    <a href="newSubject.php"><i class='bx bx-plus'></i>&nbsp;Add New Subject</a>
+               </div>
+
         </div>
-    </div> 
 
     <div class="subjectoverview" style="flex-wrap:wrap;">
         <a href="#" class=""><div>
@@ -85,7 +89,6 @@
        
     </div>
     
-   
     
 </section>
 
