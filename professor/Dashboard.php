@@ -36,7 +36,7 @@
                     </h2>
                </div>
                <div>
-                    <a href="#"><i class='bx bx-plus'></i>&nbsp;Create New Exam</a>
+                    <a href="NewExam.php"><i class='bx bx-plus'></i>&nbsp;Create New Exam</a>
                </div>
 
         </div>
@@ -185,6 +185,7 @@
                 <th scope="col">Start Date</th>
                 <th scope="col">Duration</th>
                 <th scope="col">Status</th>
+                <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -196,6 +197,10 @@
                 <td>12/03/2023 14:00</td>
                 <td>2 Hours</td>
                 <td><span>Active</span></td>
+                <td> 
+                <a href="" class="edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
+                    <a href="" class="delete"><i class="fa-solid fa-trash-can"></i>&nbsp;Delete</a>
+                </td>
                 </tr>
                 <tr>
                 <td scope="row">2</td>
@@ -205,6 +210,10 @@
                 <td>12/03/2023 12:30</td>
                 <td>2 Hours</td>
                 <td><span>Active</span></td>
+                <td> 
+                <a href="" class="edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
+                    <a href="" class="delete"><i class="fa-solid fa-trash-can"></i>&nbsp;Delete</a>
+                </td>
                 </tr>
                 <tr>
                 <td scope="row">3</td>
@@ -214,6 +223,10 @@
                 <td>12/03/2023 9:30</td>
                 <td>2 Hours</td>
                 <td><span>Active</span></td>
+                <td> 
+                    <a href="" class="edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
+                    <a href="" class="delete"><i class="fa-solid fa-trash-can"></i>&nbsp;Delete</a>
+                </td>
                 </tr>
             </tbody>
         </table>
