@@ -20,7 +20,7 @@
 		<input type="text" id="subject_name" name="subject_name" required>
 		
 		<label for="description">Description:</label>
-		<textarea id="description" name="description" required></textarea>
+		<textarea id="description" name="description"></textarea>
 		
         <label for="category">Category:</label>
         <input type="text" id="category" name="category" required>
@@ -37,6 +37,8 @@
 			$subject_name = $_POST['subject_name'];
 			$description = $_POST['description'];
             $category = $_POST['category'];
+
+           
 			
 			
 			// qetu lidhja me databaze edhe insertimi i te dhenave vazhdonnnnn
