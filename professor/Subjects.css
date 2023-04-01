@@ -1,29 +1,136 @@
-.subjectoverview{
+.subjectOverview{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 20px;
     justify-content: space-between;
     padding:0;
     margin: 4rem 8rem;
-    border-radius: 24px;
+    border-radius: 20px;
     flex-wrap: wrap;
+    background: white;
+    padding: 2rem;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
-.subjectoverview a{
+
+.subjectOverview a{
     text-decoration: none;
-    text-align: center;
     color: black;
-    border-radius:95px;
+    border-radius:5px;
     width:350px;
     padding: 1rem;
-    margin:4px,2px;
-    margin-bottom: 6px;
     background:white;
     border: 1px solid lightgray;
 }
 
 
+
+.subjectOverview .subjectCards{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: space-between;
+    padding:0;
+    border-radius: 24px;
+    flex-wrap: wrap;
+    background: white;
+}
+.subjectOverview .subjectCards a{
+    text-decoration: none;
+    color: black;
+    border-radius:80px;
+    margin-bottom: 5px;
+    width:350px;
+    padding: 1em;
+    background:white;
+    border: 1px solid lightgray;
+}
+
+
+/*subject Table */
+
+.subjectTable{
+    margin:0 8rem;
+}
+
+.subjectTable table{
+    border-collapse:separate;
+    border-spacing: 0 10px;
+}
+.subjectTable table tbody tr{
+    background:white;
+}
+.subjectTable table tbody tr td{
+    border-top:1px solid lightgray;
+    border-bottom:1px solid lightgray;
+}
+.subjectTable table tbody tr td:first-child{
+    border-top:1px solid lightgray;
+    border-bottom:1px solid lightgray;
+    border-left: 1px solid lightgray;
+    border-radius: 5px 0 0 5px;
+}
+th{
+    font-weight: 550;
+    color: gray;
+}
+td{
+    font-weight: 550;
+}
+.subjectTable table tbody tr td:last-child{
+    border-top:1px solid lightgray;
+    border-bottom:1px solid lightgray;
+    border-right: 1px solid lightgray;
+    border-radius: 0 5px 5px 0;
+}
+.subjectTable table thead tr{
+    border-style: none;
+    border-color: #f1f1f3;
+}
+.subjectTable table tbody tr td span{
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+.filters{
+    margin: 0 8rem;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+.filters div input{
+    padding: 5px;
+    width: 300px;
+    outline: none;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+.filters div input::placeholder{
+    color: lightgray;
+}
+
+.filters div select{
+    padding: 5px;
+    width: 200px;
+    outline: none;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+.filters div select::placeholder{
+    color: lightgray;
+}
+
+.filters div button{
+    padding: 5px 10px;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    background: #111965;
+    color: white;
+}
+
 @media screen and (max-width: 960px){
-    .subjectoverview a{
+    .subjectOverview a{
         text-decoration: none;
         color: black;
         border-radius:5px;
@@ -34,7 +141,7 @@
     }
 }
 @media screen and (max-width: 768px){
-    .subjectoverview a{
+    .subjectOverview a{
         text-decoration: none;
         color: black;
         border-radius:5px;
@@ -45,33 +152,29 @@
     }
 }
 
-.subjectoverview a div{
+.subjectOverview a div{
     display: flex;
-
     flex-direction: row;
     align-items:baseline;
-   
+    gap: 5px;
     align-items: center;
-
 }
-.subjectoverview a div i{
-    font-size: 4rem;
-}
-.subjectoverview a div div{
+.subjectOverview a div div{
     display: flex;
     flex-direction: column;
     align-items: normal;
 }
-.subjectoverview a div div h5{
-    font-size:20px;
-    margin: 0;
+.subjectOverview a div i{
+    font-size: 4rem;
 }
-.subjectoverview a div div span{
-    font-size:10px;
+.subjectOverview a div div span{
+    font-size:14px;
     color:gray;
 }
-
-
+.subjectOverview a div div h5{
+    font-size:25px;
+    margin: 0;
+}
 .pageTitleContainer{
     display: flex;
     flex-direction: row;
@@ -79,14 +182,21 @@
     margin: 1.5rem 8rem;
     align-items: center;
 }
-.pageTitleContainer div a{
-    text-decoration: none;
-    color:white;
-    background:#e96d7f;
-    padding:10px;
-    border-radius:5px;
+#openFormButton {
+    background-color:#e96d7f;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
 
-}
+  #openFormButton:hover {
+    background-color: #e96d7f;
+  }
+
+
+
 
 
 
