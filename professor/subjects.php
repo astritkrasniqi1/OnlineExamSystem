@@ -101,33 +101,7 @@
 </table>
 </div>
 
-<div class="subjectOverview" style="flex-wrap:wrap;">
-        <div class="topSubjects">
-            <div class="">
-                <h3>Top subjects</h3>
-            </div>
-        
-        </div>
-        <div class="subjectCards">
-        <a href="#" class="">
-        <div> <i class="fa-solid fa-book" style="color:#f7b092;"></i>&nbsp;
-            <div class="col-auto"><h6>Mathematic</h6></div></div>
-        </a>
-        
-        <a href="#" class="">
-      <div> <i class="fa-solid fa-book" style="color:#53b7ec;"></i>&nbsp;
-            <div class="col-auto"><h6>Physic</h6> </div>
-        </div>
-        </a>
-        
-         <a href="#" class="">
-            <div>
-            <i class="fa-solid fa-book" style="color:#73e40d;"></i>&nbsp;
-            <div class="col-auto"><h6>English Language</h6></div>    
-            </div>
-        </a>
-      
-    </div>
+
 </section>
 
 
