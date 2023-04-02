@@ -198,8 +198,7 @@
                 <td>2 Hours</td>
                 <td><span>Active</span></td>
                 <td> 
-                <a href="" class="edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
-                    <a href="" class="delete"><i class="fa-solid fa-trash-can"></i>&nbsp;Delete</a>
+                    <a href="" class="edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
                 </td>
                 </tr>
                 <tr>
@@ -211,8 +210,7 @@
                 <td>2 Hours</td>
                 <td><span>Active</span></td>
                 <td> 
-                <a href="" class="edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
-                    <a href="" class="delete"><i class="fa-solid fa-trash-can"></i>&nbsp;Delete</a>
+                    <a href="" class="edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
                 </td>
                 </tr>
                 <tr>
@@ -225,7 +223,6 @@
                 <td><span>Active</span></td>
                 <td> 
                     <a href="" class="edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
-                    <a href="" class="delete"><i class="fa-solid fa-trash-can"></i>&nbsp;Delete</a>
                 </td>
                 </tr>
             </tbody>
