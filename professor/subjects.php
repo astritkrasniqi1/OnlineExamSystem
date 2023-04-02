@@ -41,6 +41,13 @@
                     </h2>
                </div>
                <button id="openFormButton"><i class='bx bx-plus'></i>&nbsp;Creat New Subject</button>
+               
+
+  </div>
+  <br>
+
+  <div class="container">
+               
                 <form id="inputForm">
                <label for="name">Subject Name:</label>
                <input type="text" id="name" name="name" required>
@@ -52,10 +59,12 @@
                 document.getElementById("openFormButton").addEventListener("click", function() {
                 document.getElementById("inputForm").style.display = "block";});
              </script>
+             </div>
 
+             <br>
+             <br>
+             <br>
 
-  </div>
-  
  <div class="filters">
         <div><input type="search" placeholder="Search subject" /></div>
         <div>
