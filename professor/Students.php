@@ -112,9 +112,7 @@
       <th scope="col">ID</th>
       <th scope="col">Student Name</th>
       <th scope="col">Email</th>
-      <th scope="col">Exams Passed</th>
-      <th scope="col">Exams Failed</th>
-      <th scope="col">Avg. Grade</th>
+
     </tr>
   </thead>
   <tbody>
@@ -122,26 +120,17 @@
       <td scope="row">1</td>
       <td>Mark</td>
       <td>mark25@gmail.com</td>
-      <td>5</td>
-      <td>3</td>
-      <td>10</td>
     </tr>
     <tr>
       <td scope="row">2</td>
       <td>Jacob</td>
       <td>jacob_1@gmail.com</td>
-      <td>7</td>
-      <td>1</td>
-      <td>9.5</td>
 
     </tr>
     <tr>
       <td scope="row">3</td>
       <td>Larry the Bird</td>
       <td>larry_bird@gmail.com</td>
-      <td>3</td>
-      <td>4</td>
-      <td>8.7</td>
     </tr>
   </tbody>
 </table>
@@ -168,9 +157,6 @@
       <th scope="col">ID</th>
       <th scope="col">Student Name</th>
       <th scope="col">Email</th>
-      <th scope="col">Exams Passed</th>
-      <th scope="col">Exams Failed</th>
-      <th scope="col">Avg. Grade</th>
     </tr>
   </thead>
   <tbody>
@@ -178,26 +164,17 @@
       <td scope="row">1</td>
       <td>Mark</td>
       <td>mark25@gmail.com</td>
-      <td>5</td>
-      <td>3</td>
-      <td>10</td>
     </tr>
     <tr>
       <td scope="row">2</td>
       <td>Jacob</td>
       <td>jacob_1@gmail.com</td>
-      <td>7</td>
-      <td>1</td>
-      <td>9.5</td>
 
     </tr>
     <tr>
       <td scope="row">3</td>
       <td>Larry the Bird</td>
       <td>larry_bird@gmail.com</td>
-      <td>3</td>
-      <td>4</td>
-      <td>8.7</td>
     </tr>
   </tbody>
 </table>
@@ -224,9 +201,6 @@
       <th scope="col">ID</th>
       <th scope="col">Student Name</th>
       <th scope="col">Email</th>
-      <th scope="col">Exams Passed</th>
-      <th scope="col">Exams Failed</th>
-      <th scope="col">Avg. Grade</th>
     </tr>
   </thead>
   <tbody>
@@ -234,26 +208,17 @@
       <td scope="row">1</td>
       <td>Mark</td>
       <td>mark25@gmail.com</td>
-      <td>5</td>
-      <td>3</td>
-      <td>10</td>
     </tr>
     <tr>
       <td scope="row">2</td>
       <td>Jacob</td>
       <td>jacob_1@gmail.com</td>
-      <td>7</td>
-      <td>1</td>
-      <td>9.5</td>
 
     </tr>
     <tr>
       <td scope="row">3</td>
       <td>Larry the Bird</td>
       <td>larry_bird@gmail.com</td>
-      <td>3</td>
-      <td>4</td>
-      <td>8.7</td>
     </tr>
   </tbody>
 </table>
