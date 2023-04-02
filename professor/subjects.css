@@ -45,6 +45,7 @@ td{
 }
 
 .filters{
+   
     margin: 0 8rem;
     display:flex;
     flex-direction: row;
@@ -52,6 +53,7 @@ td{
 
 }
 .filters div input{
+    
     padding: 5px;
     width: 300px;
     outline: none;
