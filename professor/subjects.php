@@ -40,20 +40,16 @@
                     ?>
                     </h2>
                </div>
-               <button id="openFormButton"><i class='bx bx-plus'></i>&nbsp;Creat New Subject</button>
-                <form id="inputForm">
-               <label for="name">Subject Name:</label>
-               <input type="text" id="name" name="name" required>
+              <button id="openFormButton"><i class='bx bx-plus'></i>&nbsp;Create New Subject</button>
+  </div>
+
+  <div id="addNewSubjectContainer" style="display: none;">
+    <form id="addNewSubjectForm">
+               <input type="text" id="name" name="name" placeholder="Enter subject name" required>
                <br>
    
-               <input type="submit" value="Add">
-                </form>
-               <script>
-                document.getElementById("openFormButton").addEventListener("click", function() {
-                document.getElementById("inputForm").style.display = "block";});
-             </script>
-
-
+               <button type="submit">Save</button>
+    </form>
   </div>
   
  <div class="filters">
@@ -122,8 +118,12 @@
             $('nav .logo-container ul li a.students').removeClass('active');
     })
     document.getElementById("openFormButton").addEventListener("click", function() {
-  
-      document.getElementById("inputForm").style.display = "block";
+      if(document.getElementById("addNewSubjectContainer").style.display == "none"){
+          document.getElementById("addNewSubjectContainer").style.display = "flex";
+        }
+        else{
+          document.getElementById("addNewSubjectContainer").style.display = "none";
+        }
     });
 </script>
 </html>

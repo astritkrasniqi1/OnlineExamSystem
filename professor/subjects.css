@@ -129,6 +129,47 @@ td{
     background-color: #e96d7f;
   }
 
+  #addNewSubjectContainer {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin: 4rem 8rem;
+  }
+
+
+  #addNewSubjectContainer form{
+    display: flex;
+    gap: 5px;
+    padding: 10px;
+}
+
+#addNewSubjectContainer form input{
+    padding: 10px;
+    font-size: 16px;
+    width: 400px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    outline: none;
+}
+#addNewSubjectContainer form input::placeholder{
+    color:lightgray;
+}
+
+#addNewSubjectContainer form button{
+    padding: 5px 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    outline: none;
+    color: white;
+    background-color: #e96d7f;
+    border:none;
+}
+#addNewSubjectContainer form button:hover{
+    background-color: #eb7c8c;
+}
  
   
 
