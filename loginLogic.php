@@ -22,7 +22,10 @@
             }
             elseif($row['UserType'] == '1'){
                 $_SESSION['studentUsername'] = $row['FirstName'] .' ' .$row['LastName'];
-                header('Location: studentDashboard.php');
+                $_SESSION['studentID'] = $row['Id'];
+                $update = "UPDATE users SET Status='1' WHERE Id={$row['Id']}";
+                mysqli_query($conn, $update);
+                header('Location: student/Dashboard.php');
             }
         }
         else{

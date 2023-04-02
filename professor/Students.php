@@ -261,6 +261,19 @@
 </section>
 </body>
 
+<section>
+ <div class="pageTitleContainer">  
+    <div>
+        <h2>
+             <?php
+                $currentPage = basename($_SERVER['PHP_SELF']);
+                $pageTitle = str_replace(".php", "", $currentPage);
+                echo $pageTitle;  
+             ?>
+        </h2>
+     </div>
+</div> 
+</section>
 
 <script>
     $(document).ready(function() {

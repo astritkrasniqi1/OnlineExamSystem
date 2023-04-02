@@ -36,7 +36,7 @@
                     </h2>
                </div>
                <div>
-                    <a href="#"><i class='bx bx-plus'></i>&nbsp;Create New Exam</a>
+                    <a href="NewExam.php"><i class='bx bx-plus'></i>&nbsp;Create New Exam</a>
                </div>
 
         </div>
@@ -51,8 +51,8 @@
         </a>
         
         <a href="#" class=""><div>
-        <i class="fa-solid fa-user-check" style="color:#53b7ec;"></i>&nbsp;
-            <div class="col-auto"><span>Active Students</span>
+        <i class="fa-solid fa-user-check" style="color:#93ccad;"></i>&nbsp;
+            <div class="col-auto"><span>Online Students</span>
             <h5>400</h5></div>
             
         </div>
@@ -66,7 +66,7 @@
         </a>
         <a href="#" class="">
             <div>
-            <i class="fa-solid fa-user-plus" style="color:#93ccad;"></i>&nbsp;
+            <i class="fa-solid fa-user-plus" style="color:#53b7ec;"></i>&nbsp;
             <div class="col-auto"><span>New Students</span>
             <h5>400</h5></div>    
             </div>
@@ -78,7 +78,7 @@
             
         </div>
         </a>
-        <a href="#" class=""><div>
+        <a href="subjects.php" class=""><div>
         <i class="fa-solid fa-book" style="color:#a3abb6;"></i>&nbsp;
             <div class="col-auto"><span>Subjects</span>
             <h5>400</h5></div>
@@ -109,7 +109,7 @@
         </div>
     </div>
 
-    <div style="margin:4rem 8rem 1rem 8rem;"><span style="font-size:1.5rem; border-bottom:3px solid #f7b092;">Students' Table</span></div>
+    <div style="margin:4rem 8rem 1rem 8rem;"><span style="font-size:1.5rem; border-bottom:3px solid #f7b092;">Students</span></div>
 
     <div class="filters">
         <div><input type="search" placeholder="Search student"/></div>
@@ -138,7 +138,7 @@
                 <td scope="row">1</td>
                 <td>Mark</td>
                 <td>mark25@gmail.com</td>
-                <td><span>Active</span></td>
+                <td><span>Online</span></td>
                 </tr>
                 <tr>
                 <td scope="row">2</td>
@@ -185,6 +185,7 @@
                 <th scope="col">Start Date</th>
                 <th scope="col">Duration</th>
                 <th scope="col">Status</th>
+                <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -196,6 +197,10 @@
                 <td>12/03/2023 14:00</td>
                 <td>2 Hours</td>
                 <td><span>Active</span></td>
+                <td> 
+                <a href="" class="edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
+                    <a href="" class="delete"><i class="fa-solid fa-trash-can"></i>&nbsp;Delete</a>
+                </td>
                 </tr>
                 <tr>
                 <td scope="row">2</td>
@@ -205,6 +210,10 @@
                 <td>12/03/2023 12:30</td>
                 <td>2 Hours</td>
                 <td><span>Active</span></td>
+                <td> 
+                <a href="" class="edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
+                    <a href="" class="delete"><i class="fa-solid fa-trash-can"></i>&nbsp;Delete</a>
+                </td>
                 </tr>
                 <tr>
                 <td scope="row">3</td>
@@ -214,6 +223,10 @@
                 <td>12/03/2023 9:30</td>
                 <td>2 Hours</td>
                 <td><span>Active</span></td>
+                <td> 
+                    <a href="" class="edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
+                    <a href="" class="delete"><i class="fa-solid fa-trash-can"></i>&nbsp;Delete</a>
+                </td>
                 </tr>
             </tbody>
         </table>
@@ -235,7 +248,7 @@
     const activeExamsTdList = document.querySelectorAll('.activeExamsTable table tbody tr td span');
   
     studentTableTdList.forEach((td) => {
-        if (td.textContent === 'Active') {
+        if (td.textContent === 'New') {
         td.style.backgroundColor = '#ddf1fb';
         td.style.color = '#53b7ec';
         td.style.border = '1px solid #53b7ec';
@@ -243,7 +256,7 @@
         td.style.backgroundColor = '#fbe2e5';
         td.style.color = '#e96d7f';
         td.style.border = '1px solid #e96d7f';
-        }else if (td.textContent === 'New') {
+        }else if (td.textContent === 'Online') {
         td.style.backgroundColor = '#e9f5ef';
         td.style.color = '#93ccad';
         td.style.border = '1px solid #93ccad';
