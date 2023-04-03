@@ -15,7 +15,8 @@
 .create-exam-container form{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    position: relative;
+    height: calc(100% - 63px);
 }
 
 .create-exam-container select {
@@ -157,7 +158,8 @@
     border-radius: 4px;
     cursor: pointer;
     width: 90%;
-    margin-top: 130px;
+    position: absolute;
+    bottom: 0px;
 }
 
 .create-exam-container button:hover {
