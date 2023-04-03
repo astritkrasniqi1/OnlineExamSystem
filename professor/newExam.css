@@ -1,46 +1,31 @@
-.container {
+.newExamContainer {
     display: flex;
-    margin: 2rem;
     background-color: #f1f1f3;
+    justify-content: space-between;
 }
 
 .exam-title {
     flex: 2;
+    margin-left:20%;
     padding: 20px;
     background-color: #f1f1f3;
     /* border-right: 1px solid #ccc; */
 }
 
-.exam-title .title input[type="text"] {
-    width: 300px;
-    font-size: 30px;
-    border: none;
-    box-sizing: border-box;
-    margin: 0;
-    outline: none;
-    background: #f1f1f3;
-}
-
-.exam-title label {
-    display: block;
-    margin-bottom: 10px;
-}
-
-.container .exam-title .title {
+.create-exam-container form{
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-content: center;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.exam-title .title select {
-    width: 200px;
+.create-exam-container select {
+    width: 90%;
+    margin-top:10px;
     padding: 5px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    margin: 10px 0;
     outline: none;
 }
 
@@ -51,7 +36,6 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    margin-top: 10px;
 }
 
 .exam-title button:hover {
@@ -84,9 +68,10 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     outline: none;
 }
+
 
 .form-row {
     display: flex;
@@ -96,11 +81,11 @@
 
 .form-row div {
     display: flex;
-    margin-bottom: 10px;
+    margin-bottom:20px;
 }
 
 .form-row input[type="number"] {
-    width: 50px;
+    width: 40px;
     border: 1px solid #ccc;
     border-radius: 4px;
     outline: none;
@@ -116,7 +101,7 @@
 }
 
 #add-question-form button {
-    padding: 5px 35px;
+    padding: 10px 35px;
     background-color: #e96d7f;
     color: white;
     border: none;
@@ -128,19 +113,33 @@
     background-color: #eb7c8c;
 }
 
-.exam-settings {
-    flex: 1;
-    padding: 20px;
-    background-color: #f1f1f3;
+.create-exam-container {
+        position: fixed;
+        height: 100%;
+        width:20%;
+        padding: 20px;
+        background-color:white;
+        z-index: 100;
+        border-right: 1px solid lightgray;
 }
-
-.exam-settings label {
-    display: block;
-    margin-bottom: 10px;
-}
-
-.exam-settings input {
+#add-question-form #question {
     width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 25px;
+    outline: none;
+}
+
+.create-exam-container label {
+    display: block;
+    margin-bottom: 5px;
+    margin-top:20px;
+}
+
+.create-exam-container input {
+    width: 90%;
     padding: 5px;
     font-size: 16px;
     border: 1px solid #ccc;
@@ -150,22 +149,23 @@
     outline: none;
 }
 
-.exam-settings button {
+.create-exam-container button {
     background-color: #e96d7f;
     color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    margin-top: 10px;
+    width: 90%;
+    margin-top: 130px;
 }
 
-.exam-settings button:hover {
+.create-exam-container button:hover {
     background-color: #eb7c8c;
 }
 
 .question-table {
-    display: none;
+    display: block;
 }
 
 .question-table {
@@ -215,6 +215,16 @@ td {
 .question-table table thead tr {
     border-style: none;
     border-color: #f1f1f3;
+}
+
+.create-exam-container input[type="text"] {
+    width: 90%;
+    font-size: 28px;
+    border:none;
+    box-sizing: border-box;
+    margin: 0;
+    margin-bottom: 20px;
+    outline: none;
 }
 
 

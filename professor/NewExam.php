@@ -17,26 +17,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Exam</title>
     <link rel="stylesheet" href="newExam.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body style="background:#f1f1f3;">
+    <?php require 'NewExamLogic.php' ?>
+
     <?php @include 'navbar.php' ?>
 
-    <div class="container">
-        <div class="exam-title">
-            <div class="title">
-                <input type="text" id="exam-title" name="exam-title" placeholder="Enter exam title">
-                <select id="subject">
-                    <option value="">Select Subject</option>
-                </select>
-            </div>
 
-            <button id="add-question">Add Question</button>
+<div class="newExamContainer">
+    <div class="create-exam-container">
+            <form action="" method="post">
+                <input type="text" id="exam-title" required name="exam-title" placeholder="Enter exam title">
+                    <select id="subject" name="subject" required>
+                        <option value="0" selected disabled>Select Subject</option>
+                        <option value="1">Matemathics</option>
+                        <option value="2">Biology</option>
+                    </select>
+
+            <h5 style="margin-top: 100px;border-bottom:1px solid lightgray;width:90%;">Exam Settings</h5>        
+
+            <label for="start-date">Start Date:</label>
+            <input type="datetime-local" id="start-date" name="startDate" required>
+
+            <label for="duration">Duration (minutes):</label>
+            <input type="number" id="duration" name="duration" required>
+            <button id="create-exam" name="createExam" type="submit">Create Exam</button>
+            </form>
+        </div>
+        <div class="exam-title">
+            <button id="add-question"><i class='bx bx-plus'></i>&nbsp;Add Question</button>
 
             <div id="add-question-form">
-                <form id="question-form">
+                <form id="question-form" method="post">
                     <div class="close-btn">
                         <i class="fa-solid fa-x"></i>
                     </div>
@@ -83,11 +99,10 @@
                         </div>
                     </div>
                     <div class="save-button">
-                        <button type="submit">Save</button>
+                            <button name="saveQuestion" type="submit">Save</button>
                     </div>
                 </form>
             </div>
-
             <div class="question-table">
                 <table>
                     <thead>
@@ -103,22 +118,10 @@
                     </thead>
                     <tbody id="question-table-body">
                     </tbody>
-                </table>
-            </div>
+            </table>
         </div>
-
-        <div class="exam-settings">
-            <h2>Exam Settings</h2>
-            <label for="start-date">Start Date:</label>
-            <input type="datetime-local" id="start-date" required>
-
-            <label for="duration">Duration (minutes):</label>
-            <input type="number" id="duration" required>
-
-            <button id="create-exam">Create Exam</button>
         </div>
     </div>
-
 
 
 </body>
