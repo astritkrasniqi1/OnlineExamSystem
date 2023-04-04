@@ -50,6 +50,7 @@
             <button id="create-exam" name="createExam" type="submit">Create Exam</button>
             </form>
         </div>
+        <?php  if(isset($_POST['createExam'])){ ?>
         <div class="exam-table">
                 <table class="table">
                     <thead>
@@ -73,12 +74,12 @@
                             <td><?php echo $examRow['Professor'] ?></td>
                             <td><?php echo $examRow['Title'] ?></td>
                             <td><?php echo $examRow['StartDate'] ?></td>
-                            <td><?php echo $examRow['Duration'] ?></td>
+                            <td><?php echo $examRow['Duration'] ?> Min</td>
                         </tr>
                     </tbody>
             </table>
         </div>
-        <?php } }?>
+        <?php } } }?>
 
 
         <div class="exam-title">
