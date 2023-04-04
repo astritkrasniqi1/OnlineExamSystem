@@ -25,8 +25,14 @@
                     'success'
                 )
             </script> 
+            
 <?php 
         }
     }
-        
+    $examTable = "SELECT e.Id, s.Name as SubjectName, CONCAT(u.FirstName, ' ', u.LastName) as Professor,  e.Title, e.StartDate, e.Duration 
+    FROM exam e join users u on e.Professor = u.Id 
+    join subject s on e.Subject = s.Id where e.Id in (Select Max(Id) from exam)";
+
+    $resultExamTable = mysqli_query($conn,$examTable); 
+       
 ?>

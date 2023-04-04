@@ -1,7 +1,7 @@
 .newExamContainer {
     display: flex;
     background-color: #f1f1f3;
-    justify-content: space-between;
+    flex-direction: column;
 }
 
 .exam-title {
@@ -175,6 +175,56 @@
 }
 
 .question-table table {
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    width: 100%;
+}
+
+.exam-table table{
+    border-collapse:separate;
+    border-spacing: 0 10px;
+}
+.exam-table table tbody tr{
+    background:white;
+}
+.exam-table table tbody tr td{
+    border-top:1px solid lightgray;
+    border-bottom:1px solid lightgray;
+}
+.exam-table table tbody tr td:first-child{
+    border-top:1px solid lightgray;
+    border-bottom:1px solid lightgray;
+    border-left: 1px solid lightgray;
+    border-radius: 5px 0 0 5px;
+}
+th{
+    font-weight: 550;
+    color: gray;
+}
+td{
+    font-weight: 550;
+    vertical-align: middle;
+}
+.exam-table table tbody tr td:last-child{
+    border-top:1px solid lightgray;
+    border-bottom:1px solid lightgray;
+    border-right: 1px solid lightgray;
+    border-radius: 0 5px 5px 0;
+}
+.exam-table table thead tr{
+    border-style: none;
+    border-color: #f1f1f3;
+}
+
+
+.exam-table {
+    display: block;
+    margin:0rem 0;
+    margin-left:20%;
+    padding: 20px;
+}
+
+.exam-table table {
     border-collapse: separate;
     border-spacing: 0 10px;
     width: 100%;

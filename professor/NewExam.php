@@ -50,6 +50,37 @@
             <button id="create-exam" name="createExam" type="submit">Create Exam</button>
             </form>
         </div>
+        <div class="exam-table">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Subject</th>
+                            <th scope="col">Professor</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Start Date</th>
+                            <th scope="col">Duration</th>
+                        </tr>
+                    </thead>
+                    <tbody id="exam-table-body">
+                        <?php 
+                                if(mysqli_num_rows($resultExamTable)> 0){
+                                while($examRow = mysqli_fetch_array($resultExamTable)) {
+                        ?>
+                        <tr>
+                            <td><?php echo $examRow['Id'] ?></td>
+                            <td><?php echo $examRow['SubjectName'] ?></td>
+                            <td><?php echo $examRow['Professor'] ?></td>
+                            <td><?php echo $examRow['Title'] ?></td>
+                            <td><?php echo $examRow['StartDate'] ?></td>
+                            <td><?php echo $examRow['Duration'] ?></td>
+                        </tr>
+                    </tbody>
+            </table>
+        </div>
+        <?php } }?>
+
+
         <div class="exam-title">
             <button id="add-question"><i class='bx bx-plus'></i>&nbsp;Add Question</button>
 
@@ -150,17 +181,24 @@
     });
 
 
-    function handleCheckboxClick(checkbox) { 
-        var checkboxes = document.getElementsByName(checkbox.name); 
-        for (var i = 0; i < checkboxes.length; i++) 
-        { if (checkboxes[i] !== checkbox) { 
-            checkboxes[i].disabled = checkbox.checked; 
-            if(checkbox.checked){
-                checkboxes[i].checked = false;
-            }
-         } 
-        } 
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+checkboxes.forEach((checkbox) => {
+  checkbox.addEventListener('change', () => {
+    // If this checkbox is checked, disable all the other checkboxes
+    if (checkbox.checked) {
+      checkboxes.forEach((otherCheckbox) => {
+        if (otherCheckbox !== checkbox) {
+          otherCheckbox.disabled = true;
+        }
+      });
+    } else {
+      // If this checkbox is unchecked, enable all the checkboxes
+      checkboxes.forEach((otherCheckbox) => {
+        otherCheckbox.disabled = false;
+      });
     }
+  });
+});
 </script>
 
 </html>
