@@ -24,6 +24,8 @@
 
 <body style="background:#f1f1f3;">
     <?php require 'NewExamLogic.php' ?>
+    <?php require 'NewQuestionLogic.php' ?>
+
 
     <?php @include 'navbar.php' ?>
 
@@ -56,46 +58,46 @@
                     <div class="close-btn">
                         <i class="fa-solid fa-x"></i>
                     </div>
-                    <label for="question">Question:</label>
-                    <input type="text" id="question" required>
+                    <label for="question" >Question:</label>
+                    <input type="text" id="question" name="question" required>
 
                     <label for="answer1">Answer 1:</label>
-                    <input type="text" id="answer1" required>
+                    <input type="text" id="answer1" name="answer1" required>
                     <div class="form-row">
                         <div>
-                            <input type="radio" name="correct-answer" id="answer1-correct" value="1" required>
+                            <input type="checkbox" name="correct-answer-1" id="answer1-correct" onclick="handleCheckboxClick(this)"  >
                             <label for="answer1-correct">Correct Answer</label>
                         </div>
                     </div>
 
                     <label for="answer2">Answer 2:</label>
-                    <input type="text" id="answer2" required>
+                    <input type="text" id="answer2" name="answer2"  required>
                     <div class="form-row">
                         <div>
-                            <input type="radio" name="correct-answer" id="answer2-correct" value="2" required>
+                            <input type="checkbox" name="correct-answer-2" id="answer2-correct" onclick="handleCheckboxClick(this)" >
                             <label for="answer2-correct">Correct Answer</label>
                         </div>
                     </div>
 
                     <label for="answer3">Answer 3:</label>
-                    <input type="text" id="answer3">
+                    <input type="text" id="answer3" name="answer3" >
                     <div class="form-row">
                         <div>
-                            <input type="radio" name="correct-answer" id="answer3-correct" value="3" required>
+                            <input type="checkbox" name="correct-answer-3" id="answer3-correct" onclick="handleCheckboxClick(this)"  >
                             <label for="answer3-correct">Correct Answer</label>
                         </div>
                     </div>
 
                     <label for="answer4">Answer 4:</label>
-                    <input type="text" id="answer4">
+                    <input type="text" id="answer4" name="answer4" >
                     <div class="form-row">
                         <div>
-                            <input type="radio" name="correct-answer" id="answer4-correct" value="4" required>
+                            <input type="checkbox" name="correct-answer-4" id="answer4-correct" onclick="handleCheckboxClick(this)"  >
                             <label for="answer4-correct">Correct Answer</label>
                         </div>
                         <div>
                             <label for="points-input">Points:</label>
-                            <input type="number" id="points-input" min="0" required>
+                            <input type="number" id="points-input" min="0" name="points" required>
                         </div>
                     </div>
                     <div class="save-button">
@@ -146,6 +148,19 @@
     closeBtn.addEventListener('click', () => {
         addQuestionPopup.style.display = 'none';
     });
+
+
+    function handleCheckboxClick(checkbox) { 
+        var checkboxes = document.getElementsByName(checkbox.name); 
+        for (var i = 0; i < checkboxes.length; i++) 
+        { if (checkboxes[i] !== checkbox) { 
+            checkboxes[i].disabled = checkbox.checked; 
+            if(checkbox.checked){
+                checkboxes[i].checked = false;
+            }
+         } 
+        } 
+    }
 </script>
 
 </html>
