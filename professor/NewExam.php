@@ -55,8 +55,26 @@
             <button id="create-exam" name="createExam" type="submit">Create Exam</button>
             </form>
         </div>
-        <?php  if(isset($_POST['createExam'])){ ?>
         <div class="exam-table">
+            <form action="" method="post">
+                <div style="display:flex; flex-direction:column;">
+                    <label for="">From:</label>
+                    <input type="datetime-local" name="From" value="<?php echo date('Y-m-d H:i:s'); ?>" >
+                </div>
+                <div style="display:flex; flex-direction:column;">
+                    <label for="">To:</label>
+                    <input type="datetime-local" name="To" value="<?php echo date('Y-m-d H:i:s'); ?>">
+                </div>
+            </form>
+                <?php
+                    if(mysqli_num_rows($resultExamTable) == 0){
+                ?>
+                        <span class="text-danger">No results</span>
+                        
+                <?php 
+                    }
+                    elseif(mysqli_num_rows($resultExamTable)> 0){
+                    ?>
                 <table class="table">
                     <thead>
                         <tr>
@@ -66,12 +84,11 @@
                             <th scope="col">Title</th>
                             <th scope="col">Start Date</th>
                             <th scope="col">Duration</th>
+                            <th scope="col">Status</th>
                         </tr>
                     </thead>
                     <tbody id="exam-table-body">
-                        <?php 
-                                if(mysqli_num_rows($resultExamTable)> 0){
-                                while($examRow = mysqli_fetch_array($resultExamTable)) {
+                         <?php while($examRow = mysqli_fetch_array($resultExamTable)) {
                         ?>
                         <tr>
                             <td><?php echo $examRow['Id'] ?></td>
@@ -80,11 +97,18 @@
                             <td><?php echo $examRow['Title'] ?></td>
                             <td><?php echo $examRow['StartDate'] ?></td>
                             <td><?php echo $examRow['Duration'] ?> Min</td>
+                            <td><?php if($examRow['Status'] == '0'){
+                                echo '<span>Inactive</span>';
+                                } else if($examRow['Status'] == '1'){
+                                    echo '<span>Active</span>';
+                                } else {
+                                    echo '<span>New</span>';
+                            } ?> </td>
                         </tr>
+                        <?php } }?>
                     </tbody>
             </table>
         </div>
-        <?php } } }?>
 
 
         <div class="exam-title">
@@ -157,8 +181,14 @@
                     </thead>
                     <tbody id="question-table-body">
                     </tbody>
-            </table>
-        </div>
+                </table>
+            </div>
+
+            <div class="completeExamContainer">
+                <form action="" method="post">
+                    <button class="completeExam" name="completeExam">Complete Exam &nbsp;<i class="fa-solid fa-check"></i></button>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -177,6 +207,23 @@
     const addQuestionButton = document.getElementById('add-question');
     const addQuestionPopup = document.getElementById('add-question-form');
     const closeBtn = document.querySelector('.close-btn');
+    const examTableTdList = document.querySelectorAll('.exam-table table tbody tr td span');  
+
+    examTableTdList.forEach((td) => {
+        if (td.textContent === 'New') {
+        td.style.backgroundColor = '#ddf1fb';
+        td.style.color = '#53b7ec';
+        td.style.border = '1px solid #53b7ec';
+        } else if (td.textContent === 'Inactive') {
+        td.style.backgroundColor = '#fbe2e5';
+        td.style.color = '#e96d7f';
+        td.style.border = '1px solid #e96d7f';
+        }else if (td.textContent === 'Active') {
+        td.style.backgroundColor = '#e9f5ef';
+        td.style.color = '#93ccad';
+        td.style.border = '1px solid #93ccad';
+        }
+    });
 
     addQuestionButton.addEventListener('click', () => {
         addQuestionPopup.style.display = 'block';

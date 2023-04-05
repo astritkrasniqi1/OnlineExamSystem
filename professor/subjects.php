@@ -100,9 +100,9 @@
 </div>
 <div id="edit-subject-form" style="display: none;">
         <form id="subject-form" method="post">
-                <div class="" style="display:flex;flex-direction:row; justify-content:space-between; align-items:center;margin-bottom:15  px;">
+                <div class="" style="display:flex;flex-direction:row; justify-content:space-between; align-items:center;margin-bottom:15px;">
                         <h5 style="margin:0;">Edit Subject</h5>
-                        <i class="fa-solid fa-x"></i>
+                        <i class="fa-solid fa-x" style="cursor:pointer;" onclick="closeEditSubjectForm();"></i>
                     </div>
                     <input type="text" id="subjectEdit" placeholder="Subject name" name="subjectEdit" required>
                     <br>
@@ -151,5 +151,14 @@
           document.getElementById("edit-subject-form").style.display = "none";
         }
     });
+
+    function closeEditSubjectForm() {
+      if(document.getElementById("edit-subject-form").style.display == "none"){
+        document.getElementById("edit-subject-form").style.display = "flex";
+      }
+      else{
+        document.getElementById("edit-subject-form").style.display = "none";
+      }
+    }
 </script>
 </html>

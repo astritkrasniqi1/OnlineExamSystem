@@ -169,7 +169,7 @@ td{
     width:100%;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 5px;
     box-sizing: border-box;
     margin-bottom: 5px;
     outline: none;
@@ -198,6 +198,7 @@ td{
     cursor: pointer;
     margin-top: 10px;
     width: 100%;
+    border-radius: 5px;
 }
 
 #edit-subject-form button:hover {
@@ -210,10 +211,6 @@ td{
     border-radius: 20px;
     padding: 5px 15px;
     background: none;
-}
-
-.editSubject{
-    width:100%;
 }
 
 
