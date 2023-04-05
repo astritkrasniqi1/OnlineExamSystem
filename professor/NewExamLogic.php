@@ -36,4 +36,25 @@
 
     $resultExamTable = mysqli_query($conn,$examTable); 
        
+
+    if(isset($_POST['update-exam'])){
+        $ExamTitle = isset($_POST['examTitle']) ? $_POST['examTitle'] : '';
+        $Subject = isset($_POST['Subject']) ? $_POST['Subject'] : '';
+        $StartDate = isset($_POST['StartDate']) ? date('Y-m-d H:i:s', strtotime($_POST['StartDate'])) : '';
+        $Duration = isset($_POST['Duration']) ? $_POST['Duration'] : '';
+
+        $sql = "UPDATE exam SET Title='$ExamTitle', Subject='$Subject', StartDate='$StartDate', Duration='$Duration' WHERE Id=(SELECT MAX(Id) FROM exam)";
+        if(mysqli_query($conn,$sql)){
+            ?>
+            <script>
+                Swal.fire(
+                    'Exam updated successfully',
+                    '',
+                    'success'
+                )
+            </script> 
+            
+<?php 
+        }
+    }
 ?>

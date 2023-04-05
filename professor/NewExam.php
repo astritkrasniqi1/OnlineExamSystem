@@ -85,6 +85,8 @@
                             <th scope="col">Start Date</th>
                             <th scope="col">Duration</th>
                             <th scope="col">Status</th>
+                            <th scope="col">Actions</th>
+
                         </tr>
                     </thead>
                     <tbody id="exam-table-body">
@@ -97,6 +99,7 @@
                             <td><?php echo $examRow['Title'] ?></td>
                             <td><?php echo $examRow['StartDate'] ?></td>
                             <td><?php echo $examRow['Duration'] ?> Min</td>
+
                             <td><?php if($examRow['Status'] == '0'){
                                 echo '<span>Inactive</span>';
                                 } else if($examRow['Status'] == '1'){
@@ -104,12 +107,44 @@
                                 } else {
                                     echo '<span>New</span>';
                             } ?> </td>
+                            <td><button id="updateExam"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</button></td>
                         </tr>
                         <?php } }?>
                     </tbody>
             </table>
         </div>
 
+        <div class="update-exam-form">
+                <form id="updateExam-form" method="post">
+                    <div class="close-button">
+                        <i class="fa-solid fa-x"></i>
+                    </div>
+                    <label for="examTitle" >Exam Title:</label>
+                    <input type="text" id="examTitle" name="examTitle" required>
+
+                    <label for="Subject" >Subject:</label>
+                    <select id="Subject" name="Subject" required>
+                        <option value="0" selected disabled>Select Subject</option>
+                        <?php $subjectTable = "SELECT Id, Name from subject";
+                                $resultSubjectTable = mysqli_query($conn,$subjectTable);
+                                if(mysqli_num_rows($resultSubjectTable) > 0){
+                                    while($subjectRow = mysqli_fetch_array($resultSubjectTable)){
+                                ?>
+                                <option value="<?php echo $subjectRow['Id']?>"><?php echo $subjectRow['Name']?></option>
+                                <?php } }?>
+                    </select>
+
+                    <label for="StartDate">Start Date:</label>
+                    <input type="datetime-local" id="StartDate" name="StartDate" required>
+
+                    <label for="Duration">Duration:</label>
+                    <input type="number" id="Duration" name="Duration"  required>
+
+                    <div class="save-button">
+                            <button name="update-exam" type="submit">Save</button>
+                    </div>
+                </form>
+            </div>
 
         <div class="exam-title">
             <button id="add-question"><i class='bx bx-plus'></i>&nbsp;Add Question</button>
@@ -235,8 +270,8 @@
 
 
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-checkboxes.forEach((checkbox) => {
-  checkbox.addEventListener('change', () => {
+    checkboxes.forEach((checkbox) => {
+    checkbox.addEventListener('change', () => {
     // If this checkbox is checked, disable all the other checkboxes
     if (checkbox.checked) {
       checkboxes.forEach((otherCheckbox) => {
@@ -250,8 +285,31 @@ checkboxes.forEach((checkbox) => {
         otherCheckbox.disabled = false;
       });
     }
-  });
-});
+    });
+    });
+
+    $(document).on('click', '#updateExam', function(){
+    // get the values from the table row
+    var examId = $(this).closest('tr').find('td:eq(0)').text().trim();
+    var subjectId = $(this).closest('tr').find('td:eq(1)').text().trim();
+    var examTitle = $(this).closest('tr').find('td:eq(3)').text().trim();
+    var startDate = $(this).closest('tr').find('td:eq(4)').text().trim();
+    var duration = $(this).closest('tr').find('td:eq(5)').text().trim().replace(" Min", "");
+  
+    // set the values to the update exam form inputs
+    $('#examTitle').val(examTitle);
+    $('#Subject').val(subjectId);
+    $('#StartDate').val(startDate);
+    $('#Duration').val(duration);
+  
+    $('.update-exam-form').show();
+    });
+
+    $(document).on('click', '.close-button', function(){
+        $('.update-exam-form').hide();
+    })
+
+
 </script>
 
 </html>
