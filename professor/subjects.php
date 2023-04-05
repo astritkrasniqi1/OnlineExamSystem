@@ -29,6 +29,7 @@
 </head>
 <body style="background:#f1f1f3;">
     <?php @include 'navbar.php' ?>
+    <?php  require 'addSubjectLogic.php'?>
 
 <section>
    <div class="pageTitleContainer" >   
@@ -45,11 +46,11 @@
   </div>
 
   <div id="addNewSubjectContainer" style="display: none;">
-    <form id="addNewSubjectForm">
-               <input type="text" id="name" name="name" placeholder="Enter subject name" required>
+    <form id="addNewSubjectForm" method="post">
+               <input type="text" id="name" name="subjectName" placeholder="Enter subject name" required>
                <br>
    
-               <button type="submit">Save</button>
+               <button type="submit" name="addSubject">Save</button>
     </form>
   </div>
 
@@ -72,26 +73,22 @@
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Subject Name</th>
-      
+      <th scope="col">Created at</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td scope="row">1</td>
-      <td>Mathematic</td>
-     
-    </tr>
-    <tr>
-      <td scope="row">2</td>
-      <td>Physic</td>
-    
+    <?php  
+    if(mysqli_num_rows($resultSubjectTable )>0){
+      while($subjectRow=myqsli_fetch_array($resultSubjectTable)){
 
-    </tr>
+    
+    ?>
     <tr>
-      <td scope="row">3</td>
-      <td>Chemistry</td>
-     
+      <td> <?php echo $subjectRow['Id']?> </td>
+      <td> <?php echo $subjectRow['Name']?> </td>
+      <td> <?php echo $subjectRow['Created_at']?> </td> 
     </tr>
+    <?php }}?>
   </tbody>
 </table>
 </div>
