@@ -18,6 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="subjects.css">
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -29,6 +30,7 @@
 </head>
 <body style="background:#f1f1f3;">
     <?php @include 'navbar.php' ?>
+    <?php  require 'addSubjectLogic.php'?>
 
 <section>
    <div class="pageTitleContainer" >   
@@ -42,14 +44,16 @@
                     </h2>
                </div>
               <button id="openFormButton"><i class='bx bx-plus'></i>&nbsp;Create New Subject</button>
+              
+              
   </div>
 
   <div id="addNewSubjectContainer" style="display: none;">
-    <form id="addNewSubjectForm">
-               <input type="text" id="name" name="name" placeholder="Enter subject name" required>
+    <form id="addNewSubjectForm" method="post">
+               <input type="text" id="name" name="subjectName" placeholder="Enter subject name" required>
                <br>
    
-               <button type="submit">Save</button>
+               <button type="submit" name="addSubject">Save</button>
     </form>
   </div>
 
@@ -72,29 +76,41 @@
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Subject Name</th>
-      
+      <th scope="col">Created at</th>
+      <th scope="col">Actions</th>
+
     </tr>
   </thead>
   <tbody>
+    <?php  
+    if(mysqli_num_rows($resultSubjectTable )>0){
+      while($subjectRow = mysqli_fetch_array($resultSubjectTable)){    
+    ?>
     <tr>
-      <td scope="row">1</td>
-      <td>Mathematic</td>
-     
+      <td> <?php echo $subjectRow['Id']?> </td>
+      <td> <?php echo $subjectRow['Name']?> </td>
+      <td> <?php echo $subjectRow['Created_at']?> </td>
+      <td> 
+        <button id="editSubjectButton"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</button>
+      </td>
     </tr>
-    <tr>
-      <td scope="row">2</td>
-      <td>Physic</td>
-    
-
-    </tr>
-    <tr>
-      <td scope="row">3</td>
-      <td>Chemistry</td>
-     
-    </tr>
+    <?php }}?>
   </tbody>
 </table>
 </div>
+<div id="edit-subject-form" style="display: none;">
+        <form id="subject-form" method="post">
+                <div class="" style="display:flex;flex-direction:row; justify-content:space-between; align-items:center;margin-bottom:15  px;">
+                        <h5 style="margin:0;">Edit Subject</h5>
+                        <i class="fa-solid fa-x"></i>
+                    </div>
+                    <input type="text" id="subjectEdit" placeholder="Subject name" name="subjectEdit" required>
+                    <br>
+                    <div id=save-buton>
+                  <button type="submit" name="editSubject">Save</button>
+                </div>
+        </form>
+      </div>
   
 
   </section>
@@ -125,6 +141,14 @@
         }
         else{
           document.getElementById("addNewSubjectContainer").style.display = "none";
+        }
+    });
+    document.getElementById("editSubjectButton").addEventListener("click", function() {
+      if(document.getElementById("edit-subject-form").style.display == "none"){
+          document.getElementById("edit-subject-form").style.display = "flex";
+        }
+        else{
+          document.getElementById("edit-subject-form").style.display = "none";
         }
     });
 </script>
