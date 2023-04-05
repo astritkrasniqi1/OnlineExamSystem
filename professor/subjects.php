@@ -88,13 +88,27 @@
       <td> <?php echo $subjectRow['Name']?> </td>
       <td> <?php echo $subjectRow['Created_at']?> </td>
       <td> 
-        <a href="" class="edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
+        <button id="editSubjectButton"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</button>
       </td>
     </tr>
     <?php }}?>
   </tbody>
 </table>
 </div>
+
+<div id="edit-subject-form">
+        <form id="subject-form" method="post">
+        <div class="close-btn">
+          <i class="fa-solid fa-x"></i>
+        </div>
+                   <label for="subjectEdit" >Edit Subject:</label>
+                    <input type="text" id="subjectEdit" name="subjectEdit" placeholder="Subject Name" required>
+                    <br>
+                    <div id=save-buton>
+                  <button type="submit" name="editSubject">Save</button>
+                </div>
+        </form>
+      </div>
   
 
   </section>
@@ -126,6 +140,20 @@
         else{
           document.getElementById("addNewSubjectContainer").style.display = "none";
         }
+    });
+    document.getElementById("editSubjectButton").addEventListener("click", function() {
+      if(document.getElementById("edit-subject-form").style.display == "none"){
+          document.getElementById("edit-subject-form").style.display = "flex";
+        }
+        else{
+          document.getElementById("edit-subject-form").style.display = "none";
+        }
+    });
+    const editSubjectButton = document.getElementById('editSubjectButton');
+    const editSubjectPopup = document.getElementById('edit-subject-form');
+    const closeBtn = document.querySelector('.close-btn');
+    closeBtn.addEventListener('click', () => {
+        editSubjectPopup.style.display = 'none';
     });
 </script>
 </html>
