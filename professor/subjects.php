@@ -89,52 +89,28 @@
     <tr>
       <td> <?php echo $subjectRow['Id']?> </td>
       <td> <?php echo $subjectRow['Name']?> </td>
-<<<<<<< HEAD
       <td> <?php echo $subjectRow['Created_at']?> </td>
       <td> 
         <button id="editSubjectButton"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</button>
       </td>
-=======
-      <td> <?php echo $subjectRow['Created_at']?> </td> 
-       <td> <button id="editSubjectButton"><i class='bx bx-plus'></i>&nbsp;Edit</button></td>
-
-     
-     
->>>>>>> 29bfa1ce172f4a689082b0a90d5a09301782b2b3
     </tr>
     <?php }}?>
   </tbody>
 </table>
 </div>
-
-<<<<<<< HEAD
-<div id="edit-subject-form">
-        <form id="subject-form" method="post">
-        <div class="close-btn">
-          <i class="fa-solid fa-x"></i>
-        </div>
-                   <label for="subjectEdit" >Edit Subject:</label>
-                    <input type="text" id="subjectEdit" name="subjectEdit" placeholder="Subject Name" required>
-=======
 <div id="edit-subject-form" style="display: none;">
         <form id="subject-form" method="post">
-        <div class="close-btn">
+                <div class="" style="display:flex;flex-direction:row; justify-content:space-between; align-items:center;margin-bottom:15  px;">
+                        <h5 style="margin:0;">Edit Subject</h5>
                         <i class="fa-solid fa-x"></i>
                     </div>
-                   <label for="subjectEdit" >Edit Question:</label>
-                    <input type="text" id="subjectEdit" name="subjectEdit" required>
->>>>>>> 29bfa1ce172f4a689082b0a90d5a09301782b2b3
+                    <input type="text" id="subjectEdit" placeholder="Subject name" name="subjectEdit" required>
                     <br>
                     <div id=save-buton>
                   <button type="submit" name="editSubject">Save</button>
                 </div>
         </form>
       </div>
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 29bfa1ce172f4a689082b0a90d5a09301782b2b3
   
 
   </section>
@@ -167,10 +143,6 @@
           document.getElementById("addNewSubjectContainer").style.display = "none";
         }
     });
-<<<<<<< HEAD
-=======
-
->>>>>>> 29bfa1ce172f4a689082b0a90d5a09301782b2b3
     document.getElementById("editSubjectButton").addEventListener("click", function() {
       if(document.getElementById("edit-subject-form").style.display == "none"){
           document.getElementById("edit-subject-form").style.display = "flex";
@@ -179,14 +151,5 @@
           document.getElementById("edit-subject-form").style.display = "none";
         }
     });
-<<<<<<< HEAD
-    const editSubjectButton = document.getElementById('editSubjectButton');
-    const editSubjectPopup = document.getElementById('edit-subject-form');
-    const closeBtn = document.querySelector('.close-btn');
-    closeBtn.addEventListener('click', () => {
-        editSubjectPopup.style.display = 'none';
-    });
-=======
->>>>>>> 29bfa1ce172f4a689082b0a90d5a09301782b2b3
 </script>
 </html>
