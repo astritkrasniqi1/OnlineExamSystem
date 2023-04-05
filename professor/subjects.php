@@ -44,6 +44,8 @@
                     </h2>
                </div>
               <button id="openFormButton"><i class='bx bx-plus'></i>&nbsp;Create New Subject</button>
+              
+              
   </div>
 
   <div id="addNewSubjectContainer" style="display: none;">
@@ -76,6 +78,7 @@
       <th scope="col">Subject Name</th>
       <th scope="col">Created at</th>
       <th scope="col">Actions</th>
+
     </tr>
   </thead>
   <tbody>
@@ -89,14 +92,31 @@
       <td> <?php echo $subjectRow['Id']?> </td>
       <td> <?php echo $subjectRow['Name']?> </td>
       <td> <?php echo $subjectRow['Created_at']?> </td> 
-      <td> 
-                    <a href="" class="edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
-                </td>
+       <td> <button id="editSubjectButton"><i class='bx bx-plus'></i>&nbsp;Edit</button></td>
+
+     
+     
     </tr>
     <?php }}?>
   </tbody>
 </table>
 </div>
+
+<div id="edit-subject-form" style="display: none;">
+        <form id="subject-form" method="post">
+        <div class="close-btn">
+                        <i class="fa-solid fa-x"></i>
+                    </div>
+                   <label for="subjectEdit" >Edit Question:</label>
+                    <input type="text" id="subjectEdit" name="subjectEdit" required>
+                    <br>
+                    <div id=save-buton>
+                  <button type="submit" name="editSubject">Save</button>
+                </div>
+        </form>
+      </div>
+
+
   
 
   </section>
@@ -127,6 +147,15 @@
         }
         else{
           document.getElementById("addNewSubjectContainer").style.display = "none";
+        }
+    });
+
+    document.getElementById("editSubjectButton").addEventListener("click", function() {
+      if(document.getElementById("edit-subject-form").style.display == "none"){
+          document.getElementById("edit-subject-form").style.display = "flex";
+        }
+        else{
+          document.getElementById("edit-subject-form").style.display = "none";
         }
     });
 </script>
