@@ -149,7 +149,13 @@ td{
 #addNewSubjectContainer form button:hover{
     background-color: #eb7c8c;
 }
- 
+td a.edit{
+    text-decoration: none;
+    color:#111965;
+    border:1px solid lightgray;
+    border-radius: 20px;
+    padding: 5px 15px;
+}
   
 
  

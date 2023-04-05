@@ -18,6 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="subjects.css">
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -74,12 +75,13 @@
       <th scope="col">ID</th>
       <th scope="col">Subject Name</th>
       <th scope="col">Created at</th>
+      <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
     <?php  
     if(mysqli_num_rows($resultSubjectTable )>0){
-      while($subjectRow=myqsli_fetch_array($resultSubjectTable)){
+      while($subjectRow = myqsli_fetch_array($resultSubjectTable)){
 
     
     ?>
@@ -87,6 +89,9 @@
       <td> <?php echo $subjectRow['Id']?> </td>
       <td> <?php echo $subjectRow['Name']?> </td>
       <td> <?php echo $subjectRow['Created_at']?> </td> 
+      <td> 
+                    <a href="" class="edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
+                </td>
     </tr>
     <?php }}?>
   </tbody>
