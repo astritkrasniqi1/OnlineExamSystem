@@ -107,7 +107,9 @@
                                 } else {
                                     echo '<span>New</span>';
                             } ?> </td>
-                            <td><button id="updateExam"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</button></td>
+                            <td>
+                                <button id="updateExam"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</button>
+                            </td>
                         </tr>
                         <?php } }?>
                     </tbody>

@@ -18,6 +18,13 @@
     position: relative;
     height: calc(100% - 63px);
 }
+.exam-table table tbody tr td span{
+    padding: 5px 15px;
+    border-radius: 20px;
+    display: flex;
+    width: 90px;
+    justify-content: center;
+}
 
 .create-exam-container select {
     width: 90%;
@@ -125,6 +132,23 @@
     outline: none;
 }
 
+.completeExamContainer {
+    position: absolute;
+    top: 90%;
+    right:20px;
+    border-radius:5px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+.completeExamContainer form button{
+    background: #8be98c;
+    color: #467546;
+}
+.completeExamContainer form button:hover{
+    background:#97eb98;
+}   
+
+
+
 /* Create Exam */
 
 .create-exam-container form{
@@ -162,6 +186,22 @@
 }
 
 .create-exam-container input {
+    width: 90%;
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    outline: none;
+}
+.exam-table form{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.exam-table form div input {
     width: 90%;
     padding: 5px;
     font-size: 16px;
@@ -340,6 +380,29 @@ td {
     border-radius: 4px;
     box-sizing: border-box;
     outline: none;
+}
+
+td button#updateExam{
+    text-decoration: none;
+    color:#111965;
+    border:1px solid lightgray;
+    border-radius: 20px;
+    padding: 5px 15px;
+    background:none;
+}
+
+.update-exam-form div button {
+    padding: 10px 35px;
+    background-color: #e96d7f;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius:5px;
+}
+
+.update-exam-form div button:hover {
+    background-color: #eb7c8c;
 }
 
 #exam-table-body button{
