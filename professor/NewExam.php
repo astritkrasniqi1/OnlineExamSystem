@@ -41,7 +41,7 @@
                                 if(mysqli_num_rows($resultSubjectTable) > 0){
                                     while($subjectRow = mysqli_fetch_array($resultSubjectTable)){
                                 ?>
-                                <option value="<?php $subjectRow['Id']?>"><?php echo $subjectRow['Name']?></option>
+                                <option value="<?php echo $subjectRow['Id']?>"><?php echo $subjectRow['Name']?></option>
                                 <?php } }?>
                     </select>
 
