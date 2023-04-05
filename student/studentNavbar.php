@@ -33,9 +33,8 @@
         <a href="Dashboard.php"><h3>OXS</h3></a>
         <ul>
             <li><a href="Dashboard.php" class="dashboard active">Dashboard</a></li>
-            <li><a href="Exams.php" class="exams">Exams</a></li>
-            <li><a href="Students.php" class="students">Students</a></li>
-            <li><a href="Subjects.php" class="subjects">Subjects</a></li>
+            <li><a href="Results.php" class="exams">Results</a></li>
+            <li><a href="Profile.php" class="students">Profile</a></li>
         </ul>
     </div>
     <div class="links-container col-auto">
