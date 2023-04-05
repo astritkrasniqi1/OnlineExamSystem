@@ -36,8 +36,13 @@
                 <input type="text" id="exam-title" required name="exam-title" placeholder="Enter exam title">
                     <select id="subject" name="subject" required>
                         <option value="0" selected disabled>Select Subject</option>
-                        <option value="1">Matemathics</option>
-                        <option value="2">Biology</option>
+                        <?php $subjectTable = "SELECT Id, Name from subject";
+                                $resultSubjectTable = mysqli_query($conn,$subjectTable);
+                                if(mysqli_num_rows($resultSubjectTable) > 0){
+                                    while($subjectRow = mysqli_fetch_array($resultSubjectTable)){
+                                ?>
+                                <option value="<?php $subjectRow['Id']?>"><?php echo $subjectRow['Name']?></option>
+                                <?php } }?>
                     </select>
 
             <h5 style="margin-top: 100px;border-bottom:1px solid lightgray;width:90%;">Exam Settings</h5>        

@@ -81,17 +81,15 @@
   <tbody>
     <?php  
     if(mysqli_num_rows($resultSubjectTable )>0){
-      while($subjectRow = myqsli_fetch_array($resultSubjectTable)){
-
-    
+      while($subjectRow = mysqli_fetch_array($resultSubjectTable)){    
     ?>
     <tr>
       <td> <?php echo $subjectRow['Id']?> </td>
       <td> <?php echo $subjectRow['Name']?> </td>
-      <td> <?php echo $subjectRow['Created_at']?> </td> 
+      <td> <?php echo $subjectRow['Created_at']?> </td>
       <td> 
-                    <a href="" class="edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
-                </td>
+        <a href="" class="edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
+      </td>
     </tr>
     <?php }}?>
   </tbody>
