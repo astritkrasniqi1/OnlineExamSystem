@@ -299,8 +299,11 @@
     var duration = $(this).closest('tr').find('td:eq(5)').text().trim().replace(" Min", "");
   
     // set the values to the update exam form inputs
+
     $('#examTitle').val(examTitle);
-    $('#Subject').val(subjectId);
+    $('#Subject option').filter(function() {
+        return $(this).text() === subjectId;
+    }).prop('selected', true);  
     $('#StartDate').val(startDate);
     $('#Duration').val(duration);
   
