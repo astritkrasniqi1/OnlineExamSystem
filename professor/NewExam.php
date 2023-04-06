@@ -25,8 +25,6 @@
 <body style="background:#f1f1f3;">
     <?php require 'NewExamLogic.php' ?>
     <?php require 'NewQuestionLogic.php' ?>
-
-
     <?php @include 'navbar.php' ?>
 
 
@@ -115,12 +113,13 @@
                     </tbody>
             </table>
         </div>
-
         <div class="update-exam-form">
-                <form id="updateExam-form" method="post">
+                <form id="updateExam-form" method="POST">
                     <div class="close-button">
                         <i class="fa-solid fa-x"></i>
                     </div>
+                    <input type="number" hidden id="examId" name="examId">
+
                     <label for="examTitle" >Exam Title:</label>
                     <input type="text" id="examTitle" name="examTitle" required>
 
@@ -143,7 +142,7 @@
                     <input type="number" id="Duration" name="Duration"  required>
 
                     <div class="save-button">
-                            <button name="update-exam" type="submit">Save</button>
+                            <button name="update-exam" id="update-exam-btn" type="submit">Save</button>
                     </div>
                 </form>
             </div>
@@ -299,7 +298,7 @@
     var duration = $(this).closest('tr').find('td:eq(5)').text().trim().replace(" Min", "");
   
     // set the values to the update exam form inputs
-
+    $('#examId').val(examId);
     $('#examTitle').val(examTitle);
     $('#Subject option').filter(function() {
         return $(this).text() === subjectId;
@@ -313,6 +312,51 @@
     $(document).on('click', '.close-button', function(){
         $('.update-exam-form').hide();
     })
+
+    /*Update exam with ajax*/
+
+    $(document).ready(function() {
+  $('#updateExam-form').on('submit', function(event) {
+    event.preventDefault(); // Prevent form submission
+    var examId = $('#examId').val();
+    var examTitle = $('#examTitle').val();
+    var subjectId = $('#Subject option:selected').val();
+    var startDate = $('#StartDate').val();
+    var duration = $('#Duration').val();
+
+    $.ajax({
+      type: 'POST',
+      url: 'EditExamLogic.php',
+      data: {
+        'examId': examId,
+        'examTitle': examTitle,
+        'Subject': subjectId,
+        'StartDate': startDate,
+        'Duration': duration,
+        'update-exam': true
+      },
+      success: function(response) {
+        if (response == 'success') {
+          $('.update-exam-form').hide();
+          Swal.fire({
+            title: 'Exam updated successfully',
+            icon: 'success'
+          }).then(function() {
+            location.reload();
+          });
+        } else {
+          Swal.fire({
+            title: 'Error',
+            text: 'An error occurred while updating the exam.',
+            icon: 'error'
+          });
+        }
+      }
+    });
+  });
+});
+
+
 
 
 </script>
