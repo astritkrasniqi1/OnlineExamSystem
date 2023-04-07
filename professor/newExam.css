@@ -195,20 +195,22 @@
     margin-bottom: 10px;
     outline: none;
 }
-.exam-table form{
+#betweenDatesForm{
     display: flex;
     flex-direction: row;
     gap: 10px;
+    margin:0 8rem;
+    margin-left:20%;
+    padding: 20px;
 }
 
-.exam-table form div input {
+#betweenDatesForm div input {
     width: 90%;
     padding: 5px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    margin-bottom: 10px;
     outline: none;
 }
 
@@ -278,9 +280,10 @@ td{
 
 .exam-table {
     display: block;
-    margin:0rem 0;
+    margin: 0;
     margin-left:20%;
     padding: 20px;
+    padding-top:0px;
 }
 
 .exam-table table {

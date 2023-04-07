@@ -1,3 +1,4 @@
+
 <?php 
     @include 'config.php';
 
@@ -53,17 +54,17 @@
             <button id="create-exam" name="createExam" type="submit">Create Exam</button>
             </form>
         </div>
-        <div class="exam-table">
-            <form action="" method="post">
+        <form action="" id="betweenDatesForm" method="post">
                 <div style="display:flex; flex-direction:column;">
                     <label for="">From:</label>
-                    <input type="datetime-local" name="From" value="<?php echo date('Y-m-d H:i:s'); ?>" >
+                    <input type="date" name="From" value="<?php echo date('Y-m-d'); ?>" >
                 </div>
                 <div style="display:flex; flex-direction:column;">
                     <label for="">To:</label>
-                    <input type="datetime-local" name="To" value="<?php echo date('Y-m-d H:i:s'); ?>">
+                    <input type="date" name="To" value="<?php echo date('Y-m-d'); ?>">
                 </div>
-            </form>
+            </form>  
+        <div class="exam-table">
                 <?php
                     if(mysqli_num_rows($resultExamTable) == 0){
                 ?>
@@ -71,7 +72,7 @@
                         
                 <?php 
                     }
-                    elseif(mysqli_num_rows($resultExamTable)> 0){
+                    if(mysqli_num_rows($resultExamTable)> 0){
                     ?>
                 <table class="table">
                     <thead>
@@ -90,7 +91,7 @@
                     <tbody id="exam-table-body">
                          <?php while($examRow = mysqli_fetch_array($resultExamTable)) {
                         ?>
-                        <tr>
+                        <tr data-id="<?php echo $examRow['Id'] ?>">
                             <td><?php echo $examRow['Id'] ?></td>
                             <td><?php echo $examRow['SubjectName'] ?></td>
                             <td><?php echo $examRow['Professor'] ?></td>
@@ -243,23 +244,6 @@
     const addQuestionButton = document.getElementById('add-question');
     const addQuestionPopup = document.getElementById('add-question-form');
     const closeBtn = document.querySelector('.close-btn');
-    const examTableTdList = document.querySelectorAll('.exam-table table tbody tr td span');  
-
-    examTableTdList.forEach((td) => {
-        if (td.textContent === 'New') {
-        td.style.backgroundColor = '#ddf1fb';
-        td.style.color = '#53b7ec';
-        td.style.border = '1px solid #53b7ec';
-        } else if (td.textContent === 'Inactive') {
-        td.style.backgroundColor = '#fbe2e5';
-        td.style.color = '#e96d7f';
-        td.style.border = '1px solid #e96d7f';
-        }else if (td.textContent === 'Active') {
-        td.style.backgroundColor = '#e9f5ef';
-        td.style.color = '#93ccad';
-        td.style.border = '1px solid #93ccad';
-        }
-    });
 
     addQuestionButton.addEventListener('click', () => {
         addQuestionPopup.style.display = 'block';
@@ -306,6 +290,7 @@
     $('#StartDate').val(startDate);
     $('#Duration').val(duration);
   
+  
     $('.update-exam-form').show();
     });
 
@@ -316,45 +301,133 @@
     /*Update exam with ajax*/
 
     $(document).ready(function() {
-  $('#updateExam-form').on('submit', function(event) {
-    event.preventDefault(); // Prevent form submission
-    var examId = $('#examId').val();
-    var examTitle = $('#examTitle').val();
-    var subjectId = $('#Subject option:selected').val();
-    var startDate = $('#StartDate').val();
-    var duration = $('#Duration').val();
+    $('#updateExam-form').on('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+        var examId = $('#examId').val();
+        var examTitle = $('#examTitle').val();
+        var subjectId = $('#Subject option:selected').val();
+        var startDate = $('#StartDate').val();
+        var duration = $('#Duration').val();
 
-    $.ajax({
-      type: 'POST',
-      url: 'EditExamLogic.php',
-      data: {
-        'examId': examId,
-        'examTitle': examTitle,
-        'Subject': subjectId,
-        'StartDate': startDate,
-        'Duration': duration,
-        'update-exam': true
-      },
-      success: function(response) {
-        if (response == 'success') {
-          $('.update-exam-form').hide();
-          Swal.fire({
+        $.ajax({
+        type: 'POST',
+        url: 'EditExamLogic.php',
+        data: {
+            'examId': examId,
+            'examTitle': examTitle,
+            'Subject': subjectId,
+            'StartDate': startDate,
+            'Duration': duration,   
+            'update-exam': true
+        },
+        success: function(response) {
+    if (response == 'success') {
+        // get the values from the form
+        var examTitle = $('#examTitle').val();
+        var subjectName = $('#Subject option:selected').text();
+        var startDate = $('#StartDate').val();
+        var seconds = new Date(startDate).getSeconds(); // get the seconds value from the date
+        startDate = startDate.replace('T', ' ') + ':' + seconds + seconds; // concatenate the seconds value to the date string // set the text of the table cell to the updated date string
+
+        // append seconds to ISO string
+
+        var duration = $('#Duration').val();
+        var status = $('#Status').val();
+
+        // update the table row with the new values
+        var $row = $('tr[data-id="' + examId + '"]');
+        $row.find('td:eq(3)').text(examTitle);
+        $row.find('td:eq(1)').text(subjectName);
+        $row.find('td:eq(4)').text(startDate);
+        $row.find('td:eq(5)').text(duration + ' Min');
+        $row.find('td:eq(6) span').text(status);
+
+        // hide the update form and show success message
+        $('.update-exam-form').hide();
+        Swal.fire({
             title: 'Exam updated successfully',
             icon: 'success'
-          }).then(function() {
-            location.reload();
-          });
-        } else {
-          Swal.fire({
+        });
+    } else {
+        Swal.fire({
             title: 'Error',
             text: 'An error occurred while updating the exam.',
             icon: 'error'
-          });
-        }
+        });
+    }
+}
+
+        });
+    });
+    });
+
+
+
+
+/*Display exams between dates*/
+
+$(document).ready(function() {
+  $('#betweenDatesForm input').change(function() {
+    var fromDate = $('input[name="From"]').val();
+    var toDate = $('input[name="To"]').val();   
+
+    $.ajax({
+      url: 'ExamBetweenDates.php',  
+      type: 'POST',
+      data: {
+        'From': fromDate,
+        'To': toDate
+      },
+      success: function(data) {
+        console.log(data);
+        $('.exam-table').html(data);
+        const examTableTdList = document.querySelectorAll('.exam-table table tbody tr td span');  
+        examTableTdList.forEach((td) => {
+            if (td.textContent === 'New') {
+            td.style.backgroundColor = '#ddf1fb';
+            td.style.color = '#53b7ec';
+            td.style.border = '1px solid #53b7ec';
+            } else if (td.textContent === 'Inactive') {
+            td.style.backgroundColor = '#fbe2e5';
+            td.style.color = '#e96d7f';
+            td.style.border = '1px solid #e96d7f';
+            }else if (td.textContent === 'Active') {
+            td.style.backgroundColor = '#e9f5ef';
+            td.style.color = '#93ccad';
+            td.style.border = '1px solid #93ccad';
+            }
+        });
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log("Error: " + errorThrown);
+        console.log("Status: " + textStatus);
+        console.dir(jqXHR);
       }
     });
   });
 });
+
+
+
+const examTableTdList = document.querySelectorAll('.exam-table table tbody tr td span');  
+
+examTableTdList.forEach((td) => {
+    if (td.textContent === 'New') {
+    td.style.backgroundColor = '#ddf1fb';
+    td.style.color = '#53b7ec';
+    td.style.border = '1px solid #53b7ec';
+    } else if (td.textContent === 'Inactive') {
+    td.style.backgroundColor = '#fbe2e5';
+    td.style.color = '#e96d7f';
+    td.style.border = '1px solid #e96d7f';
+    }else if (td.textContent === 'Active') {
+    td.style.backgroundColor = '#e9f5ef';
+    td.style.color = '#93ccad';
+    td.style.border = '1px solid #93ccad';
+    }
+});
+
+
 
 
 
