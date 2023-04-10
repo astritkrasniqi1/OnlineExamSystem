@@ -137,11 +137,14 @@
     top: 90%;
     right:20px;
     border-radius:5px;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 .completeExamContainer form button{
     background: #8be98c;
     color: #467546;
+    border:none;
+    border-radius:5px;
+    padding:10px 20px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 .completeExamContainer form button:hover{
     background:#97eb98;

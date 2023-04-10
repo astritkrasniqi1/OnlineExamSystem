@@ -1,10 +1,5 @@
 <?php 
-    $servername = "127.0.0.1:3308";
-    $username = "root";
-    $password = "";
-    $dbname = "onlineexam";
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
+   @include '../config.php';
 
     $fromDate = isset($_POST['From']) ? date('Y-m-d', strtotime($_POST['From'])) : date('Y-m-d');
     $toDate = isset($_POST['To'])? date('Y-m-d', strtotime($_POST['To'])) : date('Y-m-d');

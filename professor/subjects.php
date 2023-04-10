@@ -1,5 +1,5 @@
 <?php 
-    @include 'config.php';
+   @include '../config.php';
 
     session_start();
 
@@ -144,7 +144,7 @@
         }
     });
     document.getElementById("editSubjectButton").addEventListener("click", function() {
-      if(document.getElementById("edit-subject-form").style.display == "none"){
+      if(document.getElementById("edit-subject-form").style.display === "none"){
           document.getElementById("edit-subject-form").style.display = "flex";
         }
         else{
@@ -153,7 +153,7 @@
     });
 
     function closeEditSubjectForm() {
-      if(document.getElementById("edit-subject-form").style.display == "none"){
+      if(document.getElementById("edit-subject-form").style.display === "none"){
         document.getElementById("edit-subject-form").style.display = "flex";
       }
       else{

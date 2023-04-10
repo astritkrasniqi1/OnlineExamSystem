@@ -1,11 +1,5 @@
 <?php
-  $servername = "127.0.0.1:3308";
-  $username = "root";
-  $password = "";
-  $dbname = "onlineexam";
-
-  // Create connection
-  $conn = new mysqli($servername, $username, $password, $dbname);
+  @include '../config.php';
 
   if(isset($_POST['update-exam'])){
     $examId =  $_POST['examId'];

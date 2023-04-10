@@ -1,6 +1,6 @@
 
 <?php 
-    @include 'config.php';
+    @include '../config.php';
 
     session_start();
 
@@ -65,10 +65,12 @@
                 </div>
             </form>  
         <div class="exam-table">
+                                     
                 <?php
                     if(mysqli_num_rows($resultExamTable) == 0){
                 ?>
-                        <span class="text-danger">No results</span>
+                        <div style="margin-bottom:10px;"><span style="font-size:1.5rem; border-bottom:3px solid #b9b1e5;">Exams</span></div>
+                        <span class="text-danger">No exams for today</span>
                         
                 <?php 
                     }
@@ -207,12 +209,11 @@
                 <table>
                     <thead>
                         <tr>
-                            <th scope="col">Question</th>
-                            <th scope="col">Answer 1</th>
-                            <th scope="col">Answer 2</th>
-                            <th scope="col">Answer 3</th>
-                            <th scope="col">Answer 4</th>
-                            <th scope="col">Correct Answer</th>
+                            <th scope="col">Id</th>
+                            <th scope="col">Exam Id</th>
+                            <th scope="col">Subject</th>
+                            <th scope="col">Professor</th>
+                            <th scope="col">Title</th>
                             <th scope="col">Points</th>
                         </tr>
                     </thead>
@@ -221,12 +222,12 @@
                 </table>
             </div>
 
-            <div class="completeExamContainer">
-                <form action="" method="post">
-                    <button class="completeExam" name="completeExam">Complete Exam &nbsp;<i class="fa-solid fa-check"></i></button>
-                </form>
-            </div>
         </div>
+    </div>
+    <div class="completeExamContainer">
+        <form action="" method="post">
+            <button class="completeExam" name="completeExam">Complete Exam &nbsp;<i class="fa-solid fa-check"></i></button>
+        </form>
     </div>
 
 

@@ -1,11 +1,5 @@
 <?php 
-    $servername = "127.0.0.1:3308";
-    $username = "root";
-    $password = "";
-    $dbname = "onlineexam";
-
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
+    @include '../config.php';
 
     $fromDate = isset($_POST['From']) ? date('Y-m-d', strtotime($_POST['From'])) :date('Y-m-d', strtotime($_POST['From']));
     $toDate = isset($_POST['To'])? date('Y-m-d', strtotime($_POST['To'])): date('Y-m-d', strtotime($_POST['To']));
@@ -20,7 +14,8 @@
     $tableRows = '';
 
     if(mysqli_num_rows($resultExamTable) == 0){
-        echo '<span class="text-danger">No results</span>';
+        echo '<div style="margin-bottom:10px;"><span style="font-size:1.5rem; border-bottom:3px solid #b9b1e5;">Exams</span></div>';
+        echo '<span class="text-danger">No exams for today</span>';
     }
     else{
     while($row = mysqli_fetch_array($resultExamTable)) {
@@ -64,6 +59,7 @@
     $table .= '</tbody>';
     $table .= '</table>';
 
+        echo '<div><span style="font-size:1.5rem; border-bottom:3px solid #b9b1e5;">Exams</span></div>';
         echo $table;
     }
 ?>
