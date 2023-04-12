@@ -4,7 +4,7 @@
     session_start();
 
     if(!isset($_SESSION['professorUsername'])){
-        header('Location: login.php');
+        header('Location: ../login.php');
     }   
 ?>
 

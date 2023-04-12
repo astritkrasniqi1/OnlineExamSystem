@@ -23,6 +23,7 @@
 </head>
 <body style="background:#f1f1f3;">
     <?php @include 'navbar.php' ?>
+    <?php require 'studentsLogic.php'; ?>
 <section>
 <div class="pageTitleContainer" >   
                <div>
@@ -35,7 +36,7 @@
                     </h2>
                </div>
 </div>
-        <div class="filters">
+    <div class="filters">
         <div><input type="search" placeholder="Search student" /></div>
         <div>
             <select>
@@ -46,48 +47,41 @@
             </button>
         </div>
     </div>
-    
 <div class="Allstudents">
-    <table class="table ">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Student Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Exams Passed</th>
-      <th scope="col">Exams Failed</th>
-      <th scope="col">Avg. Grade</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td scope="row">1</td>
-      <td>Mark</td>
-      <td>mark25@gmail.com</td>
-      <td>5</td>
-      <td>3</td>
-      <td>10</td>
-    </tr>
-    <tr>
-      <td scope="row">2</td>
-      <td>Jacob</td>
-      <td>jacob_1@gmail.com</td>
-      <td>7</td>
-      <td>1</td>
-      <td>9.5</td>
-
-    </tr>
-    <tr>
-      <td scope="row">3</td>
-      <td>Larry the Bird</td>
-      <td>larry_bird@gmail.com</td>
-      <td>3</td>
-      <td>4</td>
-      <td>8.7</td>
-    </tr>
-  </tbody>
+    <?php if(mysqli_num_rows($studentResultTable) == 0){?>
+        <span class="text-danger">No results</span>
+      <?php } 
+        if(mysqli_num_rows($studentResultTable)> 0){
+        ?>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Student Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+        <?php while($studentRow = mysqli_fetch_array($studentResultTable)) {
+          ?>
+          <tr>
+            <td><?php echo $studentRow['Id'] ?></td>
+            <td><?php echo $studentRow['StudentName'] ?></td>
+            <td><?php echo $studentRow['Email']?></td>
+            <td><?php if($studentRow['Status'] == '1'){
+              echo 'Online';
+            }
+            else{
+              echo 'Offline';
+            } 
+            ?></td>
+          </tr>
+          <?php } }?>
+        </tbody>
 </table>
 </div>
+
 
 <div style="margin:2rem 8rem 1rem 8rem;"><span style="font-size:1.5rem; border-bottom:3px solid #f7b092;">New Students</span></div>
 
