@@ -109,7 +109,7 @@
         </div>
     </div>
 
-    <div style="margin:4rem 8rem 1rem 8rem;"><span style="font-size:1.5rem; border-bottom:3px solid #f7b092;">Students</span></div>
+    <div style="margin:4rem 8rem 1rem 8rem;"><span style="font-size:1.5rem; border-bottom:3px solid #f7b092;">Online Students</span></div>
 
     <div class="filters">
         <div><input type="search" placeholder="Search student"/></div>
@@ -144,13 +144,13 @@
                 <td scope="row">2</td>
                 <td>Jacob</td>
                 <td>jacob_1@gmail.com</td>
-                <td><span>Offline</span></td>
+                <td><span>Online</span></td>
                 </tr>
                 <tr>
                 <td scope="row">3</td>
                 <td>Larry the Bird</td>
                 <td>larry_bird@gmail.com</td>
-                <td><span>New</span></td>
+                <td><span>Online</span></td>
                 </tr>
             </tbody>
         </table>

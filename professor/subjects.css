@@ -28,6 +28,7 @@ th{
 }
 td{
     font-weight: 550;
+    vertical-align: middle;
 }
 .subjectTable table tbody tr td:last-child{
     border-top:1px solid lightgray;
