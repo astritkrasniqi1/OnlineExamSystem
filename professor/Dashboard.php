@@ -45,7 +45,19 @@
             <i class="fa-solid fa-user-graduate" style="color:#f7b092;"></i>&nbsp;
             <div class="col-auto">
             <span>Total Students</span>
-            <h5>400</h5>
+            <h5>
+                <!--The number of total students-->
+                <?php
+                    @include '../config.php';
+                    $sql = "Select Count(*) as StudentCount from users where UserType='1'";
+                    $result = mysqli_query($conn,$sql);
+                    if(mysqli_num_rows($result)>0){
+                        $row = mysqli_fetch_array($result);
+                        echo $row['StudentCount'];
+                    }
+                ?>
+                <!---->
+            </h5>
             </div>  
         </div>
         </a>
@@ -53,7 +65,19 @@
         <a href="#" class=""><div>
         <i class="fa-solid fa-user-check" style="color:#93ccad;"></i>&nbsp;
             <div class="col-auto"><span>Online Students</span>
-            <h5>400</h5></div>
+            <h5>
+                <!--The number of online students-->
+                <?php
+                    @include '../config.php';
+                    $sql = "Select Count(*) as StudentCount from users where UserType='1' and Status='1'";
+                    $result = mysqli_query($conn,$sql);
+                    if(mysqli_num_rows($result)>0){
+                        $row = mysqli_fetch_array($result);
+                        echo $row['StudentCount'];
+                    }
+                ?>
+                <!---->
+            </h5></div>
             
         </div>
         </a>
@@ -61,14 +85,38 @@
             <div>
             <i class="fa-solid fa-user-xmark" style="color:#e96d7f;"></i>&nbsp;
             <div class="col-auto"><span>Offline Students</span>
-            <h5>400</h5></div>    
+            <h5>
+                <!--The number of offline students-->
+                <?php
+                    @include '../config.php';
+                    $sql = "Select Count(*) as StudentCount from users where UserType='1' and Status='0'";
+                    $result = mysqli_query($conn,$sql);
+                    if(mysqli_num_rows($result)>0){
+                        $row = mysqli_fetch_array($result);
+                        echo $row['StudentCount'];
+                    }
+                ?>
+                <!---->
+            </h5></div>    
             </div>
         </a>
         <a href="#" class="">
             <div>
             <i class="fa-solid fa-user-plus" style="color:#53b7ec;"></i>&nbsp;
             <div class="col-auto"><span>New Students</span>
-            <h5>400</h5></div>    
+            <h5>
+                <!--The number of new students-->
+                <?php
+                    @include '../config.php';
+                    $sql = "Select Count(*) as StudentCount from users where UserType='1' and Created_at BETWEEN DATE_SUB(NOW(), INTERVAL 1 WEEK) AND NOW() ";
+                    $result = mysqli_query($conn,$sql);
+                    if(mysqli_num_rows($result)>0){
+                        $row = mysqli_fetch_array($result);
+                        echo $row['StudentCount'];
+                    }
+                ?>
+                <!---->
+            </h5></div>    
             </div>
         </a>
         <a href="#" class=""><div>
@@ -81,7 +129,20 @@
         <a href="subjects.php" class=""><div>
         <i class="fa-solid fa-book" style="color:#a3abb6;"></i>&nbsp;
             <div class="col-auto"><span>Subjects</span>
-            <h5>400</h5></div>
+            <h5>
+                <!--The number of subjects-->
+                <?php 
+                    @include '../config.php';
+                    $sql = "Select Count(*) as SubjectCount from subject";
+                    $result = mysqli_query($conn, $sql);
+
+                    if(mysqli_num_rows($result)> 0){
+                        $row = mysqli_fetch_array($result);
+                        echo $row['SubjectCount'];
+                    }
+                ?>
+                <!---->
+            </h5></div>
         </div>
         </a>
     </div>
@@ -108,7 +169,6 @@
         </div>
         </div>
     </div>
-
     <div style="margin:4rem 8rem 1rem 8rem;"><span style="font-size:1.5rem; border-bottom:3px solid #f7b092;">Online Students</span></div>
 
     <div class="filters">
@@ -124,6 +184,15 @@
     </div>
 
     <div class="studentTable">
+        <?php 
+            @include '../config.php';
+            $sql = "Select Id, Concat(FirstName, ' ', LastName) as StudentName, Email, Status from users where UserType='1' and Status='1'";
+            $result = mysqli_query($conn, $sql);
+            if(mysqli_num_rows($result) == 0){
+        ?>
+        <span class="text-danger">No online students</span>
+        <?php } else{
+         ?>
         <table class="table">
             <thead>
                 <tr>
@@ -134,26 +203,23 @@
                 </tr>
             </thead>
             <tbody>
+                <?php while ($row = mysqli_fetch_array($result)){ ?>
                 <tr>
-                <td scope="row">1</td>
-                <td>Mark</td>
-                <td>mark25@gmail.com</td>
-                <td><span>Online</span></td>
+                    <td><?php echo $row['Id']?></td>
+                    <td><?php echo $row['StudentName']?></td>
+                    <td><?php echo $row['Email']?></td>
+                    <td><span><?php if($row['Status'] = '1'){
+                            echo 'Online';
+                        }
+                        else{
+                            echo 'Offline';
+                        }
+                     ?></span></td>
                 </tr>
-                <tr>
-                <td scope="row">2</td>
-                <td>Jacob</td>
-                <td>jacob_1@gmail.com</td>
-                <td><span>Online</span></td>
-                </tr>
-                <tr>
-                <td scope="row">3</td>
-                <td>Larry the Bird</td>
-                <td>larry_bird@gmail.com</td>
-                <td><span>Online</span></td>
-                </tr>
+                <?php }?>
             </tbody>
         </table>
+        <?php }?>
     </div>
 
 

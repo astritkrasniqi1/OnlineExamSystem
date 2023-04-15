@@ -19,8 +19,8 @@
                 $error[] = 'Passwords do not match';
             }
             else{
-                $sql = "INSERT into users (FirstName, LastName, UserType, Email, Username, Password, Created_at)
-                values ('$firstName', '$lastName', '$userType', '$emailAddress', '$username', '$password', Now())";
+                $sql = "INSERT into users (FirstName, LastName, UserType, Email, Username, Password, Status, Created_at)
+                values ('$firstName', '$lastName', '$userType', '$emailAddress', '$username', '$password', '0', Now())";
                 mysqli_query($conn, $sql);
                 header("Location:login.php");
             }

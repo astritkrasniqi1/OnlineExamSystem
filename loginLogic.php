@@ -16,14 +16,14 @@
             if($row['UserType'] == '0'){
                 $_SESSION['professorUsername'] = $row['FirstName'] .' ' .$row['LastName'];
                 $_SESSION['professorID'] = $row['Id'];
-                $update = "UPDATE users SET Status='1' WHERE Id={$_SESSION['professorID']}";
+                $update = "UPDATE users SET Status='1' WHERE Id={$_SESSION['professorID']} and UserType='0'";
                 mysqli_query($conn, $update);
                 header("Location:professor/Dashboard.php");
             }
             elseif($row['UserType'] == '1'){
                 $_SESSION['studentUsername'] = $row['FirstName'] .' ' .$row['LastName'];
                 $_SESSION['studentID'] = $row['Id'];
-                $update = "UPDATE users SET Status='1' WHERE Id={$_SESSION['studentID']}";
+                $update = "UPDATE users SET Status='1' WHERE Id={$_SESSION['studentID']} and UserType='1'";
                 mysqli_query($conn, $update);
                 header('Location: student/Dashboard.php');
             }
@@ -33,7 +33,4 @@
         }
 
     }
-
-
-
 ?>

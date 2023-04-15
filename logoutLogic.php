@@ -21,4 +21,5 @@ if (mysqli_num_rows($result) > 0) {
     session_destroy(); 
 }
     header('location: login.php');
+
 ?>
