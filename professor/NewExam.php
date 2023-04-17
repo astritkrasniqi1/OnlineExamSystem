@@ -79,6 +79,7 @@
                 <table class="table">
                     <thead>
                         <tr>
+                            <th></th>
                             <th scope="col">Id</th>
                             <th scope="col">Subject</th>
                             <th scope="col">Professor</th>
@@ -94,6 +95,7 @@
                          <?php while($examRow = mysqli_fetch_array($resultExamTable)) {
                         ?>
                         <tr data-id="<?php echo $examRow['Id'] ?>">
+                            <td><input type="checkbox" class="check-exam-row form-check-input"></td>
                             <td><?php echo $examRow['Id'] ?></td>
                             <td><?php echo $examRow['SubjectName'] ?></td>
                             <td><?php echo $examRow['Professor'] ?></td>
@@ -276,11 +278,11 @@
 
     $(document).on('click', '#updateExam', function(){
     // get the values from the table row
-    var examId = $(this).closest('tr').find('td:eq(0)').text().trim();
-    var subjectId = $(this).closest('tr').find('td:eq(1)').text().trim();
-    var examTitle = $(this).closest('tr').find('td:eq(3)').text().trim();
-    var startDate = $(this).closest('tr').find('td:eq(4)').text().trim();
-    var duration = $(this).closest('tr').find('td:eq(5)').text().trim().replace(" Min", "");
+    var examId = $(this).closest('tr').find('td:eq(1)').text().trim();
+    var subjectId = $(this).closest('tr').find('td:eq(2)').text().trim();
+    var examTitle = $(this).closest('tr').find('td:eq(4)').text().trim();
+    var startDate = $(this).closest('tr').find('td:eq(5)').text().trim();
+    var duration = $(this).closest('tr').find('td:eq(6)').text().trim().replace(" Min", "");
   
     // set the values to the update exam form inputs
     $('#examId').val(examId);
@@ -428,6 +430,18 @@ examTableTdList.forEach((td) => {
     }
 });
 
+
+
+$(document).on('click', '.check-exam-row', function(){
+    // get the values from the table row
+    var examId = $(this).closest('tr').find('td:eq(1)').text().trim();
+    console.log(examId);
+    if($(this).is(':checked')) {
+        $(this).closest('tr').addClass('checked-exam-row');
+    } else {
+        $(this).closest('tr').removeClass('checked-exam-row');
+    }
+});
 
 
 

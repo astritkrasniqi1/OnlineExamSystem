@@ -20,6 +20,7 @@
     else{
     while($row = mysqli_fetch_array($resultExamTable)) {
         $tableRows .= '<tr data-id="' . $row['Id'] . '">';
+        $tableRows .= '<td><input type="checkbox" class="check-exam-row form-check-input"></td>';
         $tableRows .= '<td>' . $row['Id'] . '</td>';
         $tableRows .= '<td>' . $row['SubjectName'] . '</td>';
         $tableRows .= '<td>' . $row['Professor'] . '</td>';
@@ -44,6 +45,7 @@
     $table = '<table>';
     $table .= '<thead>';
     $table .= '<tr>';
+    $table .= '<th></th>';
     $table .= '<th>ID</th>';
     $table .= '<th>Subject</th>';
     $table .= '<th>Professor</th>';
