@@ -34,14 +34,16 @@
         <ul>
             <li><a href="Dashboard.php" class="dashboard active">Dashboard</a></li>
             <li><a href="Exams.php" class="exams">Exams</a></li>
+            <li><a href="Results.php" class="results">Results</a></li>
             <li><a href="Students.php" class="students">Students</a></li>
             <li><a href="Subjects.php" class="subjects">Subjects</a></li>
+            <li><a href="Profile.php" class="profile">Profile</a></li>
         </ul>
     </div>
     <div class="links-container col-auto">
     </div>
     <div class="profile-container col-auto">
-        <div>
+        <div >
             <span class="profile-name" style="display:flex; align-items:center;">Hi, <?php echo $_SESSION['professorUsername'] ?>&nbsp; <i onclick="OpenDropdown();" class='bx bx-chevron-down' style="cursor:pointer;font-size:20px;"></i></span>
             <div class="profile-dropdown" style="display:none;">
                 <a href="../logoutLogic.php"><i class='bx bx-exit' ></i>&nbsp;Logout</a>

@@ -88,7 +88,7 @@
     align-items: center;
 }
 
-.form-row div {
+.form-row{
     display: flex;
     margin-bottom:20px;
 }
@@ -422,6 +422,14 @@ td button#updateExam{
     border-radius:5px;
 }
 
+
+.question-table table tbody tr td .questionTableActions{
+    color: #111965;
+    border: 1px solid lightgray;
+    border-radius: 20px;
+    padding: 5px 15px;
+    background:none;
+}
 
 @media screen and (max-width: 768px) {
     .container {

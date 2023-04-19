@@ -4,22 +4,20 @@
     if(isset($_POST['saveQuestion'])){
         $question = isset($_POST['question']) ? $_POST['question'] : '';
         $points = isset($_POST['points']) ? $_POST['points'] : '1';
+        $examId = isset($_POST['examIdForAddQuestion']) ? $_POST['examIdForAddQuestion'] : '';
         $professorId = $_SESSION['professorID'];
        // Get the last exam ID
-    $lastExamIdQuery = "SELECT Max(Id) from exam";
-    $lastExamIdResult = mysqli_query($conn, $lastExamIdQuery);
-    $lastExamId = mysqli_fetch_array($lastExamIdResult)[0];
 
     // Get the subject of the last exam
-    $subjectQuery = "SELECT Subject from exam where Id=$lastExamId";
+    $subjectQuery = "SELECT Subject from exam where Id={$examId}";
     $subjectResult = mysqli_query($conn, $subjectQuery);
     $subject = mysqli_fetch_array($subjectResult)[0];
         $sql_question = "INSERT INTO questions (ExamId, Subject, Professor, Title, Points, Created_at)
-        VALUES (".$lastExamId.", '".$subject."', '".$professorId."', '".$question."', ".$points.", NOW())";
+        VALUES (".$examId.", '".$subject."', '".$professorId."', '".$question."', ".$points.", NOW())";
 
 
         if(mysqli_query($conn, $sql_question)){
-            $question_id = mysqli_insert_id($conn); // Get the ID of the inserted question
+            /*$question_id = mysqli_insert_id($conn); // Get the ID of the inserted question
            
             // Check if answer1 is not empty
             if(!empty($_POST['answer1'])){
@@ -59,9 +57,9 @@
                 $sql_answer4 = "INSERT INTO answers (QuestionId, Professor, Title, Status, Created_at)
                 VALUES ($question_id, $professorId, '$answer4', $is_correct4, NOW())";
                 mysqli_query($conn, $sql_answer4);
-            }
+            }*/
 
-            ?>
+    ?>
             <script>
                 Swal.fire(
                     'Question saved successfully',

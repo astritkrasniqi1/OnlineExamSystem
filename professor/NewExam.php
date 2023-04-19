@@ -241,6 +241,7 @@
         $('nav .logo-container ul li a.exams').addClass('active');
         $('nav .logo-container ul li a.subjects').removeClass('active');
         $('nav .logo-container ul li a.students').removeClass('active');
+        $('nav .logo-container ul li a.results').removeClass('active');
     })
 
 

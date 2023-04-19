@@ -305,6 +305,8 @@
             $('nav .logo-container ul li a.exams').removeClass('active');
             $('nav .logo-container ul li a.subjects').removeClass('active');
             $('nav .logo-container ul li a.students').removeClass('active');
+            $('nav .logo-container ul li a.results').removeClass('active');
+            $('nav .logo-container ul li a.profile').removeClass('active');    
     })
 
     const studentTableTdList = document.querySelectorAll('.studentTable table tbody tr td span');
