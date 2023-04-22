@@ -25,7 +25,6 @@
 
 <body style="background:#f1f1f3;">
     <?php require 'NewExamLogic.php' ?>
-    <?php require 'NewQuestionLogic.php' ?>
     <?php @include 'navbar.php' ?>
 
 
@@ -54,6 +53,7 @@
             <button id="create-exam" name="createExam" type="submit">Create Exam</button>
             </form>
         </div>
+    <div class="main-content">
         <form action="" id="betweenDatesForm" method="post">
                 <div style="display:flex; flex-direction:column;">
                     <label for="">From:</label>
@@ -76,6 +76,7 @@
                     }
                     if(mysqli_num_rows($resultExamTable)> 0){
                     ?>
+                <div style="margin-bottom:10px;"><span style="font-size:1.5rem; border-bottom:3px solid #b9b1e5;">Exams</span></div>
                 <table class="table">
                     <thead>
                         <tr>
@@ -170,7 +171,7 @@
                             <input type="number" id="points-input" min="0" name="points" required>
                         </div>
                     <div class="save-button">
-                            <button name="saveQuestion" type="submit">Save</button>
+                            <button name="saveQuestion" id="saveQuestion" type="submit">Save</button>
                     </div>
                     </div>
                 </form>
@@ -198,6 +199,7 @@
         <form action="" method="post">
             <button class="completeExam" name="completeExam">Complete Exam &nbsp;<i class="fa-solid fa-check"></i></button>
         </form>
+    </div>
     </div>
 
 
@@ -433,6 +435,53 @@ $(document).on('click', '.check-exam-row', function(){
         $(this).closest('tr').removeClass('checked-exam-row');
     }
 });
+
+$(document).ready(function(){
+    $('#question-form').on('submit', function(event){
+        event.preventDefault();
+        var examId = $('#examIdForAddQuestion').val();
+        var question = $('#question').val();
+        var points = $('#points-input').val();
+
+        $.ajax({  
+            url: "NewQuestionLogic.php",
+            type: "POST",
+            data: { 
+                question: question,
+                points: points,
+                examIdForAddQuestion: examId,   
+                saveQuestion: true    
+            },
+            success: function(data) {
+                console.log(data);
+                $('#add-question-form').hide();
+                Swal.fire({
+                    title: 'Question added successfully',
+                    icon: 'success'
+                });
+                $.ajax({  
+                url: "QuestionTableLogic.php",
+                type: "POST",
+                data: { examIdForAddQuestion: examId },
+                success: function(data) {
+                    console.log(data);
+                    $('.question-table').html(data);
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+                });
+
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
+});
+
+
+
 
 
 

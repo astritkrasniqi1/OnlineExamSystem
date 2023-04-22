@@ -171,6 +171,12 @@
     box-sizing: border-box;
     outline: none;
 }
+.main-content{
+    position: fixed;
+    height:calc(100% - 63.6px);
+    width: calc(100%);
+    overflow: auto;
+}
 
 .create-exam-container {
     position: fixed;
