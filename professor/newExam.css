@@ -353,6 +353,67 @@ td {
     border-color: #f1f1f3;
 }
 
+
+
+.answer-table {
+    margin: 20px 0;
+    display: block;
+}
+
+.answer-table table {
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    width: 100%;
+}
+
+.answer-table table tbody tr {
+    background: white;
+}
+
+.answer-table table tbody tr td {
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+}
+
+.answer-table table tbody tr td:first-child {
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+    border-radius: 5px 0 0 5px;
+}
+
+th {
+    font-weight: 550;
+    color: gray;
+    padding: 8px;
+}
+
+td {
+    font-weight: 550;
+    padding: 8px;
+}
+
+.answer-table table tbody tr td:last-child {
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+    border-radius: 0 5px 5px 0;
+}
+
+.answer-table table thead tr {
+    border-style: none;
+    border-color: #f1f1f3;
+}
+.answer-table table tbody tr td span{
+    padding: 5px 15px;
+    border-radius: 20px;
+    display: flex;
+    width: 90px;
+    justify-content: center;
+}
+
+
+
 /* Update exam popup */
 
 .update-exam-form {
@@ -436,6 +497,98 @@ td button#updateExam{
     padding: 5px 15px;
     background:none;
 }
+.answer-table table tbody tr td .answerTableActions{
+    color: #111965;
+    border: 1px solid lightgray;
+    border-radius: 20px;
+    padding: 5px 15px;
+    background:none;
+}
+
+
+#add-answer-form {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 5px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    padding: 20px;
+    display: none;
+    width: 70%;
+    max-width: 700px;
+}
+
+.close-answer-form-btn {
+    display: flex;
+    justify-content: end;
+    cursor: pointer;
+}
+
+#add-answer-form input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+    outline: none;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-row{
+    display: flex;
+    margin-bottom:20px;
+}
+
+.form-row input[type="number"] {
+    width: 40px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+}
+
+.form-row label {
+    margin: 5px;
+}
+
+.save-button {
+    display: flex;
+    justify-content: end;
+}
+
+#add-answer-form button {
+    padding: 10px 35px;
+    background-color: #e96d7f;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#add-answer-form button:hover {
+    background-color: #eb7c8c;
+}
+
+#add-answer-form #answer {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 25px;
+    outline: none;
+}
+
+
+
+
 
 @media screen and (max-width: 768px) {
     .container {

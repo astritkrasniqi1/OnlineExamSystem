@@ -29,6 +29,8 @@
 
 
 <div class="newExamContainer">
+
+<!--The form for creating a new exam-->
     <div class="create-exam-container">
             <form action="" method="post">
                 <input type="text" id="exam-title" required name="exam-title" placeholder="Enter exam title">
@@ -54,6 +56,8 @@
             </form>
         </div>
     <div class="main-content">
+
+    <!--The form for getting the exams records between to dates(from > to)-->
         <form action="" id="betweenDatesForm" method="post">
                 <div style="display:flex; flex-direction:column;">
                     <label for="">From:</label>
@@ -64,6 +68,8 @@
                     <input type="date" name="To" value="<?php echo date('Y-m-d'); ?>">
                 </div>
             </form>  
+
+        <!--The exam table-->    
         <div class="exam-table">
                                      
                 <?php
@@ -119,6 +125,8 @@
                     </tbody>
             </table>
         </div>
+
+        <!--The form for updating the exam-->
         <div class="update-exam-form">
                 <form id="updateExam-form" method="POST">
                     <div class="close-button">
@@ -154,8 +162,10 @@
             </div>
 
         <div class="exam-title">
+            <!--The button that shows the question form -->
             <button id="add-question"><i class='bx bx-plus'></i>&nbsp;Add Question</button>
-
+               
+            <!--The form for inserting a question-->
             <div id="add-question-form">
                 <form id="question-form" method="post">
                     <div class="close-btn">
@@ -176,6 +186,9 @@
                     </div>
                 </form>
             </div>
+            <!---->
+
+            <!--Question table-->
             <div class="question-table">
                 <table>
                     <thead>
@@ -192,9 +205,43 @@
                     </tbody>
                 </table>
             </div>
+            <!---->
+
+
+
+            <!--Answer Table-->
+            <div class="answer-table">
+                
+            </div>
+            <!---->
+
+
+            <div id="add-answer-form">
+                <form id="answer-form" method="post">
+                    <div class="close-answer-form-btn">
+                        <i class="fa-solid fa-x" style="cursor:pointer;"></i>
+                    </div>
+                    <input type="text" hidden name="questionIdForAddAnswer" id="questionIdForAddAnswer">
+                    <h5 style="font-weight: 600;margin-bottom: 10px;" id="questionName" name="questionName"></h5>
+                    <label for="answer" >Answer:</label>
+                    <textarea type="text" id="answer" name="answer" required rows="4"></textarea>
+                    <div class="form-row">
+                        <div style="display:flex;flex-direction:row;align-items:center;">
+                            <input style="margin:0;" type="checkbox" id="answerStatus" name="answerStatus" class="form-check-input">
+                            <label for="answerStatus">Correct answer</label>
+                        </div>
+                    <div class="save-button">
+                            <button name="saveAnswer" id="saveAnswer" type="submit">Save</button>
+                    </div>
+                    </div>
+                </form>
+            </div>
 
         </div>
     </div>
+
+    <!--After completing the exam, inserting the questions and the answers we click this button to complete the exam.
+    After clicking this button the exam that was completed will update the status to Active-->
     <div class="completeExamContainer">
         <form action="" method="post">
             <button class="completeExam" name="completeExam">Complete Exam &nbsp;<i class="fa-solid fa-check"></i></button>
@@ -247,6 +294,8 @@
     });
     });
 
+
+    //The js code to getThe exam row and fill the update exam form with that row data
     $(document).on('click', '#updateExam', function(){
     // get the values from the table row
     var examId = $(this).closest('tr').find('td:eq(1)').text().trim();
@@ -436,6 +485,9 @@ $(document).on('click', '.check-exam-row', function(){
     }
 });
 
+
+/*Adding a new question with ajax. To add the new question we need the exam id which is fetched by checking
+the exam row that we want to insert the question to*/
 $(document).ready(function(){
     $('#question-form').on('submit', function(event){
         event.preventDefault();
@@ -479,6 +531,127 @@ $(document).ready(function(){
         });
     });
 });
+
+
+
+
+//Showing the answer form and fetching the question title and id from that row
+$(document).on('click', '#addAnswerBtn', function(){
+    var questionId = $(this).closest('tr').find('td:eq(1)').text().trim();
+    var questionName = $(this).closest('tr').find('td:eq(5)').text().trim();
+    $('#questionIdForAddAnswer').val(questionId);
+    $('#questionName').html(questionName);   
+    $('#add-answer-form').show();
+})
+
+
+//Closing the answer form
+$(document).on('click', '.close-answer-form-btn', function(){
+    $('#add-answer-form').hide();
+})
+
+function AnswerTableTdList(){
+    const answerTableTdList = document.querySelectorAll('.answer-table table tbody tr td span');
+  
+  answerTableTdList.forEach((td) => {
+          if (td.textContent === 'New') {
+          td.style.backgroundColor = '#ddf1fb';
+          td.style.color = '#53b7ec';
+          td.style.border = '1px solid #53b7ec';
+          } else if (td.textContent === 'Incorrect') {
+          td.style.backgroundColor = '#fbe2e5';
+          td.style.color = '#e96d7f';
+          td.style.border = '1px solid #e96d7f';
+          }else if (td.textContent === 'Correct') {
+          td.style.backgroundColor = '#e9f5ef';
+          td.style.color = '#93ccad';
+          td.style.border = '1px solid #93ccad';
+          }
+      });
+  }
+
+
+
+//Inserting the answer into the answer table
+$(document).ready(function(){
+    $('#answer-form').on('submit', function(event){
+        event.preventDefault();
+        var questionId = $('#questionIdForAddAnswer').val();
+        var answer = $('#answer').val();
+        var answerStatus;
+        if($('#answerStatus').prop('checked')){
+            answerStatus = '1';
+        }
+        else{
+            answerStatus = '0';
+        }
+
+        $.ajax({  
+            url: "NewAnswerLogic.php",
+            type: "POST",
+            data: { 
+                answer: answer,
+                answerStatus: answerStatus,
+                questionIdForAddAnswer: questionId,   
+                saveAnswer: true    
+            },
+            success: function(data) {
+                console.log(data);
+                $('#add-answer-form').hide();
+                Swal.fire({
+                    title: 'Answer added successfully',
+                    icon: 'success'
+                });
+                $.ajax({  
+                url: "AnswerTableLogic.php",
+                type: "POST",
+                data: { questionIdForAddAnswer: questionId },
+                success: function(data) {
+                    console.log(data);
+                    $('.answer-table').html(data);
+                    AnswerTableTdList();
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+                });
+
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
+});
+
+
+$(document).on('click', '.check-question-row', function(){
+    // get the values from the table row
+    if($(this).is(':checked')) {
+        var questionId = $(this).closest('tr').find('td:eq(1)').text().trim();
+        console.log(examId);
+         /*Question for selected exam*/
+        $.ajax({  
+        url: "AnswerTableLogic.php",
+        type: "POST",
+        data: { questionIdForAddAnswer: questionId },
+        success: function(data) {
+            console.log(data);
+            $('.answer-table').html(data);
+            AnswerTableTdList();
+        },
+        error: function(xhr, status, error) {
+            console.error(error);
+        }
+        });
+
+        $(this).closest('tr').addClass('checked-exam-row');
+    } else {
+        $('.answer-table').html("");
+        $(this).closest('tr').removeClass('checked-exam-row');
+    }
+});
+
 
 
 

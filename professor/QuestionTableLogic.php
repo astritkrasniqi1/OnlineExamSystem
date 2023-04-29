@@ -19,6 +19,7 @@
      else{
      while($row = mysqli_fetch_array($resultQuestionTable)) {
          $tableRows .= '<tr data-id="' . $row['Id'] . '">';
+         $tableRows .= '<td><input type="checkbox" class="check-question-row form-check-input"></td>';
          $tableRows .= '<td>' . $row['Id'] . '</td>';
          $tableRows .= '<td>' . $row['Exam'] . '</td>';
          $tableRows .= '<td>' . $row['Subject'] . '</td>';
@@ -26,7 +27,7 @@
          $tableRows .= '<td>' . $row['Title'] . '</td>';
          $tableRows .= '<td>' . $row['Points'] .'</td>';
          $tableRows .= '<td style="display:flex;align-items:center;gap:5px;">
-         <button id="addAnswerBtn" class="questionTableActions" style="display:flex; align-items:center;"><i class="bx bx-plus"></i>&nbsp;Add Answer</button>
+         <button id="addAnswerBtn" name="addAnswerBtn" class="questionTableActions" style="display:flex; align-items:center;"><i class="bx bx-plus"></i>&nbsp;Add Answer</button>
          <button id="updateQuestion" class="questionTableActions" ><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</button>
                             
                         </td>';
@@ -37,6 +38,7 @@
      $table = '<table>';
      $table .= '<thead>';
      $table .= '<tr>';
+     $table .= '<th></th>';
      $table .= '<th>Id</th>';
      $table .= '<th>Exam</th>';
      $table .= '<th>Subject</th>';
