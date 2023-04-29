@@ -433,28 +433,7 @@ $(document).ready(function() {
 
 
 
-
-
-const examTableTdList = document.querySelectorAll('.exam-table table tbody tr td span');  
-
-examTableTdList.forEach((td) => {
-    if (td.textContent === 'New') {
-    td.style.backgroundColor = '#ddf1fb';
-    td.style.color = '#53b7ec';
-    td.style.border = '1px solid #53b7ec';
-    } else if (td.textContent === 'Inactive') {
-    td.style.backgroundColor = '#fbe2e5';
-    td.style.color = '#e96d7f';
-    td.style.border = '1px solid #e96d7f';
-    }else if (td.textContent === 'Active') {
-    td.style.backgroundColor = '#e9f5ef';
-    td.style.color = '#93ccad';
-    td.style.border = '1px solid #93ccad';
-    }
-});
-
-
-
+//On exam row check display all the questions for that exam
 $(document).on('click', '.check-exam-row', function(){
     // get the values from the table row
     if($(this).is(':checked')) {
@@ -482,7 +461,30 @@ $(document).on('click', '.check-exam-row', function(){
         $('#examIdForAddQuestion').val("");
         $('#examName').html("");
         $('.question-table').html("");
+        $('.answer-table').html("");
         $(this).closest('tr').removeClass('checked-exam-row');
+    }
+});
+
+
+
+
+//Design for the span(Status: New, Active,Inactive) in td in the exam table
+const examTableTdList = document.querySelectorAll('.exam-table table tbody tr td span');  
+
+examTableTdList.forEach((td) => {
+    if (td.textContent === 'New') {
+    td.style.backgroundColor = '#ddf1fb';
+    td.style.color = '#53b7ec';
+    td.style.border = '1px solid #53b7ec';
+    } else if (td.textContent === 'Inactive') {
+    td.style.backgroundColor = '#fbe2e5';
+    td.style.color = '#e96d7f';
+    td.style.border = '1px solid #e96d7f';
+    }else if (td.textContent === 'Active') {
+    td.style.backgroundColor = '#e9f5ef';
+    td.style.color = '#93ccad';
+    td.style.border = '1px solid #93ccad';
     }
 });
 
@@ -551,15 +553,13 @@ $(document).on('click', '.close-answer-form-btn', function(){
     $('#add-answer-form').hide();
 })
 
+
+//Design for the td span in asnwer table for Status: Correct, Incorrect 
 function AnswerTableTdList(){
     const answerTableTdList = document.querySelectorAll('.answer-table table tbody tr td span');
   
   answerTableTdList.forEach((td) => {
-          if (td.textContent === 'New') {
-          td.style.backgroundColor = '#ddf1fb';
-          td.style.color = '#53b7ec';
-          td.style.border = '1px solid #53b7ec';
-          } else if (td.textContent === 'Incorrect') {
+        if(td.textContent === 'Incorrect') {
           td.style.backgroundColor = '#fbe2e5';
           td.style.color = '#e96d7f';
           td.style.border = '1px solid #e96d7f';
@@ -636,6 +636,9 @@ $(document).ready(function(){
     });
 });
 
+
+
+//On question row check display the answer table for that question
 $(document).on('click', '.check-question-row', function(){
     // get the values from the table row
     if($(this).is(':checked')) {
