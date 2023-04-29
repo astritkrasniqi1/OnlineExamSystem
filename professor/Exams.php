@@ -221,10 +221,11 @@
                     <div class="close-answer-form-btn">
                         <i class="fa-solid fa-x" style="cursor:pointer;"></i>
                     </div>
-                    <input type="text" hidden name="questionIdForAddAnswer" id="questionIdForAddAnswer">
+                    <input type="text" hidden name="questionIdForAddAnswer" required id="questionIdForAddAnswer">
                     <h5 style="font-weight: 600;margin-bottom: 10px;" id="questionName" name="questionName"></h5>
                     <label for="answer" >Answer:</label>
                     <textarea type="text" id="answer" name="answer" required rows="4"></textarea>
+                    <span class="text-danger" id="moreThanOneCorrectAnswerError"></span>
                     <div class="form-row">
                         <div style="display:flex;flex-direction:row;align-items:center;">
                             <input style="margin:0;" type="checkbox" id="answerStatus" name="answerStatus" class="form-check-input">
@@ -578,7 +579,7 @@ $(document).ready(function(){
         event.preventDefault();
         var questionId = $('#questionIdForAddAnswer').val();
         var answer = $('#answer').val();
-        var answerStatus;
+        var answerStatus = '0';
         if($('#answerStatus').prop('checked')){
             answerStatus = '1';
         }
@@ -597,25 +598,36 @@ $(document).ready(function(){
             },
             success: function(data) {
                 console.log(data);
-                $('#add-answer-form').hide();
-                Swal.fire({
-                    title: 'Answer added successfully',
-                    icon: 'success'
-                });
-                $.ajax({  
-                url: "AnswerTableLogic.php",
-                type: "POST",
-                data: { questionIdForAddAnswer: questionId },
-                success: function(data) {
-                    console.log(data);
-                    $('.answer-table').html(data);
-                    AnswerTableTdList();
-                },
-                error: function(xhr, status, error) {
-                    console.error(error);
-                }
-                });
+                if(data == 'There can only be one correct answer per question') {
+                    $('#moreThanOneCorrectAnswerError').html(data);
+                    $('#answerStatus').prop('checked',false);
+                } else {
+                    $('#moreThanOneCorrectAnswerError').html("");
+                    $('#add-answer-form').hide();
+                    $('#questionIdForAddAnswer').val("");
+                    $('#answerStatus').prop('checked', false);
+                    $('#answer').val("");
 
+                    // Call the AnswerTableLogic.php to update the answer table
+                    $.ajax({  
+                        url: "AnswerTableLogic.php",
+                        type: "POST",
+                        data: { questionIdForAddAnswer: questionId },
+                        success: function(data) {
+                            console.log(data);
+                            $('.answer-table').html(data);
+                            AnswerTableTdList();
+                            // Display success message after answer is added and table is updated
+                            Swal.fire({
+                                title: 'Answer added successfully',
+                                icon: 'success'
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(error);
+                        }
+                    });
+                }
             },
             error: function(xhr, status, error) {
                 console.error(error);
@@ -623,7 +635,6 @@ $(document).ready(function(){
         });
     });
 });
-
 
 $(document).on('click', '.check-question-row', function(){
     // get the values from the table row
