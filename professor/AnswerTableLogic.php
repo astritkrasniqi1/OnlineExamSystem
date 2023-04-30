@@ -19,7 +19,7 @@
      else{
      while($row = mysqli_fetch_array($resultQuestionTable)) {
          $tableRows .= '<tr data-id="' . $row['Id'] . '">';
-         $tableRows .= '<td><input type="checkbox" class="check-question-row form-check-input"></td>';
+         $tableRows .= '<td><input type="checkbox" class="check-answer-row form-check-input"></td>';
          $tableRows .= '<td>' . $row['Id'] . '</td>';
          $tableRows .= '<td>' . $row['Question'] . '</td>';
          $tableRows .= '<td>' . $row['Professor'] . '</td>';

@@ -37,7 +37,8 @@
         }
         $tableRows .= '</span> </td>';
         
-        $tableRows .= '<td><button id="updateExam"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</button></td>';
+        $tableRows .= '<td><button id="updateExam"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</button>
+        <button class="delete examTableActions"><i class="fa-solid fa-trash-can"></i>&nbsp;Delete</button> ';
         $tableRows .= '</tr>';
     }
 

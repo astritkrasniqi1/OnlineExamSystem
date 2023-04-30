@@ -119,6 +119,7 @@
                             } ?> </td>
                             <td>
                                 <button id="updateExam"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</button>
+                                <button class="delete examTableActions"><i class="fa-solid fa-trash-can"></i>&nbsp;Delete</button> 
                             </td>
                         </tr>
                         <?php } }?>
@@ -215,7 +216,7 @@
             </div>
             <!---->
 
-
+               
             <div id="add-answer-form">
                 <form id="answer-form" method="post">
                     <div class="close-answer-form-btn">
@@ -297,7 +298,9 @@
     });
 
 
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+    /*The code that prevents more than one checkbox being checked*/
+    /*const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     checkboxes.forEach((checkbox) => {
     checkbox.addEventListener('change', () => {
     // If this checkbox is checked, disable all the other checkboxes
@@ -314,105 +317,162 @@
       });
     }
     });
-    });
+    });*/
 
 
-    //The js code to getThe exam row and fill the update exam form with that row data
-    $(document).on('click', '#updateExam', function(){
+//The js code to getThe exam row and fill the update exam form with that row data
+$(document).on('click', '#updateExam', function(){
     // get the values from the table row
-    var examId = $(this).closest('tr').find('td:eq(1)').text().trim();
-    var subjectId = $(this).closest('tr').find('td:eq(2)').text().trim();
-    var examTitle = $(this).closest('tr').find('td:eq(4)').text().trim();
-    var startDate = $(this).closest('tr').find('td:eq(5)').text().trim();
-    var duration = $(this).closest('tr').find('td:eq(6)').text().trim().replace(" Min", "");
-  
-    // set the values to the update exam form inputs
-    $('#examId').val(examId);
-    $('#examTitle').val(examTitle);
-    $('#Subject option').filter(function() {
-        return $(this).text() === subjectId;
-    }).prop('selected', true);  
-    $('#StartDate').val(startDate);
-    $('#Duration').val(duration);
-  
-  
-    $('.update-exam-form').show();
+            var examId = $(this).closest('tr').find('td:eq(1)').text().trim();
+            var subjectId = $(this).closest('tr').find('td:eq(2)').text().trim();
+            var examTitle = $(this).closest('tr').find('td:eq(4)').text().trim();
+            var startDate = $(this).closest('tr').find('td:eq(5)').text().trim();
+            var duration = $(this).closest('tr').find('td:eq(6)').text().trim().replace(" Min", "");
+        
+            // set the values to the update exam form inputs
+            $('#examId').val(examId);
+            $('#examTitle').val(examTitle);
+            $('#Subject option').filter(function() {
+                return $(this).text() === subjectId;
+            }).prop('selected', true);  
+            $('#StartDate').val(startDate);
+            $('#Duration').val(duration);
+        
+        
+            $('.update-exam-form').show();
+            });
+
+            $(document).on('click', '.close-button', function(){
+                $('.update-exam-form').hide();
+            })
+
+            /*Update exam with ajax*/
+
+            $(document).ready(function() {
+            $('#updateExam-form').on('submit', function(event) {
+                event.preventDefault(); // Prevent form submission
+                var examId = $('#examId').val();
+                var examTitle = $('#examTitle').val();
+                var subjectId = $('#Subject option:selected').val();
+                var startDate = $('#StartDate').val();
+                var duration = $('#Duration').val();
+
+                $.ajax({
+                type: 'POST',
+                url: 'EditExamLogic.php',
+                data: {
+                    'examId': examId,
+                    'examTitle': examTitle,
+                    'Subject': subjectId,
+                    'StartDate': startDate,
+                    'Duration': duration,   
+                    'update-exam': true
+                },
+                success: function(response) {
+            if (response == 'success') {
+                // get the values from the form
+                var examTitle = $('#examTitle').val();
+                var subjectName = $('#Subject option:selected').text();
+                var startDate = $('#StartDate').val();
+                var seconds = new Date(startDate).getSeconds(); // get the seconds value from the date
+                startDate = startDate.replace('T', ' ') + ':' + seconds + seconds; // concatenate the seconds value to the date string // set the text of the table cell to the updated date string
+
+                // append seconds to ISO string
+
+                var duration = $('#Duration').val();
+                var status = $('#Status').val();
+
+                // update the table row with the new values
+                var $row = $('tr[data-id="' + examId + '"]');
+                $row.find('td:eq(3)').text(examTitle);
+                $row.find('td:eq(1)').text(subjectName);
+                $row.find('td:eq(4)').text(startDate);
+                $row.find('td:eq(5)').text(duration + ' Min');
+                $row.find('td:eq(6) span').text(status);
+
+                // hide the update form and show success message
+                $('.update-exam-form').hide();
+                Swal.fire({
+                    title: 'Exam updated successfully',
+                    icon: 'success'
+                });
+            } else {
+                Swal.fire({
+                    title: 'Error',
+                    text: 'An error occurred while updating the exam.',
+                    icon: 'error'
+                });
+            }
+        }
+        });
     });
+});
 
-    $(document).on('click', '.close-button', function(){
-        $('.update-exam-form').hide();
-    })
 
-    /*Update exam with ajax*/
 
-    $(document).ready(function() {
-    $('#updateExam-form').on('submit', function(event) {
-        event.preventDefault(); // Prevent form submission
-        var examId = $('#examId').val();
-        var examTitle = $('#examTitle').val();
-        var subjectId = $('#Subject option:selected').val();
-        var startDate = $('#StartDate').val();
-        var duration = $('#Duration').val();
-
-        $.ajax({
-        type: 'POST',
-        url: 'EditExamLogic.php',
-        data: {
-            'examId': examId,
-            'examTitle': examTitle,
-            'Subject': subjectId,
-            'StartDate': startDate,
-            'Duration': duration,   
-            'update-exam': true
+/*Display the question table*/
+function QuestionTable(examId){
+    $.ajax({  
+       url: "QuestionTableLogic.php",
+        type: "POST",
+        data: { examIdForAddQuestion: examId },
+        success: function(data) {
+            console.log(data);
+            $('.question-table').html(data);
         },
-        success: function(response) {
-    if (response == 'success') {
-        // get the values from the form
-        var examTitle = $('#examTitle').val();
-        var subjectName = $('#Subject option:selected').text();
-        var startDate = $('#StartDate').val();
-        var seconds = new Date(startDate).getSeconds(); // get the seconds value from the date
-        startDate = startDate.replace('T', ' ') + ':' + seconds + seconds; // concatenate the seconds value to the date string // set the text of the table cell to the updated date string
-
-        // append seconds to ISO string
-
-        var duration = $('#Duration').val();
-        var status = $('#Status').val();
-
-        // update the table row with the new values
-        var $row = $('tr[data-id="' + examId + '"]');
-        $row.find('td:eq(3)').text(examTitle);
-        $row.find('td:eq(1)').text(subjectName);
-        $row.find('td:eq(4)').text(startDate);
-        $row.find('td:eq(5)').text(duration + ' Min');
-        $row.find('td:eq(6) span').text(status);
-
-        // hide the update form and show success message
-        $('.update-exam-form').hide();
-        Swal.fire({
-            title: 'Exam updated successfully',
-            icon: 'success'
-        });
-    } else {
-        Swal.fire({
-            title: 'Error',
-            text: 'An error occurred while updating the exam.',
-            icon: 'error'
-        });
-    }
+        error: function(xhr, status, error) {
+        console.error(error);
+        }
+});   
 }
-
-        });
-    });
-    });
-
-
+              
 
 
 /*Display exams between dates*/
+function ExamBetweenDates(){
+    var fromDate = $('input[name="From"]').val();
+    var toDate = $('input[name="To"]').val();   
 
+    $.ajax({
+      url: 'ExamBetweenDates.php',  
+      type: 'POST',
+      data: {
+        'From': fromDate,
+        'To': toDate
+      },
+      success: function(data) {
+        console.log(data);
+        $('.exam-table').html(data);
+        const examTableTdList = document.querySelectorAll('.exam-table table tbody tr td span');  
+        examTableTdList.forEach((td) => {
+            if (td.textContent === 'New') {
+            td.style.backgroundColor = '#ddf1fb';
+            td.style.color = '#53b7ec';
+            td.style.border = '1px solid #53b7ec';
+            } else if (td.textContent === 'Inactive') {
+            td.style.backgroundColor = '#fbe2e5';
+            td.style.color = '#e96d7f';
+            td.style.border = '1px solid #e96d7f';
+            }else if (td.textContent === 'Active') {
+            td.style.backgroundColor = '#e9f5ef';
+            td.style.color = '#93ccad';
+            td.style.border = '1px solid #93ccad';
+            }
+        });
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log("Error: " + errorThrown);
+        console.log("Status: " + textStatus);
+        console.dir(jqXHR);
+      }
+    });
+}
+
+
+
+/*Display exam between dates when the inputs "from" and "to" are changed*/
 $(document).ready(function() {
-  $('#betweenDatesForm input').change(function() {
+    $('#betweenDatesForm input').change(function() {
     var fromDate = $('input[name="From"]').val();
     var toDate = $('input[name="To"]').val();   
 
@@ -556,6 +616,8 @@ $(document).ready(function(){
     });
 });
 
+
+
 // Update question
 $(document).on('click', '#updateQuestion', function(){
     // get the row that was clicked
@@ -660,7 +722,10 @@ function AnswerTableTdList(){
 
 
 
-//Inserting the answer into the answer table
+
+
+
+  //Inserting the answer into the answer table
 $(document).ready(function(){
     $('#answer-form').on('submit', function(event){
         event.preventDefault();
@@ -724,7 +789,6 @@ $(document).ready(function(){
 });
 
 
-
 //On question row check display the answer table for that question
 $(document).on('click', '.check-question-row', function(){
     // get the values from the table row
@@ -751,6 +815,80 @@ $(document).on('click', '.check-question-row', function(){
         $('.answer-table').html("");
         $(this).closest('tr').removeClass('checked-exam-row');
     }
+});
+
+
+
+/*Delete the question from table along with all of the questions connected to it*/
+$(document).on('click', '.question-table table tbody tr td .delete', function(){
+    var questionId = $(this).closest('tr').find('td:eq(1)').text().trim(); 
+    var examId = $('#examIdForAddQuestion').val();
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({  
+                url: "DeleteQuestionLogic.php",
+                type: "POST",
+                data: { questionId: questionId },
+                success: function(data) {
+                    console.log(data);
+                    Swal.fire(
+                        'Question deleted successfully!',
+                        '',
+                        'success'
+                    )
+                    QuestionTable(examId);
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        }
+    });
+});
+
+
+
+/*Delete the exam table along with all of its content*/
+$(document).on('click', '.exam-table table tbody tr td .delete', function(){
+    var examId = $(this).closest('tr').find('td:eq(1)').text().trim(); 
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({  
+                url: "DeleteExamLogic.php",
+                type: "POST",
+                data: { examId: examId },
+                success: function(data) {
+                    console.log(data);
+                    Swal.fire(
+                        'Exam deleted successfully!',
+                        '',
+                        'success'
+                    )
+                    QuestionTable();
+                    ExamBetweenDates();
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        }
+    });
 });
 
 

@@ -633,6 +633,24 @@ td button#updateExam{
     margin-bottom: 25px;
     outline: none;
 }
+.question-table table tbody tr td .delete{
+    text-decoration: none;
+    color:#e96d7f;
+    border:1px solid lightgray;
+    border-radius: 20px;
+    padding: 5px 15px;
+    background:none;
+}
+.exam-table table #exam-table-body tr td .delete{
+    text-decoration: none;
+    color:#e96d7f;
+    border:1px solid lightgray;
+    border-radius: 20px;
+    padding: 5px 15px;
+    background:none;
+}   
+
+
 
 @media screen and (max-width: 768px) {
     .container {

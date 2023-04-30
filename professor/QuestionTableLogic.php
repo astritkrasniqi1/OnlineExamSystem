@@ -29,7 +29,7 @@
          $tableRows .= '<td style="display:flex;align-items:center;gap:5px;">
          <button id="addAnswerBtn" name="addAnswerBtn" class="questionTableActions" style="display:flex; align-items:center;"><i class="bx bx-plus"></i>&nbsp;Add Answer</button>
          <button id="updateQuestion" class="questionTableActions" ><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</button>
-                            
+         <button class="delete questionTableActions"><i class="fa-solid fa-trash-can"></i>&nbsp;Delete</button>   
                         </td>';
          $tableRows .= '</tr>';
      }
