@@ -256,7 +256,10 @@
     <div class="activeExamsTable">
         <?php 
             @include '../config.php';
-            $sql = "Select Id, Title, Subject, Professor, StartDate, Duration, Status from exam where Status='1'";
+            $sql = "Select e.Id, e.Title, s.Name as Subject , concat(u.FirstName, ' ', u.LastName) as Professor, e.StartDate, e.Duration, e.Status from exam e
+            join subject s on e.Subject = s.Id
+            join users u on e.Professor = u.Id
+            where e.Status='1'";
             $result = mysqli_query($conn, $sql);
             if(mysqli_num_rows($result) == 0){
         ?>
