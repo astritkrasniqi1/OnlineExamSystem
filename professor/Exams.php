@@ -238,6 +238,27 @@
                 </form>
             </div>
 
+             <!-- Update question -->
+            <div class="update-question-form">
+                <form id="update-question" method="post">
+                    <div class="close-btn">
+                        <i class="fa-solid fa-x"></i>
+                    </div>
+                    <input type="hidden" id="questionId" name="questionId">
+                    <label for="update-question-label" >Question:</label>
+                    <textarea type="text" id="update-question-title" name="update-question-title" required rows="4"></textarea>
+                    <div class="form-row">
+                        <div>
+                            <label for="questionPoints">Points:</label>
+                            <input type="number" id="questionPoints" min="0" name="questionPoints" required>
+                        </div>
+                    <div class="save-button">
+                            <button name="update-question" id="update-question-btn" type="submit">Save</button>
+                    </div>
+                    </div>
+                </form>
+            </div>
+                
         </div>
     </div>
 
@@ -535,7 +556,73 @@ $(document).ready(function(){
     });
 });
 
+// Update question
+$(document).on('click', '#updateQuestion', function(){
+    // get the row that was clicked
+    var row = $(this).closest('tr');
 
+    // extract the data from its cells
+    var questionId = row.data('id');
+    var questionTitle = row.find('td:eq(5)').text().trim();
+    var questionPoints = row.find('td:eq(6)').text().trim();
+
+    // prefill the form fields with the data
+    $('#questionId').val(questionId);
+    $('#update-question-title').val(questionTitle);
+    $('#questionPoints').val(questionPoints);
+  
+  
+    $('.update-question-form').show();
+    });
+
+    $(document).on('click', '.close-btn', function(){
+        $('.update-question-form').hide();
+    })
+
+    // Update with ajax
+    // Attach submit event to update form
+    $(document).on('submit', '#update-question', function(event){
+    event.preventDefault(); // Prevent default form submission behavior
+
+    // Collect the updated data from the form fields
+    var questionId = $('#questionId').val();
+    var questionTitle = $('#update-question-title').val();
+    var questionPoints = $('#questionPoints').val();
+
+    // Send an AJAX request to the server with the updated data
+    $.ajax({
+        url: 'EditQuestionLogic.php',
+        type: 'POST',
+        data: {
+            'questionId': questionId,
+            'update-question-title': questionTitle,
+            'questionPoints': questionPoints,
+            'update-question': true
+        },
+        success: function(response) {
+            // Handle the response from the server
+            if(response == 'success') {
+                // Update the question table with the new data
+                var row = $('#question-table-body').find('tr[data-id="' + questionId + '"]');
+                row.find('td:eq(5)').text(questionTitle);
+                row.find('td:eq(6)').text(questionPoints);
+
+                // Hide the update form
+                $('.update-question-form').hide();
+                Swal.fire({
+                title: 'Question updated successfully',
+                icon: 'success'
+        });
+            } else {
+                Swal.fire({
+                title: 'Error',
+                text: 'An error occurred while updating the question.',
+                icon: 'error'
+        });
+            }
+        }
+    });
+});
 
 
 //Showing the answer form and fetching the question title and id from that row

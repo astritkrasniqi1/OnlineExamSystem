@@ -36,7 +36,7 @@
                     </h2>
                </div>
                <div>
-                    <a href="NewExam.php"><i class='bx bx-plus'></i>&nbsp;Create New Exam</a>
+                    <a href="Exams.php"><i class='bx bx-plus'></i>&nbsp;Create New Exam</a>
                </div>
 
         </div>
@@ -122,7 +122,20 @@
         <a href="#" class=""><div>
         <i class="fa-solid fa-newspaper" style="color:#b9b1e5;"></i> &nbsp;
             <div class="col-auto"><span>Active Exams</span>
-            <h5>400</h5></div>
+            <h5>
+                <!--The number of active exams-->
+                <?php 
+                    @include '../config.php';
+                    $sql = "Select Count(*) as ExamCount from exam where Status='1'";
+                    $result = mysqli_query($conn, $sql);
+
+                    if(mysqli_num_rows($result)> 0){
+                        $row = mysqli_fetch_array($result);
+                        echo $row['ExamCount'];
+                    }
+                ?>
+                <!---->
+            </h5></div>
             
         </div>
         </a>
@@ -241,6 +254,15 @@
     </div>
 
     <div class="activeExamsTable">
+        <?php 
+            @include '../config.php';
+            $sql = "Select Id, Title, Subject, Professor, StartDate, Duration, Status from exam where Status='1'";
+            $result = mysqli_query($conn, $sql);
+            if(mysqli_num_rows($result) == 0){
+        ?>
+        <span class="text-danger">No active exams</span>
+        <?php } else{
+         ?>
         <table class="table">
             <thead>
                 <tr>
@@ -255,44 +277,27 @@
                 </tr>
             </thead>
             <tbody>
+                <?php while ($row = mysqli_fetch_array($result)){ ?>
                 <tr>
-                <td scope="row">1</td>
-                <td>Test 1</td>
-                <td>Mathematics</td>
-                <td>Filan Fisteku</td>
-                <td>12/03/2023 14:00</td>
-                <td>2 Hours</td>
-                <td><span>Active</span></td>
-                <td> 
-                    <a href="" class="edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
-                </td>
+                    <td><?php echo $row['Id']?></td>
+                    <td><?php echo $row['Title']?></td>
+                    <td><?php echo $row['Subject']?></td>
+                    <td><?php echo $row['Professor']?></td>
+                    <td><?php echo $row['StartDate']?></td>
+                    <td><?php echo $row['Duration']?></td>
+                    <td><span><?php if($row['Status'] = '1'){
+                            echo 'Active';
+                        }
+                        else{
+                            echo 'Inactive';
+                        }
+                     ?></span></td>
+                     <td><a href="" class="edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a></td>
                 </tr>
-                <tr>
-                <td scope="row">2</td>
-                <td>Test 2</td>
-                <td>Mathematics</td>
-                <td>Filan Fisteku</td>
-                <td>12/03/2023 12:30</td>
-                <td>2 Hours</td>
-                <td><span>Active</span></td>
-                <td> 
-                    <a href="" class="edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
-                </td>
-                </tr>
-                <tr>
-                <td scope="row">3</td>
-                <td>Test 3</td>
-                <td>Mathematics</td>
-                <td>Filan Fisteku</td>
-                <td>12/03/2023 9:30</td>
-                <td>2 Hours</td>
-                <td><span>Active</span></td>
-                <td> 
-                    <a href="" class="edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
-                </td>
-                </tr>
+                <?php }?>
             </tbody>
         </table>
+        <?php }?>
     </div>
 
 </section>

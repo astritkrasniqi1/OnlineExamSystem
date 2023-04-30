@@ -53,7 +53,7 @@
 /* Question popup form */
 
 #add-question-form {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -150,6 +150,54 @@
     background:#97eb98;
 }   
 
+/* update question */
+
+.update-question-form {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 5px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    padding: 20px;
+    display: none;
+    width: 70%;
+    max-width: 700px;
+}
+
+.update-question-form input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+    outline: none;
+}
+
+.update-question-form button {
+    padding: 10px 35px;
+    background-color: #e96d7f;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.update-question-form button:hover {
+    background-color: #eb7c8c;
+}
+
+.update-question-form #update-question-title {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 25px;
+    outline: none;
+}
 
 
 /* Create Exam */
@@ -585,10 +633,6 @@ td button#updateExam{
     margin-bottom: 25px;
     outline: none;
 }
-
-
-
-
 
 @media screen and (max-width: 768px) {
     .container {
