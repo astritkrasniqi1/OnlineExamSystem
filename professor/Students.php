@@ -24,6 +24,7 @@
 <body style="background:#f1f1f3;">
     <?php @include 'navbar.php' ?>
     <?php require 'studentsLogic.php'; ?>
+    <?php require 'NewStudentsLogic.php'; ?>
 <section>
 <div class="pageTitleContainer" >   
                <div>
@@ -98,32 +99,29 @@
     </div>
 
 <div class="NewStudents">
-    <table class="table ">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Student Name</th>
-      <th scope="col">Email</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td scope="row">1</td>
-      <td>Mark</td>
-      <td>mark25@gmail.com</td>
-    </tr>
-    <tr>
-      <td scope="row">2</td>
-      <td>Jacob</td>
-      <td>jacob_1@gmail.com</td>
-
-    </tr>
-    <tr>
-      <td scope="row">3</td>
-      <td>Larry the Bird</td>
-      <td>larry_bird@gmail.com</td>
-    </tr>
-  </tbody>
+<?php if(mysqli_num_rows($NewstudentResultTable) == 0){?>
+        <span class="text-danger">No results</span>
+      <?php } 
+        if(mysqli_num_rows($NewstudentResultTable)> 0){
+        ?>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Student Name</th>
+            <th scope="col">Email</th>
+          </tr>
+        </thead>
+        <tbody>
+        <?php while($studentRow = mysqli_fetch_array($NewstudentResultTable)) {
+          ?>
+          <tr>
+            <td><?php echo $studentRow['Id'] ?></td>
+            <td><?php echo $studentRow['StudentName'] ?></td>
+            <td><?php echo $studentRow['Email']?></td>
+          </tr>
+          <?php } }?>
+        </tbody>
 </table>
 </div>
 </section>
