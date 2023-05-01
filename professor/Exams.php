@@ -425,6 +425,24 @@ function QuestionTable(examId){
         }
 });   
 }
+
+
+/*Display the answer table*/
+function AnswerTable(questionId){
+    $.ajax({  
+        url: "AnswerTableLogic.php",
+        type: "POST",
+        data: { questionIdForAddAnswer: questionId },
+        success: function(data) {
+            console.log(data);
+            $('.answer-table').html(data);
+            AnswerTableTdList();
+        },
+        error: function(xhr, status, error) {
+            console.error(error);
+        }
+        });
+}
               
 
 
@@ -546,7 +564,6 @@ $(document).on('click', '.check-exam-row', function(){
         $(this).closest('tr').removeClass('checked-exam-row');
     }
 });
-
 
 
 
@@ -890,6 +907,47 @@ $(document).on('click', '.exam-table table tbody tr td .delete', function(){
         }
     });
 });
+
+
+
+/*Delete answer*/
+$(document).on('click', '.answer-table table tbody tr td .delete', function(){
+    var answerId = $(this).closest('tr').find('td:eq(1)').text().trim(); 
+    var questionId = $(this).closest('tr').find('td:eq(2)').text().trim();
+    console.log('AnswerId', answerId);
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({  
+                url: "DeleteAnswerLogic.php",
+                type: "POST",
+                data: { answerId: answerId },
+                success: function(data) {
+                    console.log(data);
+                    Swal.fire(
+                        'Answer deleted successfully!',
+                        '',
+                        'success'
+                    )
+                    AnswerTable(questionId);
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        }
+    });
+
+})
+
 
 
 

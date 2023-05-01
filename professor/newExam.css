@@ -648,7 +648,16 @@ td button#updateExam{
     border-radius: 20px;
     padding: 5px 15px;
     background:none;
+}  
+.answer-table table tbody tr td .delete{
+    text-decoration: none;
+    color:#e96d7f;
+    border:1px solid lightgray;
+    border-radius: 20px;
+    padding: 5px 15px;
+    background:none;
 }   
+
 
 
 

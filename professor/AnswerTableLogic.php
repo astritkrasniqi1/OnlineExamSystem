@@ -3,7 +3,7 @@
 
     $questionIdForAddAnswer = isset($_POST['questionIdForAddAnswer']) ? $_POST['questionIdForAddAnswer'] : '';
 
-    $sql = "Select a.Id, q.Title as Question, Concat(u.FirstName, ' ', u.LastName) as Professor, a.Title as Answer, a.Status from answers a
+    $sql = "Select a.Id,q.Id as QuestionId, q.Title as Question, Concat(u.FirstName, ' ', u.LastName) as Professor, a.Title as Answer, a.Status from answers a
      join questions q on a.QuestionId = q.Id join users u on a.Professor = u.Id
      where q.Id = '{$questionIdForAddAnswer}'";
 
@@ -21,6 +21,7 @@
          $tableRows .= '<tr data-id="' . $row['Id'] . '">';
          $tableRows .= '<td><input type="checkbox" class="check-answer-row form-check-input"></td>';
          $tableRows .= '<td>' . $row['Id'] . '</td>';
+         $tableRows .= '<td hidden>' . $row['QuestionId'] . '</td>';
          $tableRows .= '<td>' . $row['Question'] . '</td>';
          $tableRows .= '<td>' . $row['Professor'] . '</td>';
          $tableRows .= '<td>' . $row['Answer'] . '</td>';
@@ -34,6 +35,7 @@
 
          $tableRows .= '<td style="display:flex;align-items:center;gap:5px;">
          <button id="editAnswerBtn" name="editAnswerBtn" class="answerTableActions" style="display:flex; align-items:center;"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</button>
+         <button class="delete answerTableActions"><i class="fa-solid fa-trash-can"></i>&nbsp;Delete</button>
           </td>';
          $tableRows .= '</tr>';
      }
