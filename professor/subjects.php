@@ -92,25 +92,30 @@
       <td> <?php echo $subjectRow['Created_at']?> </td>
       <td> 
         <button id="editSubjectButton"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</button>
-      </td>
+        
+      </td> 
+      <td><a href="subject_delete.php?id=<?php echo $subjectRow['Id']; ?>"><button><i class="fa-solid fa-trash" style="text-decoration: none; color:#111965; border:none;  border-radius: 20px;  padding: 5px 15px; background: none"></i>&nbsp;Delete</button></a></td>
     </tr>
     <?php }}?>
   </tbody>
 </table>
 </div>
 <div id="edit-subject-form" style="display: none;">
-        <form id="subject-form" method="post">
-                <div class="" style="display:flex;flex-direction:row; justify-content:space-between; align-items:center;margin-bottom:15px;">
+  
+  <form action="subject_edit.php" method="POST" class="white">
+  <div class="" style="display:flex;flex-direction:row; justify-content:space-between; align-items:center;margin-bottom:15px;">
                         <h5 style="margin:0;">Edit Subject</h5>
                         <i class="fa-solid fa-x close-button" style="cursor:pointer;"></i>
                     </div>
-                    <input type="text" id="subjectEdit" placeholder="Subject name" name="subjectEdit" required>
-                    <br>
-                    <div id=save-buton>
-                  <button type="submit" name="editSubject">Save</button>
-                </div>
-        </form>
-      </div>
+    <label for="title">ID of subject:</label>
+    <input type="text" name="id" value="<?php echo $id; ?>">
+    <label for="title">Title of subject:</label>
+    <input type="text" name="name" value="<?php echo $name; ?>">
+    <div class="center">
+      <input type="submit" name="edit" value="submit" class="btn brand z-depth-0" style="background-color:#e96d7f; color: white; padding: 10px 20px; border: none;border-radius: 5px; cursor: pointer">
+    </div>
+  </form>
+</div>
   
 
   </section>
