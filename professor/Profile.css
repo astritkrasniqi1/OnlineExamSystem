@@ -1,0 +1,195 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #333;
+  background-color: #f5f5f5;
+}
+
+header {
+  background-color: #fff;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 40px;
+  margin-right: 10px;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav li {
+  margin-right: 20px;
+}
+
+nav a {
+  color: #333;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: #007bff;
+}
+
+nav .active a {
+  color: #007bff;
+  font-weight: bold;
+}
+
+.login {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.login:hover {
+  background-color: #0062cc;
+}
+
+main {
+  padding: 40px 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.profile-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.user-details {
+  margin-left: 40px;
+}
+
+.user-details h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.user-details p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.edit-profile,
+.change-password,
+.view-exam-history {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.edit-profile:hover,
+.change-password:hover,
+.view-exam-history:hover {
+  background-color: #0062cc;
+}
+
+.exam-history {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.exam-history h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.exam-history table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.exam-history th,
+.exam-history td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.exam-history th {
+  font-weight: bold;
+}
+
+.exam-history a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.exam-history a:hover {
+  color: #0062cc;
+}
+
+footer {
+  background-color: #333;
+  padding: 20px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+footer p {
+  font-size: 14px;
+}
+
+.social-media a {
+  color: #fff;
+  font-size: 20px;
+  margin-right: 20px;
+}
+
+.social-media a:hover {
+  color: #007bff;
+}
+
+footer .contact-info {
+  text-align: right;
+}
+
+footer .contact-info p {
+  margin-bottom: 5px;
+  font-size: 14px;
+}
