@@ -112,7 +112,7 @@
     <label for="title">Title of subject:</label>
     <input type="text" name="name" value="<?php echo $name; ?>">
     <div class="center">
-      <input type="submit" name="edit" value="submit" class="btn brand z-depth-0" style="background-color:#e96d7f; color: white; padding: 10px 20px; border: none;border-radius: 5px; cursor: pointer">
+      <input type="submit" name="edit" value="submit"  style="background-color:#e96d7f; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer">
     </div>
   </form>
 </div>
