@@ -235,7 +235,7 @@ td a.delete{
 
 .filters div select{
     padding: 5px;
-    width: 140px;
+    width: 130px;
     outline: none;
     border: 1px solid lightgray;
     border-radius: 5px;
@@ -470,7 +470,7 @@ td{
     top: 0;
     right: 0;
     left: auto;
-    transform: translate(0, 0);
+    transform: translate(-1%, 0);
     margin: 0;
     padding: 0;
     width: fit-content;
