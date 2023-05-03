@@ -52,24 +52,81 @@
         
     </div>
     <div class="studentExam">
+        <div class="studentTable">
+        <?php 
+            @include '../config.php';
+            $sql = "Select Id, Concat(FirstName, ' ', LastName) as StudentName, Email, Status from users where UserType='1' and Status='1'";
+            $result = mysqli_query($conn, $sql);
+            if(mysqli_num_rows($result) == 0){
+        ?>
+        <span class="text-danger">No online students</span>
+        <?php } else{
+         ?>
+        <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Student Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while ($row = mysqli_fetch_array($result)){ ?>
+                <tr>
+                    <td><?php echo $row['Id']?></td>
+                    <td><?php echo $row['StudentName']?></td>
+                    <td><?php echo $row['Email']?></td>
+                    <td><span><?php if($row['Status'] = '1'){
+                            echo 'Online';
+                        }
+                        else{
+                            echo 'Offline';
+                        }
+                     ?></span></td>
+                </tr>
+                <?php }?>
+            </tbody>
+        </table>
+        <?php }?>
+        <div class="filters">
+       
+        <div>
+            <select>
+                <option>All</option>
+            </select>
+            <button>
+                Filter&nbsp;<i class="bi bi-filter"></i>
+            </button>
+        </div>
+    </div>
+        </div>
         <div class="studentExamResultsContainer">
+            <h2 class="chartHeading">Statistic</h2>
+            <div class="studentStats">
+            
+                <div class="chartContainer">
+                    <canvas class="my-chart"></canvas>
+                </div>
+               
+            </div>
 
         </div>
         <div class="startExamContainer">
             <div class="studentExamSettings">
                 <div>
-                    <i class="fa-solid fa-calendar-check"></i>
-                    <div>
-                        <span>
+                    <i class="fa-solid fa-calendar-check" style="color:blue; border-radius:50% "></i>
+                    <div >
+                        <span style="font-size: 15px; ">
                             Friday, 14 October 2020
                         </span>
-                        <span>
-                            08:00 
+                        <span style="font-size: 13px;">
+                          08:00 - 10:00AM
                         </span>
                     </div>
                 </div>
                 <div>
-                <i class="fa-regular fa-clock"></i>
+                <i class="fa-regular fa-clock" style="color:#f7b092;"></i>
                 <div>
                     <span>
                         Duration
@@ -83,12 +140,13 @@
                 </div>
 
             </div>
-            <div class="studentExamJoin">
-                <button> Join Now</button>
+            <div class="studentExamJoin" style="margin: 100px 0 5px 150px;">
+                <button style="border:none; backgound-color:blue; " > <span style="color:wige;">Join Now</span>  </button>
 
             </div>
         </div>
     </div>
+    
 
 
 <script>
@@ -100,6 +158,8 @@
     })
 
 </script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="chart.js"></script>
     
 </body>
 </html>
