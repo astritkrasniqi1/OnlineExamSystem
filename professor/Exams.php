@@ -384,11 +384,11 @@ $(document).on('click', '#updateExam', function(){
 
                 // update the table row with the new values
                 var $row = $('tr[data-id="' + examId + '"]');
-                $row.find('td:eq(3)').text(examTitle);
-                $row.find('td:eq(1)').text(subjectName);
-                $row.find('td:eq(4)').text(startDate);
+                $row.find('td:eq(4)').text(examTitle);
+                $row.find('td:eq(2)').text(subjectName);
+                $row.find('td:eq(6)').text(startDate);
                 $row.find('td:eq(5)').text(duration + ' Min');
-                $row.find('td:eq(6) span').text(status);
+                $row.find('td:eq(7) span').text(status);
 
                 // hide the update form and show success message
                 $('.update-exam-form').hide();
