@@ -239,6 +239,30 @@
                 </form>
             </div>
 
+            <!-- Update answer -->
+            <div id="edit-answer-form">
+                <form id="editAnswerForm" method="post">
+                    <div class="close-answer-form-btn">
+                        <i class="fa-solid fa-x" style="cursor:pointer;"></i>
+                    </div>
+                    <input type="text" hidden name="questionIdForEditAnswer" required id="questionIdForEditAnswer">
+                    <input type="hidden" name="answerIdForEditAnswer" required id="answerIdForEditAnswer">
+                    <h5 style="font-weight: 600;margin-bottom: 10px;" id="QuestionName" name="QuestionName"></h5>
+                    <label for="editAnswer" >Answer:</label>
+                    <textarea type="text" id="editAnswer" name="editAnswer" required rows="4"></textarea>
+                    <span class="text-danger" id="moreThanOneCorrectAnswerError"></span>
+                    <div class="form-row">
+                        <div style="display:flex;flex-direction:row;align-items:center;">
+                            <input style="margin:0;" type="checkbox" id="editAnswerStatus" name="editAnswerStatus" class="form-check-input">
+                            <label for="editAnswerStatus">Correct answer</label>
+                        </div>
+                    <div class="save-button">
+                            <button name="saveEditAnswer" id="saveEditAnswer" type="submit">Save</button>
+                    </div>
+                    </div>
+                </form>
+            </div>
+
              <!-- Update question -->
             <div class="update-question-form">
                 <form id="update-question" method="post">
@@ -246,7 +270,8 @@
                         <i class="fa-solid fa-x"></i>
                     </div>
                     <input type="hidden" id="questionId" name="questionId">
-                    <label for="update-question-label" >Question:</label>
+                    <h5 style="font-weight: 600;margin-bottom: 10px;" id="ExamName" name="ExamName"></h5>
+                    <label for="update-question-title" >Question:</label>
                     <textarea type="text" id="update-question-title" name="update-question-title" required rows="4"></textarea>
                     <div class="form-row">
                         <div>
@@ -642,11 +667,13 @@ $(document).on('click', '#updateQuestion', function(){
 
     // extract the data from its cells
     var questionId = row.data('id');
+    var ExamName = row.find('td:eq(2)').text().trim();
     var questionTitle = row.find('td:eq(5)').text().trim();
     var questionPoints = row.find('td:eq(6)').text().trim();
 
     // prefill the form fields with the data
     $('#questionId').val(questionId);
+    $('#ExamName').html(ExamName);
     $('#update-question-title').val(questionTitle);
     $('#questionPoints').val(questionPoints);
   
@@ -804,6 +831,89 @@ $(document).ready(function(){
         });
     });
 });
+
+//Edit answer
+$(document).on('click', '#editAnswerBtn', function(){
+    // get the row that was clicked
+    var row = $(this).closest('tr');
+
+    // extract the data from its cells
+    var answerId = row.data('id');
+    var QuestionId = row.find('td:eq(2)').text().trim();
+    var QuestionName = row.find('td:eq(3)').text().trim();
+    var answer = row.find('td:eq(5)').text().trim();
+    var status = row.find('td:eq(6) span').text().trim();
+
+    // prefill the form fields with the data
+    $('#questionIdForEditAnswer').val(QuestionId);
+    $('#QuestionName').html(QuestionName);   
+    $('#answerIdForEditAnswer').val(answerId);
+    $('#editAnswer').val(answer);
+    $('#editAnswerStatus').prop('checked', status === 'Correct');
+  
+    $('#edit-answer-form').show();
+})
+
+$(document).on('click', '.close-answer-form-btn', function(){
+    $('#edit-answer-form').hide();
+})
+
+// Update with ajax
+    // Attach submit event to update form
+    $(document).on('submit', '#editAnswerForm', function(event){
+    event.preventDefault(); // Prevent default form submission behavior
+
+    // Collect the updated data from the form fields
+    var answerId = $('#answerIdForEditAnswer').val();
+    var answer = $('#editAnswer').val();
+    if($('#editAnswerStatus').prop('checked')){
+            status = '1';
+        }
+        else{
+            status = '0';
+        }
+
+    // Send an AJAX request to the server with the updated data
+    $.ajax({
+        url: 'EditAnswerLogic.php',
+        type: 'POST',
+        data: {
+            'answerIdForEditAnswer': answerId,
+            'editAnswer': answer,
+            'editAnswerStatus': status,
+            'saveEditAnswer': true
+        },
+        success: function(response) {
+            // Handle the response from the server
+            if(response == 'success') {
+                // Update the question table with the new data
+                var row = $('#answer-table-body').find('tr[data-id="' + answerId + '"]');
+                row.find('td:eq(5)').text(answer);
+                if(status === '1') {
+                row.find('td:eq(6) span').text('Correct');
+                AnswerTableTdList();
+                } else {
+                row.find('td:eq(6) span').text('Incorrect');
+                AnswerTableTdList();
+                }
+
+                // Hide the update form
+                $('#edit-answer-form').hide();
+                Swal.fire({
+                title: 'Answer updated successfully',
+                icon: 'success'
+        });
+            } else {
+                Swal.fire({
+                title: 'Error',
+                text: 'An error occurred while updating the answer.',
+                icon: 'error'
+        });
+            }
+        }
+    });
+});
+
 
 
 //On question row check display the answer table for that question
