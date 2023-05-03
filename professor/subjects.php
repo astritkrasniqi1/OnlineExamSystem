@@ -108,9 +108,9 @@
                         <i class="fa-solid fa-x close-button" style="cursor:pointer;"></i>
                     </div>
     <label for="title">ID of subject:</label>
-    <input type="text" name="id" value="<?php echo $id; ?>">
+    <input type="text" name="id" value="<?php echo isset($id) ? $id : ''; ?>">
     <label for="title">Title of subject:</label>
-    <input type="text" name="name" value="<?php echo $name; ?>">
+    <input type="text" name="name" value="<?php echo isset($name) ? $name : ''; ?>">
     <div class="center">
       <input type="submit" name="edit" value="submit"  style="background-color:#e96d7f; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer">
     </div>
