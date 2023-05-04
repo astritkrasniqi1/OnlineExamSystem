@@ -94,12 +94,24 @@
         <button id="editSubjectButton"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</button>
         
       </td> 
-      <td><a href="subject_delete.php?id=<?php echo $subjectRow['Id']; ?>"><button><i class="fa-solid fa-trash" style="text-decoration: none; color:#111965; border:none;  border-radius: 20px;  padding: 5px 15px; background: none"></i>&nbsp;Delete</button></a></td>
+      <td>
+            <button onclick="confirmDelete(<?php echo $subjectRow['Id']; ?>)">
+                <i class="fa-solid fa-trash" style="text-decoration: none; color:#111965; border:none; border-radius: 20px; padding: 5px 15px; background: none"></i>&nbsp;Delete
+            </button>
+        </td>
     </tr>
     <?php }}?>
   </tbody>
 </table>
 </div>
+<script>
+function confirmDelete(id) {
+    if (confirm("Are you sure you want to delete this subject?")) {
+        window.location.href = "subject_delete.php?id=" + id;
+    }
+}
+</script>
+
 <div id="edit-subject-form" style="display: none;">
   
   <form action="subject_edit.php" method="POST" class="white">
