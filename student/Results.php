@@ -1,3 +1,18 @@
+<?php 
+    @include '../config.php';
+
+    session_start();
+
+    if(!isset($_SESSION['studentUsername'])){
+        header('Location: login.php');
+    }
+
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -77,7 +92,7 @@
     $(function() {
     $('.chart').easyPieChart({
         size: 250,  
-        barColor: "#2ed15a",
+        barColor: "#93ccad",
         scaleLength: 0,
         lineWidth: 10,
         trackColor: "#f5f5f5",
