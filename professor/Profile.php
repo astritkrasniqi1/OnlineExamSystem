@@ -32,13 +32,15 @@
 			<div class="user-details">
             <?php while($professors = mysqli_fetch_array($Professors)) {
           ?>
-				<h2><?php echo $professors['professorName'] ?></h2>
+				<h1><?php echo $professors['professorName'] ?></h1>
 				<p><?php echo $professors['Email'] ?></p>
 				<button class="edit-profile">Edit Profile</button>
-				<button class="change-password">Change Password</button>
-				<button class="view-exam-history">View Exam History</button>
                 <?php }?>
 			</div>
+            <div class="Position">
+             <button class="overview"><i class="bi bi-book"></i>&nbsp;Overview</button>
+             <button class="change-password"><i class="bi bi-key"></i>&nbsp;Change Password</button>
+            </div>
 		</section>
 		
 		<section class="exam-history">

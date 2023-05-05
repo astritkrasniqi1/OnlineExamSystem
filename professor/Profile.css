@@ -20,61 +20,20 @@ header {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.logo {
-  display: flex;
-  align-items: center;
-}
-
-.logo img {
-  width: 40px;
-  margin-right: 10px;
-}
-
-nav ul {
-  display: flex;
-  list-style: none;
-}
-
-nav li {
-  margin-right: 20px;
-}
-
-nav a {
-  color: #333;
-  text-decoration: none;
-}
-
-nav a:hover {
-  color: #007bff;
-}
-
-nav .active a {
-  color: #007bff;
-  font-weight: bold;
-}
-
-.login {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 20px;
-  cursor: pointer;
-}
-
-.login:hover {
-  background-color: #0062cc;
-}
-
 main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   padding: 40px 20px;
-  max-width: 1000px;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
 }
 
 .user-profile {
   display: flex;
-  align-items: center;
+  flex-direction: row;
+  justify-content: next;
+  align-items: flex-start;
   margin-bottom: 40px;
 }
 
@@ -107,7 +66,6 @@ main {
 }
 
 .edit-profile,
-.change-password,
 .view-exam-history {
   background-color: #007bff;
   color: #fff;
@@ -119,12 +77,33 @@ main {
 }
 
 .edit-profile:hover,
-.change-password:hover,
 .view-exam-history:hover {
   background-color: #0062cc;
 }
+.Position {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-left: 120px;
+}
+.overview,
+.change-password {
+  border: none;
+  background: none;
+  margin-right: 20px;
+}
 
 .exam-history {
+  width: 50%;
+  position: absolute;
+  top: calc(30% + 20px);
+  left: 55%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   background-color: #fff;
   padding: 20px;
   border-radius: 5px;
