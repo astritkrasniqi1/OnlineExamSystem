@@ -77,7 +77,7 @@
     $(function() {
     $('.chart').easyPieChart({
         size: 250,  
-        barColor: "#93ccad",
+        barColor: "#2ed15a",
         scaleLength: 0,
         lineWidth: 10,
         trackColor: "#f5f5f5",

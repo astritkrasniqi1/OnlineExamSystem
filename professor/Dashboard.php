@@ -330,9 +330,9 @@
         td.style.color = '#e96d7f';
         td.style.border = '1px solid #e96d7f';
         }else if (td.textContent === 'Online') {
-        td.style.backgroundColor = '#e9f5ef';
-        td.style.color = '#93ccad';
-        td.style.border = '1px solid #93ccad';
+        td.style.backgroundColor = '#d5f6de';
+        td.style.color = '#2ed15a';
+        td.style.border = '1px solid #2ed15a';
         }
     });
 

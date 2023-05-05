@@ -30,29 +30,6 @@ header {
   margin-right: 10px;
 }
 
-nav ul {
-  display: flex;
-  list-style: none;
-}
-
-nav li {
-  margin-right: 20px;
-}
-
-nav a {
-  color: #333;
-  text-decoration: none;
-}
-
-nav a:hover {
-  color: #007bff;
-}
-
-nav .active a {
-  color: #007bff;
-  font-weight: bold;
-}
-
 .login {
   background-color: #007bff;
   color: #fff;
