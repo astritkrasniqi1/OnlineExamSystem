@@ -203,13 +203,13 @@ footer .contact-info p {
   flex-direction: column;
   justify-content: space-between;
   gap: 5px;
-  width: 222px;
+  width: 250px;
   transform: translateX(17%);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
   padding: 10px;
 }
 .EditProfile .SocialAcc .SocialLink .Social {
-  width: 190px;
+  width: 198px;
   transform: translateX(6%);
 }
 .SocialAcc label {
