@@ -58,20 +58,6 @@ main {
   margin-bottom: 40px;
 }
 
-.profile-picture {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  overflow: hidden;
-}
-
-.profile-picture img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
 .user-details {
   margin-left: 40px;
 }
@@ -86,8 +72,7 @@ main {
   margin-bottom: 20px;
 }
 
-.edit-profile,
-.view-exam-history {
+.edit-profile {
   background-color: #007bff;
   color: #fff;
   border: none;
@@ -107,24 +92,44 @@ main {
   justify-content: flex-start;
   align-items: flex-start;
   margin-left: 120px;
+  padding-bottom: 6px;
+  border-bottom: solid 1px darkgray;
 }
+
 .overview,
 .change-password {
   border: none;
+  border-radius: 5px;
   background: none;
-  margin-right: 20px;
+  padding: 5px 20px 5px 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
-
+.Position button:not(:last-child) {
+  margin-right: 15px;
+}
+.overview:hover,
+.change-password:hover {
+  background-color: #eb7c8c;
+  color: white;
+}
+.overview.active {
+  background-color: #eb7c8c;
+  color: white;
+}
+.change-password.active {
+  background-color: #eb7c8c;
+  color: white;
+}
 .exam-history {
   width: 50%;
   position: absolute;
-  top: calc(30% + 20px);
+  top: calc(40% + 30px);
   left: 55%;
   transform: translateX(-50%);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
   background-color: #fff;
   padding: 20px;
   border-radius: 5px;
@@ -192,4 +197,34 @@ footer .contact-info {
 footer .contact-info p {
   margin-bottom: 5px;
   font-size: 14px;
+}
+.EditProfile {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 5px;
+  width: 250px;
+  transform: translateX(17%);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  padding: 10px;
+}
+.EditProfile .SocialAcc .SocialLink .Social {
+  width: 198px;
+  transform: translateX(6%);
+}
+.SocialAcc label {
+  margin-bottom: 5px;
+}
+.EditProfile .SocialAcc .SocialLink {
+  margin-bottom: 10px;
+}
+.EditProfile i {
+  font-size: 20px;
+}
+.EditProfile input:nth-of-type(3) {
+  padding: 0 50px 50px 0;
+}
+.EditProfile input::placeholder {
+  font-size: 13px;
+  padding-left: 3px;
 }

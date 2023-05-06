@@ -34,7 +34,7 @@
           ?>
 				<h1><?php echo $professors['professorName'] ?></h1>
 				<p><?php echo $professors['Email'] ?></p>
-				<button class="edit-profile">Edit Profile</button>
+				<button class="edit-profile" onclick="toggleEditProfile()">Edit Profile</button>
                 <?php }?>
 			</div>
             <div class="Position">
@@ -42,8 +42,34 @@
              <button class="change-password"><i class="bi bi-key"></i>&nbsp;Change Password</button>
             </div>
 		</section>
+        <section class="EditProfile"   >
+                <label>Name</label>
+                <input type="text" placeholder="Name"/>
+                <label>Email</label>
+                <input type="email" placeholder="Email"/>
+                <label>Bio</label>
+                <input type="textarea" placeholder="Bio"/>
+                <label>Phone</label>
+                <input type="phone" placeholder="Phone"/>
+                <label>Location</label>
+                <input type="text" placeholder="Location"/>
+                <Label>University</label>
+                <input type="text" placeholder="University"/>
+        <div class="SocialAcc">
+                <Label>Social accounts:</label>
+            <div class="SocialLink">
+                <i class="bi bi-link-45deg"></i><input type="url" class="Social" placeholder="link to social profile"/>
+            </div>
+            <div class="SocialLink">
+                <i class="bi bi-link-45deg"></i><input type="url" class="Social" placeholder="link to social profile"/>
+            </div>
+            <div class="SocialLink">
+                <i class="bi bi-link-45deg"></i><input type="url" class="Social" placeholder="link to social profile"/>
+            </div>
+        </div>
+        </section>
 		
-		<section class="exam-history">
+		<section class="exam-history" >
 			<h2>Exam History</h2>
             <?php if(mysqli_num_rows($ExamHistory) == 0){?>
         <span class="text-danger">No results</span>
@@ -84,6 +110,32 @@
             $('nav .logo-container ul li a.students').removeClass('active');
             $('nav .logo-container ul li a.results').removeClass('active');
             $('nav .logo-container ul li a.profile').addClass('active');    
+          
         })
+        const overviewBtn = document.querySelector('.overview');
+const passwordBtn = document.querySelector('.change-password');
+
+overviewBtn.classList.add('active');
+
+overviewBtn.addEventListener('click', () => {
+  overviewBtn.classList.add('active');
+  passwordBtn.classList.remove('active');
+});
+
+passwordBtn.addEventListener('click', () => {
+  passwordBtn.classList.add('active');
+  overviewBtn.classList.remove('active');
+});
+   
+        const editProfileButton = document.querySelector('.edit-profile');
+        const editProfileSection = document.querySelector('.EditProfile');
+
+editProfileButton.addEventListener('click', () => {
+  if (editProfileSection.style.display === 'none') {
+    editProfileSection.style.display = 'flex';
+  } else {
+    editProfileSection.style.display = 'none';
+  }
+});
 </script>
 </html>
