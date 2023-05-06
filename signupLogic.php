@@ -1,80 +1,66 @@
 <?php
-@include 'config.php';
+// Load configuration and required libraries
+require_once 'config.php';
+require_once 'vendor/autoload.php';
 
-require 'vendor/autoload.php';
+
+$SENDGRID_API_KEY='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';
 
 
+// Initialize errors array
+
+// Handle form submission
 if (isset($_POST['signupBtn'])) {
     // Validate user input
-    if (empty($_POST['firstName'])) {
-        $errors[] = 'First name is required';
-    } else {
-        $firstName = $_POST['firstName'];
-    }
+    $firstName = mysqli_real_escape_string($conn, $_POST['firstName']);
+    $lastName = mysqli_real_escape_string($conn, $_POST['lastName']);
+    $emailAddress = mysqli_real_escape_string($conn, $_POST['emailAddress']);
+    $userType = mysqli_real_escape_string($conn, $_POST['userType']);
+    $username = mysqli_real_escape_string($conn, $_POST['username']);
+    $password = md5($_POST['password']);
+    $confirmPassword = md5($_POST['confirmPassword']);
 
-    if (empty($_POST['lastName'])) {
-        $errors[] = 'Last name is required';
-    } else {
-        $lastName = $_POST['lastName'];
-    }
-
-    if (empty($_POST['emailAddress'])) {
-        $errors[] = 'Email address is required';
-    } elseif (!filter_var($_POST['emailAddress'], FILTER_VALIDATE_EMAIL)) {
-        $errors[] = 'Invalid email address';
-    } else {
-        $emailAddress = $_POST['emailAddress'];
-    }
-
-    if (empty($_POST['userType'])) {
-        $errors[] = 'User type is required';
-    } else {
-        $userType = $_POST['userType'];
-    }
-
-    if (empty($_POST['username'])) {
-        $errors[] = 'Username is required';
-    } else {
-        $username = $_POST['username'];
-    }
-
-    if (empty($_POST['password'])) {
-        $errors[] = 'Password is required';
-    } elseif ($_POST['password'] != $_POST['confirmPassword']) {
-        $errors[] = 'Passwords do not match';
-    } else {
-        $password = md5($_POST['password']);
-    }
+    // Validate input data
 
     // If no errors, proceed with sign up
-    if (empty($errors)) {
-        // generate verification code and save it to database
+        // Hash password for security
+
+        // Generate verification code and save it to database
         $verificationCode = rand(100000, 999999);
-        $sql = "INSERT into users (FirstName, LastName, UserType, Email, Username, Password, verificationCode, verificationStatus, Status, Created_at)
-        values ('$firstName', '$lastName', '$userType', '$emailAddress', '$username', '$password', '$verificationCode', '0', '0', Now())";
+        $sql = "INSERT INTO users (FirstName, LastName, UserType, Email, Username, Password, VerificationCode, VerificationStatus, Status, Created_at)
+        VALUES ('$firstName', '$lastName', '$userType', '$emailAddress', '$username', '$password', '$verificationCode', '0', '0', NOW())";
         mysqli_query($conn, $sql);
 
-        // send verification email using SendGrid
+        $userId = mysqli_insert_id($conn);
+
+        // Send verification email using SendGrid
         $email = new \SendGrid\Mail\Mail();
+        // Set the verification URL as a substitution value
+    // Set the HTML content of the email using your SendGrid template, with the substitution value included
         $email->setFrom("blert.osmani@student.uni-pr.edu", "Online Exam System");
-        $email->setSubject("Verify your account");
+        $email->setTemplateId("d-833c2d2044ca4ccaa800d4860b01fe1e");
+        $email->addDynamicTemplateData("verificationCode", $verificationCode);
+        $email->addDynamicTemplateData("userId", $userId);
         $email->addTo($emailAddress, $firstName . " " . $lastName);
-        $email->addContent(
+        /*$email->addContent(
             "text/plain",
-            "Your verification code is: " . $verificationCode
-        );
-        $sendgrid = new \SendGrid( getenv('SENDGRID_API_KEY') );
+            "To finish creating your account please click the link to verify your email: <a href='http://localhost/Online-Exam-System/verify-email.php?code={$verificationCode}'>Verify Email</a>"
+        );*/
+        
+        $sendgrid = new \SendGrid($SENDGRID_API_KEY);
         try {
             $response = $sendgrid->send($email);
-            print $response->statusCode() . "\n";
-            print_r($response->headers());
-            print $response->body() . "\n";
+            // Check response status code and headers for errors
+            if ($response->statusCode() >= 400) {
+                throw new Exception('Error sending email: ' . $response->body());
+            }   
+            // Redirect to login page after successful sign up
+            header('Location:signup.php');
+            $success[] = "Please check your email .We've sent you a link to verify your account";
+            exit();
         } catch (Exception $e) {
-            echo 'Caught exception: ',  $e->getMessage(), "\n";
+            $errors[] = 'Error sending email: ' . $e->getMessage();
         }
 
-        header("Location:login.php");
-        exit();
-    }
 }
 ?>

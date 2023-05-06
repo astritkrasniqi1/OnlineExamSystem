@@ -33,6 +33,13 @@
                                 .'</div>';
                             }
                         }
+                        if(isset($success)){
+                          foreach($success as $success){
+                              echo '<div class="alert alert-warning" role="alert">'
+                                  .$success
+                              .'</div>';
+                          }
+                      }
                     ?>
                       <div style="display:flex; flex-direction: row; justify-content: center;gap: 10px;">
                       <div class="form-check col">

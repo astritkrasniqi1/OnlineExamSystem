@@ -15,6 +15,8 @@
         Email varchar(150),
         Username varchar(100),
         Password varchar(100),
+        VerificationCode int,
+        VerificationStatus char(1),
         Status char(1),
         Created_at datetime,
         primary key(Id)
