@@ -4,8 +4,6 @@ require_once 'config.php';
 require_once 'vendor/autoload.php';
 
 
-$SENDGRID_API_KEY='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';
-
 
 // Initialize errors array
 
