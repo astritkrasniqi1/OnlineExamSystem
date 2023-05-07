@@ -33,14 +33,13 @@
                                 .'</div>';
                             }
                         }
-                        if(isset($success)){
-                          foreach($success as $success){
-                              echo '<div class="alert alert-warning" role="alert">'
-                                  .$success
-                              .'</div>';
-                          }
-                      }
-                    ?>
+                      ?>
+                        <?php if(isset($_SESSION['success'])){ ?>
+                              <?php echo '<div class="alert alert-success" role="alert">'
+                                    .$_SESSION['success']
+                                .'</div>' ?>
+                        <?php unset($_SESSION['success']); } ?>
+                    
                       <div style="display:flex; flex-direction: row; justify-content: center;gap: 10px;">
                       <div class="form-check col">
                         <input class="form-check-input" required type="radio" value="0" name="userType" id="professor">

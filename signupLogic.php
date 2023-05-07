@@ -3,8 +3,8 @@
 require_once 'config.php';
 require_once 'vendor/autoload.php';
 
-
 // Initialize errors array
+session_start();
 
 // Handle form submission
 if (isset($_POST['signupBtn'])) {
@@ -60,6 +60,7 @@ if (isset($_POST['signupBtn'])) {
                 throw new Exception('Error sending email: ' . $response->body());
             }   
             // Redirect to login page after successful sign up
+            $_SESSION["success"] = "Please check your email. We've sent a link to verify your account";
             header('Location:signup.php');
             exit();
         } catch (Exception $e) {
