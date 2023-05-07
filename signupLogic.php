@@ -4,7 +4,6 @@ require_once 'config.php';
 require_once 'vendor/autoload.php';
 
 
-
 // Initialize errors array
 
 // Handle form submission
@@ -18,10 +17,18 @@ if (isset($_POST['signupBtn'])) {
     $password = md5($_POST['password']);
     $confirmPassword = md5($_POST['confirmPassword']);
 
-    // Validate input data
+    $userExists = "Select * from users where username = '$username'";
 
-    // If no errors, proceed with sign up
-        // Hash password for security
+    $result =  mysqli_query($conn,$userExists);
+    if(mysqli_num_rows($result)>0){
+        $error[] = "User already exists!";
+    }
+    else{
+
+        if($password != $confirmPassword){
+            $error[] = "Passwords do not match!";
+        }
+        else{
 
         // Generate verification code and save it to database
         $verificationCode = rand(100000, 999999);
@@ -35,7 +42,7 @@ if (isset($_POST['signupBtn'])) {
         $email = new \SendGrid\Mail\Mail();
         // Set the verification URL as a substitution value
     // Set the HTML content of the email using your SendGrid template, with the substitution value included
-        $email->setFrom("blert.osmani@student.uni-pr.edu", "Online Exam System");
+        $email->setFrom("OXamSystem@outlook.com", "Online Exam System");
         $email->setTemplateId("d-833c2d2044ca4ccaa800d4860b01fe1e");
         $email->addDynamicTemplateData("verificationCode", $verificationCode);
         $email->addDynamicTemplateData("userId", $userId);
@@ -54,11 +61,12 @@ if (isset($_POST['signupBtn'])) {
             }   
             // Redirect to login page after successful sign up
             header('Location:signup.php');
-            $success[] = "Please check your email .We've sent you a link to verify your account";
             exit();
         } catch (Exception $e) {
             $errors[] = 'Error sending email: ' . $e->getMessage();
         }
+        }
+    }
 
 }
 ?>

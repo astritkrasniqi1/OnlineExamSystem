@@ -21,13 +21,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
-<body>
+<body style="background:#f1f1f3;">
        <?php @include 'navbar.php' ?>
        <?php require 'ProfileLogic.php'; ?>
 
 	
 	<main>
-		<section class="user-profile">
+		<section class="user-profile col-4">
 			
 			<div class="user-details">
             <?php while($professors = mysqli_fetch_array($Professors)) {
@@ -37,39 +37,23 @@
 				<button class="edit-profile" onclick="toggleEditProfile()">Edit Profile</button>
                 <?php }?>
 			</div>
+        <section class="EditProfile" style="display:none;">
+                <label>First Name</label>
+                <input type="text" placeholder="First Name" class="form-control"/>
+                <label>Last Name</label>
+                <input type="email" placeholder="Last Name" class="form-control"/>
+                <label>Email</label>
+                <input type="phone" placeholder="Email" class="form-control"/>
+                <label>Username</label>
+                <input type="text" placeholder="Username" class="form-control"/>
+        </section>
+		</section>
+		
+	<section class="exam-history col-8" >
             <div class="Position">
              <button class="overview"><i class="bi bi-book"></i>&nbsp;Overview</button>
              <button class="change-password"><i class="bi bi-key"></i>&nbsp;Change Password</button>
             </div>
-		</section>
-        <section class="EditProfile"   >
-                <label>Name</label>
-                <input type="text" placeholder="Name"/>
-                <label>Email</label>
-                <input type="email" placeholder="Email"/>
-                <label>Bio</label>
-                <input type="textarea" placeholder="Bio"/>
-                <label>Phone</label>
-                <input type="phone" placeholder="Phone"/>
-                <label>Location</label>
-                <input type="text" placeholder="Location"/>
-                <Label>University</label>
-                <input type="text" placeholder="University"/>
-        <div class="SocialAcc">
-                <Label>Social accounts:</label>
-            <div class="SocialLink">
-                <i class="bi bi-link-45deg"></i><input type="url" class="Social" placeholder="link to social profile"/>
-            </div>
-            <div class="SocialLink">
-                <i class="bi bi-link-45deg"></i><input type="url" class="Social" placeholder="link to social profile"/>
-            </div>
-            <div class="SocialLink">
-                <i class="bi bi-link-45deg"></i><input type="url" class="Social" placeholder="link to social profile"/>
-            </div>
-        </div>
-        </section>
-		
-		<section class="exam-history" >
 			<h2>Exam History</h2>
             <?php if(mysqli_num_rows($ExamHistory) == 0){?>
         <span class="text-danger">No results</span>
