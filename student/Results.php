@@ -11,7 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/easy-pie-chart/2.1.6/jquery.easypiechart.min.js"></script>
     <link rel="stylesheet" href="results.css">
 </head>
-<body>
+<body style="background:#f1f1f3;">
     <?php include 'studentNavbar.php' ?>    
 
 <div style="margin: 1.5rem 8rem;">
