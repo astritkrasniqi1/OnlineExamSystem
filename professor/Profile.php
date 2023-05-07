@@ -37,15 +37,17 @@
 				<button class="edit-profile" onclick="toggleEditProfile()">Edit Profile</button>
                 <?php }?>
 			</div>
+
+            <?php $userData = mysqli_fetch_array($profesori);?>
         <section class="EditProfile" style="display:none;">
                 <label>First Name</label>
-                <input type="text" placeholder="First Name" class="form-control"/>
+                <input type="text" value="<?php echo $userData['FirstName'];?>" placeholder="First Name" class="form-control"/>
                 <label>Last Name</label>
-                <input type="email" placeholder="Last Name" class="form-control"/>
+                <input type="email" value="<?php echo $userData['LastName'];?>" placeholder="Last Name" class="form-control"/>
                 <label>Email</label>
-                <input type="phone" placeholder="Email" class="form-control"/>
+                <input type="phone" placeholder="Email" value="<?php echo $userData['Email'];?>" class="form-control"/>
                 <label>Username</label>
-                <input type="text" placeholder="Username" class="form-control"/>
+                <input type="text" placeholder="Username" value="<?php echo $userData['Username'];?>" class="form-control"/>
         </section>
 		</section>
 		
