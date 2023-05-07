@@ -27,13 +27,11 @@ const chartData = {
     },
 
     options: {
-        responsive: true,
-      borderWidth: 10,
+      responsive: true,
       borderRadius: 2,
       hoverBorderWidth: 0,
       plugins: {
         legend: {
-          
           position: 'bottom',
         },
       },

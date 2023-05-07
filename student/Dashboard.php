@@ -23,7 +23,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>Document</title>
 </head>
-<body>
+<body style="background:#f1f1f3;">
     <?php @include 'studentNavbar.php' ?>
     <div class="overview" style="flex-wrap:wrap;">
         <a href="#" class=""><div>
@@ -51,8 +51,27 @@
         </a>
         
     </div>
+
     <div class="studentExam">
-        <div class="studentTable">
+        <div class="studentExamResultsContainer col-8">
+        <h3 style="margin:0;padding:0;">Statistics</h3>
+            <div class="studentStats">
+                <div class="chartContainer">
+                    <canvas class="my-chart"></canvas>
+                </div>
+            </div>
+            <div class="studentTable">
+        <div class="filters">
+        <div><input type="search" placeholder="Search student"/></div>
+        <div>
+            <select>
+                <option>All</option>
+            </select>
+            <button>
+                Filter&nbsp;<i class="bi bi-filter"></i>
+            </button>
+        </div>
+    </div>
         <?php 
             @include '../config.php';
             $sql = "Select Id, Concat(FirstName, ' ', LastName) as StudentName, Email, Status from users where UserType='1' and Status='1'";
@@ -89,33 +108,19 @@
             </tbody>
         </table>
         <?php }?>
-        <div class="filters">
-       
-        <div>
-            <select>
-                <option>All</option>
-            </select>
-            <button>
-                Filter&nbsp;<i class="bi bi-filter"></i>
-            </button>
         </div>
-    </div>
         </div>
-        <div class="studentExamResultsContainer">
-            <h2 class="chartHeading">Statistic</h2>
-            <div class="studentStats">
-            
-                <div class="chartContainer">
-                    <canvas class="my-chart"></canvas>
-                </div>
-               
+    <div class="startExamContainer col-3">
+    <h3 style="margin:0;">Today's exam</h3>
+    <div class="startExam">
+            <div class="studentExamJoin" style="">
+                <button style="border: 1px solid gray;background:none;">Next Time</button>
+                <button style="border:none; "><i class="fa-solid fa-arrow-right"></i>&nbsp;Join Now</button>
             </div>
-
-        </div>
-        <div class="startExamContainer">
-            <div class="studentExamSettings">
+            <div class="studentExamSettings" style="margin:2rem 0;">
+                <div><h5>Exam name</h5></div>                   
                 <div>
-                    <i class="fa-solid fa-calendar-check" style="color:blue; border-radius:50% "></i>
+                    <i class="fa-solid fa-calendar-check" style="color:#111965; border-radius:50% "></i>
                     <div >
                         <span style="font-size: 15px; ">
                             Friday, 14 October 2020
@@ -135,19 +140,12 @@
                         2 hours
                     </span>
                 </div>
-
-
                 </div>
-
-            </div>
-            <div class="studentExamJoin" style="margin: 100px 0 5px 150px;">
-                <button style="border:none; backgound-color:blue; " > <span style="color:wige;">Join Now</span>  </button>
-
             </div>
         </div>
     </div>
-    
-
+    </div>
+</div>
 
 <script>
         $(document).ready(function() {
