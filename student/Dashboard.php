@@ -158,7 +158,7 @@
             <div class="studentExamSettings" style="margin:2rem 0;">
                 <div><h5>Exam name</h5></div>                   
                 <div>
-                    <i class="fa-solid fa-calendar-check" style="color:#111965; border-radius:50% "></i>
+                    <i class="fa-solid fa-calendar-check" style="color:#93ccad; border-radius:50% "></i>
                     <div >
                         <span style="font-size: 15px; ">
                             Friday, 14 October 2020
@@ -176,6 +176,28 @@
                     </span>
                     <span>
                         2 hours
+                    </span>
+                </div>
+                </div>
+                <div>
+                <i class="fa-solid fa-book" style="color:#e96d7f;"></i>
+                <div>
+                    <span>
+                        Subject
+                    </span>
+                    <span style="font-size: 13px; ">
+                        Subject Name
+                    </span>
+                </div>
+                </div>
+                <div>
+                <i class="fa-solid fa-user-tie" style="color:#111965;"></i>
+                <div>
+                    <span>
+                        Professor
+                    </span>
+                    <span style="font-size: 13px; ">
+                        Professor Name
                     </span>
                 </div>
                 </div>
