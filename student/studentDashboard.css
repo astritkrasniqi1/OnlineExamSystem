@@ -300,7 +300,7 @@ td a.delete{
     padding: 2.7rem 0;
     margin: 1rem 0;
     box-shadow:  rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-    height: 33.9rem;
+    height: 35rem;
 }
 
 .studentExam .startExamContainer .studentExamJoin{
@@ -351,8 +351,8 @@ td a.delete{
     text-align: center;
   }
 
-  
- .studentExam .studentExamResultsContainer .studentStats {
+.studentExam .studentExamResultsContainer .studentStats .chartContainer {
+    width:400px;
     align-items: center;
     justify-self: center;
     background:white;
@@ -360,12 +360,8 @@ td a.delete{
     box-shadow:  rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     border-radius: 5px;
     color: #023047;
-    width: fit-content;
     transition: all 400ms ease;
     margin: 1rem 0;
-  }
-  .studentExam .studentExamResultsContainer .studentStats .chartContainer {
-    width:350px;
    
   } 
   .studentExam .studentExamResultsContainer .studentStats .details ul {
@@ -433,6 +429,91 @@ td{
     justify-content: center;
 }
 
+.studentExam .studentExamResultsContainer .statisticsOverview {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.studentExam .studentExamResultsContainer .statisticsOverview  .CompletedExams{
+    background:white;
+    box-shadow:  rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    border-radius: 5px;
+    width: 400px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 400px;
+    margin:1rem 0;
+}
+.studentExam .studentExamResultsContainer .statisticsOverview  .CompletedExams .progressContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    padding: 0 1rem;
+    margin:1rem 0;
+}
+.studentExam .studentExamResultsContainer .statisticsOverview  .CompletedExams .progressContainer div{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.studentExam .studentExamResultsContainer .statisticsOverview .CompletedExams .progressContainer progress.veryGood::-webkit-progress-value{
+    background:#f7b092 !important;
+    border-radius: 50px;
+}
+.studentExam .studentExamResultsContainer .statisticsOverview .CompletedExams .progressContainer progress.veryGood::-webkit-progress-bar {
+    background-color: white; width: 100%;border-radius:50px;
+}
+.studentExam .studentExamResultsContainer .statisticsOverview .CompletedExams .progressContainer progress.veryGood{
+    width: 100%;
+    background-color: white;
+    border:1px solid lightgray;
+    border-radius:50px;
+}
+.studentExam .studentExamResultsContainer .statisticsOverview .CompletedExams .progressContainer progress.bad::-webkit-progress-value{
+    background:#e96d7f !important;
+    border-radius: 50px;
+}
+.studentExam .studentExamResultsContainer .statisticsOverview .CompletedExams .progressContainer progress.bad::-webkit-progress-bar {
+    background-color: white; width: 100%;border-radius:50px;
+}
+.studentExam .studentExamResultsContainer .statisticsOverview .CompletedExams .progressContainer progress.bad{
+    width: 100%;
+    background-color: white;
+    border:1px solid lightgray;
+    border-radius:50px;
+}
+.studentExam .studentExamResultsContainer .statisticsOverview .CompletedExams .progressContainer progress.excellent::-webkit-progress-value{
+    background:#93ccad !important;
+    border-radius: 50px;
+}
+.studentExam .studentExamResultsContainer .statisticsOverview .CompletedExams .progressContainer progress.excellent::-webkit-progress-bar {
+    background-color: white; width: 100%;border-radius:50px;
+}
+.studentExam .studentExamResultsContainer .statisticsOverview .CompletedExams .progressContainer progress.excellent{
+    width: 100%;
+    background-color: white;
+    border:1px solid lightgray;
+    border-radius:50px;
+}
+.studentExam .studentExamResultsContainer .statisticsOverview .CompletedExams .progressContainer progress.good::-webkit-progress-value{
+    background:#111965 !important;
+    border-radius: 50px;
+}
+.studentExam .studentExamResultsContainer .statisticsOverview .CompletedExams .progressContainer progress.good::-webkit-progress-bar {
+    background-color: white; width: 100%;border-radius:50px;
+}
+.studentExam .studentExamResultsContainer .statisticsOverview .CompletedExams .progressContainer progress.good{
+    width: 100%;
+    background-color: white;
+    border:1px solid lightgray;
+    border-radius:50px;
+}
 
   
 

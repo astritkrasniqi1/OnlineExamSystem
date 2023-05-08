@@ -70,7 +70,7 @@
         </div>
     </div>
 
-    <div class="subjectTable">
+  <div class="subjectTable">
     <table class="table ">
   <thead>
     <tr>
@@ -91,27 +91,14 @@
       <td> <?php echo $subjectRow['Name']?> </td>
       <td> <?php echo $subjectRow['Created_at']?> </td>
       <td> 
-        <button id="editSubjectButton"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</button>
-        
+        <button class="editSubjectBtn" id="editSubjectButton"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</button>
+        <button class="delete subjectTableActions"><i class="fa-solid fa-trash-can"></i>&nbsp;Delete</button>
       </td> 
-      <td>
-            <button onclick="confirmDelete(<?php echo $subjectRow['Id']; ?>)">
-                <i class="fa-solid fa-trash" style="text-decoration: none; color:#111965; border:none; border-radius: 20px; padding: 5px 15px; background: none"></i>&nbsp;Delete
-            </button>
-        </td>
     </tr>
     <?php }}?>
   </tbody>
 </table>
 </div>
-<script>
-function confirmDelete(id) {
-    if (confirm("Are you sure you want to delete this subject?")) {
-        window.location.href = "subject_delete.php?id=" + id;
-    }
-}
-</script>
-
 <div id="edit-subject-form" style="display: none;">
   
   <form action="subject_edit.php" method="POST" class="white">
@@ -131,13 +118,6 @@ function confirmDelete(id) {
   
 
   </section>
-
-
-
-
-
-
-
 </body>
 
 
@@ -146,6 +126,11 @@ function confirmDelete(id) {
 
 
 <script>
+  function confirmDelete(id) {
+    if (confirm("Are you sure you want to delete this subject?")) {
+        window.location.href = "subject_delete.php?id=" + id;
+    }
+  }
     $(document).ready(function() {
             $('nav .logo-container ul li a.dashboard').removeClass('active');
             $('nav .logo-container ul li a.exams').removeClass('active');

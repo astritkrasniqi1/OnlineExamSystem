@@ -46,7 +46,6 @@ td{
 }
 
 .filters{
-   
     margin: 0 8rem;
     display:flex;
     flex-direction: row;
@@ -83,6 +82,22 @@ td{
     border: none;
     background: #111965;
     color: white;
+}
+.subjectTable table tbody tr td .delete{
+    text-decoration: none;
+    color:#e96d7f;
+    border:1px solid lightgray;
+    border-radius: 20px;
+    padding: 5px 15px;
+    background:none;
+}
+.subjectTable table tbody tr td button.editSubjectBtn{
+    text-decoration: none;
+    color:#111965;
+    border:1px solid lightgray;
+    border-radius: 20px;
+    padding: 5px 15px;
+    background: none;
 }
 
 
@@ -204,14 +219,6 @@ td{
 
 #edit-subject-form button:hover {
     background-color: #eb7c8c;
-}
-#editSubjectButton{
-    text-decoration: none;
-    color:#111965;
-    border:1px solid lightgray;
-    border-radius: 20px;
-    padding: 5px 15px;
-    background: none;
 }
 
 
