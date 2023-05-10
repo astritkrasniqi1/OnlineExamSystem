@@ -156,16 +156,31 @@
     <div class="startExamContainer col-3">
     <h3 style="margin:0;">Today's exam</h3>
     <div class="startExam">
-            <div class="studentExamJoin" style="">
-                <button style="border: 1px solid gray;background:none;">Next Time</button>
-                <a href="Exam.php" style="border:none;"><i class="fa-solid fa-arrow-right"></i>&nbsp;Join Now</a>
-            </div>
-            <div class="studentExamSettings" style="margin:2rem 0;">
-                <div><h5>Exam name</h5></div>                   
+            <div class="studentExamSettings" style="margin:0;">
                 <div>
+                <select class="selectExam" name="" id="" style="width:100%;padding:10px;border-radius:5px;">
+                    <option value="0" selected disabled>Select exam</option>
+                    <?php $todaysExam = "SELECT e.Id AS ExamId, e.Title AS ExamName from exam e 
+                                        WHERE DATE(StartDate) = DATE(NOW()) AND e.Status = '1'";
+
+                            $todaysExamResult = mysqli_query($conn, $todaysExam);
+                            if(mysqli_num_rows($todaysExamResult) > 0){
+                                while($todaysExamRow = mysqli_fetch_assoc($todaysExamResult)){
+                        ?>
+                        <option class="exam" value="<?php echo $todaysExamRow['ExamId'] ?>">
+                            <?php echo $todaysExamRow['ExamName'] ?>
+                        </option>
+                        <?php 
+                                }
+                            }
+                        ?>
+                    </select>
+                </div>                   
+                <div>
+                    <input type="hidden" class="examId" name="examId">
                     <i class="fa-solid fa-calendar-check" style="color:#93ccad; border-radius:50% "></i>
                     <div >
-                        <span style="font-size: 15px; ">
+                        <span style="font-size: 15px; " class="examDate">
                             Friday, 14 October 2020
                         </span>
                         <span style="font-size: 13px;">
@@ -179,7 +194,7 @@
                     <span>
                         Duration
                     </span>
-                    <span>
+                    <span class="examDuration">
                         2 hours
                     </span>
                 </div>
@@ -190,7 +205,7 @@
                     <span>
                         Subject
                     </span>
-                    <span style="font-size: 13px; ">
+                    <span style="font-size: 13px; " class="subjectName">
                         Subject Name
                     </span>
                 </div>
@@ -201,11 +216,17 @@
                     <span>
                         Professor
                     </span>
-                    <span style="font-size: 13px; ">
+                    <span style="font-size: 13px; " class="professorName">
                         Professor Name
                     </span>
                 </div>
                 </div>
+            </div>
+            <div class="studentExamJoin" style="margin:5rem 0 0 0 ;">
+                <button style="border: 1px solid gray;background:none;">Next Time</button>
+            <form action="" method="post">
+                <button type="submit" name="joinExamBtn" style="border:none;"><i class="fa-solid fa-arrow-right"></i>&nbsp;Join Now</a>
+            </form>
             </div>
         </div>
     </div>
@@ -239,6 +260,27 @@
             getProgressValue($(this));
         })
     })
+
+    $(document).ready(function(){
+    $('.selectExam').change(function(){
+        var examId = $('.exam').val();
+        $.ajax({
+            type: "POST",
+            url: "selectExamLogic.php",
+            data: { examId: examId },
+            success: function(response){
+                var data = JSON.parse(response);
+                $('.subjectName').html(data.Subject);
+                $('.professorName').html(data.Professor);
+                $('.examDate').html(data.StartDate);
+                $('.examDuration').html(data.Duration + ' Min');
+                $('.examId').val(data.ExamId);
+            }
+        });
+    });
+});
+
+
 </script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="chart.js"></script>

@@ -297,8 +297,9 @@ td a.delete{
 .studentExam .startExamContainer .startExam{
     border-radius: 5px;
     background:white;
-    padding: 2.7rem 0;
+    padding: 1rem 0;
     margin: 1rem 0;
+    position:relative;
     box-shadow:  rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     height: 35rem;
 }
@@ -308,6 +309,8 @@ td a.delete{
     justify-content:space-between;
     width: 100%;
     padding: 0 2rem;
+    position: absolute;
+    bottom: 1rem;
 }
 
 .studentExam .startExamContainer .studentExamJoin button{
@@ -315,19 +318,20 @@ td a.delete{
     border-radius: 5px;
     width: 45%;
 }
+.studentExam .startExamContainer .studentExamJoin form{
+    width: 45%;
+}
 
-.studentExam .startExamContainer .studentExamJoin a{
+.studentExam .startExamContainer .studentExamJoin form button{
    background: #111965;
    opacity: 1;
    color: white;
    cursor:pointer;
-   padding: 10px 15px;
-   border-radius: 5px;
-   width: 45%;
+   width: 100%;
    text-align: center;
    text-decoration: none;
 }
-.studentExam .startExamContainer .studentExamJoin a:hover{
+.studentExam .startExamContainer .studentExamJoin form button:hover{
     background: #293074;
     color: white;
  }
