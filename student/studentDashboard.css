@@ -315,12 +315,19 @@ td a.delete{
     border-radius: 5px;
     width: 45%;
 }
-.studentExam .startExamContainer .studentExamJoin button:nth-child(2){
+
+.studentExam .startExamContainer .studentExamJoin a{
    background: #111965;
    opacity: 1;
    color: white;
+   cursor:pointer;
+   padding: 10px 15px;
+   border-radius: 5px;
+   width: 45%;
+   text-align: center;
+   text-decoration: none;
 }
-.studentExam .startExamContainer .studentExamJoin button:nth-child(2):hover{
+.studentExam .startExamContainer .studentExamJoin a:hover{
     background: #293074;
     color: white;
  }

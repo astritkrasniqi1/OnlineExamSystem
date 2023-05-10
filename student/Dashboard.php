@@ -26,6 +26,11 @@
 </head>
 <body style="background:#f1f1f3;">
     <?php @include 'studentNavbar.php' ?>
+
+    <div style="margin:1.5rem 8rem;">
+        <h2>Dashboard</h2>
+    </div>
+
     <div class="overview" style="flex-wrap:wrap;">
         <a href="#" class=""><div>
         <i class="fa-solid fa-hourglass-half" style="color:#f7b092;"></i>&nbsp;
@@ -65,7 +70,7 @@
             </div>
             </div>
         <div class="CompletedExamsContainer">
-            <h3 style="margin:0; padding:0;">Completed Exams</h3>
+            <h3 style="margin:0; padding:0;">Recent Exams</h3>
              <div class="CompletedExams">
                 <div class="progressContainer">
                     <div class="info">
@@ -153,7 +158,7 @@
     <div class="startExam">
             <div class="studentExamJoin" style="">
                 <button style="border: 1px solid gray;background:none;">Next Time</button>
-                <button style="border:none; "><i class="fa-solid fa-arrow-right"></i>&nbsp;Join Now</button>
+                <a href="Exam.php" style="border:none;"><i class="fa-solid fa-arrow-right"></i>&nbsp;Join Now</a>
             </div>
             <div class="studentExamSettings" style="margin:2rem 0;">
                 <div><h5>Exam name</h5></div>                   
