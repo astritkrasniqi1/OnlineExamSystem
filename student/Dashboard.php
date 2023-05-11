@@ -26,6 +26,7 @@
 </head>
 <body style="background:#f1f1f3;">
     <?php @include 'studentNavbar.php' ?>
+    <?php require 'joinExamLogic.php';?>
 
     <div style="margin:1.5rem 8rem;">
         <h2>Dashboard</h2>
@@ -177,7 +178,6 @@
                     </select>
                 </div>                   
                 <div>
-                    <input type="hidden" class="examId" name="examId">
                     <i class="fa-solid fa-calendar-check" style="color:#93ccad; border-radius:50% "></i>
                     <div >
                         <span style="font-size: 15px; " class="examDate">
@@ -225,6 +225,7 @@
             <div class="studentExamJoin" style="margin:5rem 0 0 0 ;">
                 <button style="border: 1px solid gray;background:none;">Next Time</button>
             <form action="" method="post">
+                <input type="text" hidden class="examId" name="examId">
                 <button type="submit" name="joinExamBtn" style="border:none;"><i class="fa-solid fa-arrow-right"></i>&nbsp;Join Now</a>
             </form>
             </div>
@@ -279,6 +280,10 @@
         });
     });
 });
+
+$(document).ready(function(){
+
+})
 
 
 </script>
