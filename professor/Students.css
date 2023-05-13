@@ -8,6 +8,7 @@
 }
 .Allstudents table tbody tr {
   background: white;
+  vertical-align: middle;
 }
 .Allstudents table tbody tr td {
   border-top: 1px solid lightgray;
@@ -37,8 +38,11 @@ td {
   border-color: #f1f1f3;
 }
 .Allstudents table tbody tr td span {
-  padding: 5px 15px;
-  border-radius: 20px;
+    padding: 5px 15px;
+    border-radius: 20px;
+    display: flex;
+    width: 90px;
+    justify-content: center;
 }
 .filters {
   margin: 0 8rem;

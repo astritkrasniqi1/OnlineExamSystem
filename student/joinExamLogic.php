@@ -8,7 +8,6 @@ if(isset($_POST['joinExamBtn'])){
     $selectExam = "SELECT Subject, Professor, Title, StartDate, Duration FROM exam WHERE Id='{$examId}'";
     $selectExamResult = mysqli_query($conn, $selectExam);
 
-    
     $selectExamRow = mysqli_fetch_array($selectExamResult);
     
     $insertStudentExam = "INSERT INTO studentexam(ExamId, Subject, Professor, Student, Title, StartTime, Status, ExamStartDate, Created_at) 

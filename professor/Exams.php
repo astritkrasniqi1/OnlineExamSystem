@@ -191,20 +191,7 @@
 
             <!--Question table-->
             <div class="question-table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Exam</th>
-                            <th scope="col">Subject</th>
-                            <th scope="col">Professor</th>
-                            <th scope="col">Title</th>
-                            <th scope="col">Points</th>
-                        </tr>
-                    </thead>
-                    <tbody id="question-table-body">
-                    </tbody>
-                </table>
+                
             </div>
             <!---->
 
@@ -291,7 +278,8 @@
     <!--After completing the exam, inserting the questions and the answers we click this button to complete the exam.
     After clicking this button the exam that was completed will update the status to Active-->
     <div class="completeExamContainer">
-        <form action="" method="post">
+        <form action="" id="completeExamForm"  method="post">
+            <input type="text" hidden name="examIdToCompleteExam" id="examIdToCompleteExam">
             <button class="completeExam" name="completeExam">Complete Exam &nbsp;<i class="fa-solid fa-check"></i></button>
         </form>
     </div>
@@ -564,6 +552,7 @@ $(document).on('click', '.check-exam-row', function(){
         var examId = $(this).closest('tr').find('td:eq(1)').text().trim();
         var examName = $(this).closest('tr').find('td:eq(4)').text().trim();
         $('#examIdForAddQuestion').val(examId);
+        $('#examIdToCompleteExam').val(examId);
         $('#examName').html(examName);
         console.log(examId);
          /*Question for selected exam*/
@@ -632,11 +621,14 @@ $(document).ready(function(){
             },
             success: function(data) {
                 console.log(data);
-                $('#add-question-form').hide();
                 Swal.fire({
                     title: 'Question added successfully',
                     icon: 'success'
                 });
+                $('#add-question-form').hide();
+                $('#examForAddQuestion').val('');
+                $('#points-input').val('');
+                $('#question').val('');
                 $.ajax({  
                 url: "QuestionTableLogic.php",
                 type: "POST",
@@ -1059,6 +1051,29 @@ $(document).on('click', '.answer-table table tbody tr td .delete', function(){
 })
 
 
+
+$(document).ready(function(){
+    $('#completeExamForm').on('submit', function(event){
+        var examId = $('#examIdToCompleteExam').val();
+        $.ajax({  
+                url: "completeExamLogic.php",
+                type: "POST",
+                data: { examIdToCompleteExam: examId },
+                success: function(data) {
+                    console.log(data);
+                    Swal.fire(
+                        'Exam completed!',
+                        '',
+                        'success'
+                    )
+                    ExamBetweenDates();
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+            });
+    })
+})
 
 
 

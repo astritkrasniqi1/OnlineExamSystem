@@ -70,13 +70,13 @@
             <td><?php echo $studentRow['Id'] ?></td>
             <td><?php echo $studentRow['StudentName'] ?></td>
             <td><?php echo $studentRow['Email']?></td>
-            <td><?php if($studentRow['Status'] == '1'){
+            <td><span><?php if($studentRow['Status'] == '1'){
               echo 'Online';
             }
             else{
               echo 'Offline';
             } 
-            ?></td>
+            ?></span></td>
           </tr>
           <?php } }?>
         </tbody>
@@ -135,5 +135,27 @@
             $('nav .logo-container ul li a.students').addClass('active');
             $('nav .logo-container ul li a.subjects').removeClass('active');
     })
+
+    const studentTableTdList = document.querySelectorAll('.Allstudents .table tbody tr td span');  
+
+    studentTableTdList.forEach((td) => {
+    if (td.textContent === 'New') {
+    td.style.backgroundColor = '#ddf1fb';
+    td.style.color = '#53b7ec';
+    td.style.border = '1px solid #53b7ec';
+    } else if (td.textContent === 'Offline') {
+    td.style.backgroundColor = '#fbe2e5';
+    td.style.color = '#e96d7f';
+    td.style.border = '1px solid #e96d7f';
+    }else if (td.textContent === 'Online') {
+      td.style.backgroundColor = '#d5f6de';
+        td.style.color = '#2ed15a';
+        td.style.border = '1px solid #2ed15a';
+    }
+});
+
+
+
+
 </script>
 </html>
