@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $subjectName = $_POST['editSubjectName'];
   $createdAt = $_POST['editSubjectCreatedAt'];
 
-  $conn = mysqli_connect($host, $user, $password, $database);
+  $conn = mysqli_connect($servername, $username, $password, $dbname);
 
   if (!$conn) {
     die("Error: Connection failed. " . mysqli_connect_error());
