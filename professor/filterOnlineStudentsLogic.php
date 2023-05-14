@@ -4,8 +4,8 @@
 $studentFilter = isset($_POST["studentFilter"]) ? $_POST["studentFilter"] : '';
 
 
-$sql = "select Id, Concat(FirstName, ' ', LastName) as StudentName, Email, Status from users  where 
-  Email like '{$studentFilter}' and UserType = '1' and Status = '1' ";
+$sql = "select Id, Concat(FirstName, ' ', LastName) as StudentName, Email, Status from users  where (Concat(FirstName, ' ', LastName) like '%{$studentFilter}%'
+ or Email like '%{$studentFilter}%') and UserType = '1' and Status = '1' ";
 
 
  $result = mysqli_query($conn, $sql);
@@ -15,7 +15,7 @@ $sql = "select Id, Concat(FirstName, ' ', LastName) as StudentName, Email, Statu
  $tableRows = '';
 
     if(mysqli_num_rows($result) == 0){
-        echo '<div style="margin-bottom:10px;"><span style="font-size:1.5rem; border-bottom:3px solid #f7b092;">Online Students</span></div>';
+        
         echo '<span class="text-danger">No online students</span>';
     }
     else{
@@ -38,10 +38,9 @@ $sql = "select Id, Concat(FirstName, ' ', LastName) as StudentName, Email, Statu
     }
 
     // Generate HTML table
-    $table = '<table>';
+    $table = '<table class="table">';
     $table .= '<thead>';
     $table .= '<tr>';
-    $table .= '<th></th>';
     $table .= '<th>ID</th>';
     $table .= '<th>Student Name</th>';
     $table .= '<th>Email</th>';
@@ -53,7 +52,7 @@ $sql = "select Id, Concat(FirstName, ' ', LastName) as StudentName, Email, Statu
     $table .= '</tbody>';
     $table .= '</table>';
 
-        echo '<div><span style="font-size:1.5rem; border-bottom:3px solid #f7b092;">Online Students</span></div>';
+        
         echo $table;
     }
 

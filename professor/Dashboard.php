@@ -242,7 +242,7 @@
     <div style="margin:4rem 8rem 1rem 8rem;"><span style="font-size:1.5rem; border-bottom:3px solid #b9b1e5;">Active Exams</span></div>
 
     <div class="filters">
-        <div><input type="search" placeholder="Search your exams"/></div>
+        <div> <form  id="activeExamForm" method="POST"> <input name="activeExamInput" type="search" placeholder="Search your exams"/></form></div>
         <div>
             <select>
                 <option>All</option>
@@ -276,7 +276,7 @@
                 <th scope="col">Start Date</th>
                 <th scope="col">Duration</th>
                 <th scope="col">Status</th>
-                <th scope="col">Actions</th>
+                
                 </tr>
             </thead>
             <tbody>
@@ -295,7 +295,7 @@
                             echo 'Inactive';
                         }
                      ?></span></td>
-                     <td><a href="" class="edit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a></td>
+                     
                 </tr>
                 <?php }?>
             </tbody>
@@ -344,7 +344,7 @@
     }
     });
     $(document).ready(function(){
-        $('#studentFilterForm input').change(function() {
+        $('#studentFilterForm input').on('keydown', function() {
             var studentFilter = $('#studentFilterForm input').val();
             $.ajax({
       url: 'filterOnlineStudentsLogic.php',  
@@ -372,6 +372,41 @@
         td.style.border = '1px solid #2ed15a';
         }
     });
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log("Error: " + errorThrown);
+        console.log("Status: " + textStatus);
+        console.dir(jqXHR);
+      }
+    });
+        } )
+    } 
+    )
+
+    $(document).ready(function(){
+        $('#activeExamForm input').on('keydown', function() {
+            var studentFilter = $('#activeExamForm input').val();
+            $.ajax({
+      url: 'filterActiveExamLogic.php',  
+      type: 'POST',
+      data: {
+        studentFilter: studentFilter
+      },
+      success: function(data) {
+        console.log(data);
+        
+        $('.activeExamsTable').html(data);
+        const activeExamsTdList = document.querySelectorAll('.activeExamsTable table tbody tr td span');
+        activeExamsTdList.forEach((td) => {
+        if (td.textContent === 'Active') {
+        td.style.backgroundColor = '#f1effa';
+        td.style.color = '#b9b1e5';
+        td.style.border = '1px solid #b9b1e5';
+    }
+    });
+        
+
+        
       },
       error: function(jqXHR, textStatus, errorThrown) {
         console.log("Error: " + errorThrown);
