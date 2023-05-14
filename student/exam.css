@@ -74,6 +74,13 @@
 }
 
 
+textarea {
+  width: 100%;
+  border:none;
+  outline:none;
+  background:none;
+}
+
 .mainContainer .examStatusContainer{
     margin: 2rem 0;
     background:#111965;
