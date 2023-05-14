@@ -185,7 +185,7 @@
     <div style="margin:4rem 8rem 1rem 8rem;"><span style="font-size:1.5rem; border-bottom:3px solid #f7b092;">Online Students</span></div>
 
     <div class="filters">
-        <div><input type="search" placeholder="Search student"/></div>
+        <div> <form  id="studentFilterForm" method="POST"><input id="studentFilter" name="studentFilter" type="search" placeholder="Search student"/></form></div>
         <div>
             <select>
                 <option>All</option>
@@ -343,5 +343,44 @@
         td.style.border = '1px solid #b9b1e5';
     }
     });
+    $(document).ready(function(){
+        $('#studentFilterForm input').change(function() {
+            var studentFilter = $('#studentFilterForm input').val();
+            $.ajax({
+      url: 'filterOnlineStudentsLogic.php',  
+      type: 'POST',
+      data: {
+        studentFilter: studentFilter
+      },
+      success: function(data) {
+        console.log(data);
+        
+        $('.studentTable').html(data);
+        const studentTableTdList = document.querySelectorAll('.studentTable table tbody tr td span');
+        studentTableTdList.forEach((td) => {
+        if (td.textContent === 'New') {
+        td.style.backgroundColor = '#ddf1fb';
+        td.style.color = '#53b7ec';
+        td.style.border = '1px solid #53b7ec';
+        } else if (td.textContent === 'Offline') {
+        td.style.backgroundColor = '#fbe2e5';
+        td.style.color = '#e96d7f';
+        td.style.border = '1px solid #e96d7f';
+        }else if (td.textContent === 'Online') {
+        td.style.backgroundColor = '#d5f6de';
+        td.style.color = '#2ed15a';
+        td.style.border = '1px solid #2ed15a';
+        }
+    });
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log("Error: " + errorThrown);
+        console.log("Status: " + textStatus);
+        console.dir(jqXHR);
+      }
+    });
+        } )
+    } 
+    )
 </script>
 </html>

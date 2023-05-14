@@ -4,6 +4,7 @@ require_once 'config.php';
 require_once 'vendor/autoload.php';
 
 // Initialize errors array
+
 session_start();
 
 // Handle form submission
