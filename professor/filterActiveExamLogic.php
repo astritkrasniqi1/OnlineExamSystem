@@ -44,6 +44,7 @@ $result = mysqli_query($conn, $sql);
     $table .= '<thead>';
     $table .= '<tr>';
     $table .= '<th>ID</th>';
+    $table .= '<th>Title</th>';
     $table .= '<th>Subject</th>';
     $table .= '<th>Professor</th>';
     $table .= '<th>Start Date</th>';
@@ -64,9 +65,6 @@ $result = mysqli_query($conn, $sql);
 
 
 
-
-
-?>
 
 
 ?>
