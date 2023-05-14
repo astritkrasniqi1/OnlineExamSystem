@@ -92,27 +92,24 @@
       <td> <?php echo $subjectRow['Created_at']?> </td>
       <td> 
         <button class="editSubjectBtn" id="editSubjectButton"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</button>
-        <button class="delete subjectTableActions"><i class="fa-solid fa-trash-can"></i>&nbsp;Delete</button>
+        <button class="delete-subject"><i class="fa-solid fa-trash-can"></i>&nbsp;Delete</button>
       </td> 
+    
     </tr>
     <?php }}?>
   </tbody>
 </table>
+
 </div>
-<div id="edit-subject-form" style="display: none;">
-  
-  <form action="subject_edit.php" method="POST" class="white">
-  <div class="" style="display:flex;flex-direction:row; justify-content:space-between; align-items:center;margin-bottom:15px;">
-                        <h5 style="margin:0;">Edit Subject</h5>
-                        <i class="fa-solid fa-x close-button" style="cursor:pointer;"></i>
-                    </div>
-    <label for="title">ID of subject:</label>
-    <input type="text" name="id" value="<?php echo isset($id) ? $id : ''; ?>">
-    <label for="title">Title of subject:</label>
-    <input type="text" name="name" value="<?php echo isset($name) ? $name : ''; ?>">
-    <div class="center">
-      <input type="submit" name="edit" value="submit"  style="background-color:#e96d7f; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer">
-    </div>
+<div id="edit-subject-form" style="display:none">
+  <h2>Edit Subject</h2>
+  <form id="edit-subject" method="POST">
+    <input type="hidden" id="editSubjectId" name="editSubjectId">
+    <label for="editSubjectName">Name:</label>
+    <input type="text" id="editSubjectName" name="editSubjectName">
+    <label for="editSubjectCreatedAt">Created At:</label>
+    <input type="text" id="editSubjectCreatedAt" name="editSubjectCreatedAt">
+    <button type="submit" id="editSubjectSubmit">Save</button>
   </form>
 </div>
   
@@ -123,14 +120,94 @@
 
 
 
-
-
 <script>
-  function confirmDelete(id) {
-    if (confirm("Are you sure you want to delete this subject?")) {
-        window.location.href = "subject_delete.php?id=" + id;
+
+
+$(document).on('click', '.editSubjectBtn', function(){
+    // get the row that was clicked
+    var row = $(this).closest('tr');
+
+    // extract the data from its cells
+    var subjectId = row.find('td:eq(0)').text().trim();
+    var subjectName = row.find('td:eq(1)').text().trim();
+    var createdAt = row.find('td:eq(2)').text().trim();
+
+    // prefill the form fields with the data
+    $('#editSubjectId').val(subjectId);
+    $('#editSubjectName').val(subjectName);
+    $('#editSubjectCreatedAt').val(createdAt);
+
+    // show the edit form
+    $('#edit-subject-form').show();
+});
+
+
+$(document).on('submit', '#edit-subject', function(e) {
+  e.preventDefault();
+
+  var subjectId = $('#editSubjectId').val();
+  var subjectName = $('#editSubjectName').val();
+  var createdAt = $('#editSubjectCreatedAt').val();
+
+  $.ajax({
+    url: 'subject_edit.php',
+    type: 'POST',
+    data: {
+      subjectId: subjectId,
+      subjectName: subjectName,
+      createdAt: createdAt
+    },
+    success: function(data) {
+      console.log(data);
+      // hide the form and reload the subject table
+      $('#edit-subject-form').hide();
+      SubjectTable();
+    },
+    error: function(xhr, status, error) {
+      console.error(error);
     }
-  }
+  });
+});
+
+
+//deletesubject
+$(document).on('click', '.subjectTable table tbody tr td .delete-subject', function(){
+    var subjectId = $(this).closest('tr').find('td:eq(0)').text().trim(); 
+    console.log('subjectId', subjectId);
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({  
+                url: "subject_delete.php",
+                type: "POST",
+                data: { subjectId: subjectId },
+                success: function(data) {
+                    console.log(data);
+                    Swal.fire(
+                        'Subject deleted successfully!',
+                        '',
+                        'success'
+                    )
+                    // Reload the table
+                    SubjectTable();
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        }
+    });
+})
+
+
     $(document).ready(function() {
             $('nav .logo-container ul li a.dashboard').removeClass('active');
             $('nav .logo-container ul li a.exams').removeClass('active');
