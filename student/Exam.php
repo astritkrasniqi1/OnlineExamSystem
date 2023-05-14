@@ -26,12 +26,16 @@
     <?php @include 'studentNavbar.php'?>
     <div style="margin:1.5rem 8rem;" class="mainContainer">
     <div class="secondaryContainer col-9">
+      <form action="" method="post" id="examForm">
         <?php for($i=0; $i<=2; $i++){?>
         <div class="examContainer">
             <div class="questionContainer">
                 <div class="questionPoints">
                     <span>Question number</span>
-                    <span>5 points</span>
+                    <div style="display:flex;align-items:center">
+                      <input type="text" id="questionPoints" readonly name="questionPoints" style="outline:none;text-align:end;color:gray;background:none;border:none;width:20px;" value="5">
+                      <span>points</span>
+                    </div>
                 </div>
                 <div class="questionTitle">
                     <p>Question Lorem ipsum dolor sit amet consectetur adipisicing eli ?</p>
@@ -57,12 +61,10 @@
             </div>
         </div>
         <?php }?>
-
         <div class="submitExamContainer">
-            <form action="" method="post">
-                <button>Submit exam</button>
-            </form>
+          <button type="submit">Submit exam</button>
         </div>
+        </form>
     </div>
     <div class="examStatusContainer col-3">
         <div>
