@@ -31,7 +31,6 @@
 <body style="background:#f1f1f3;">
     <?php @include 'navbar.php' ?>
     <?php  require 'addSubjectLogic.php'?>
-    <?php require 'subject_edit.php'  ?>
 
 <section>
    <div class="pageTitleContainer" >   
