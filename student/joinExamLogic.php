@@ -35,7 +35,7 @@ if(isset($_POST['joinExamBtn'])){
         }
     }
 
-    header("location: Exam.php");
+    header("location: http://localhost/Online-Exam-System/student/Exam.php?examId={$insertedStudentExamId}");
 }
     
 

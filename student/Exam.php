@@ -26,43 +26,40 @@
     <?php @include 'studentNavbar.php'?>
     <div style="margin:1.5rem 8rem;" class="mainContainer">
     <div class="secondaryContainer col-9">
+      <form action="" method="post" id="examForm">
         <?php for($i=0; $i<=2; $i++){?>
         <div class="examContainer">
             <div class="questionContainer">
                 <div class="questionPoints">
-                    <span>Question number</span>
-                    <span>5 points</span>
+                    <span>
+                      Question 
+                      <input type="text" value="questionId" readonly name="questionId" style="font-size:14px;outline:none;text-align:start; background:none;border:none;color:gray;">
+                    </span>
+                    <span>
+                      <input type="text" id="questionPoints" value="questionPoints" readonly name="questionPoints" style="font-size:14px;outline:none;text-align:end;color:gray;background:none;border:none;">
+                      points</span>
                 </div>
                 <div class="questionTitle">
-                    <p>Question Lorem ipsum dolor sit amet consectetur adipisicing eli ?</p>
+                    <textarea name="question" readonly id="" cols="30">Question Lorem ipsum dolor sit amet consectetur adipisicing elit.</textarea>
                 </div>
             </div>
 
             <div class="answerContainer">
                 <?php for($j=0; $j<=3; $j++){?>
                 <div class="answer">
-                    <input type="checkbox" class="form-check-input col-2">
+                    <input type="checkbox" name="checkedAnswer" class="form-check-input col-2">
                     <div class="col-12">
-                        <span><?php if($j==0){ echo 'A';}
-                            else if($j==1)
-                        { echo 'B';}
-                        else if($j==2)
-                        { echo 'C';}
-                        else if($j==3)
-                        { echo 'D';}?></span>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima esse vel tempora architecto aliquam modi magni voluptate tenetur sit voluptates dolorum obcaecati neque harum vitae ducimus, repellendus incidunt illum beatae!</p>
+                        <textarea name="answer" readonly id="" cols="30">Answer Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo aliquam ad incidunt mollitia vero laboriosam expedita dolor officiis repudiandae veniam quaerat blanditiis, commodi amet maiores rerum praesentium. Illum, cupiditate cumque!</textarea>
                     </div>
                 </div>
             <?php }?>
             </div>
         </div>
         <?php }?>
-
         <div class="submitExamContainer">
-            <form action="" method="post">
-                <button>Submit exam</button>
-            </form>
+          <button type="submit">Submit exam</button>
         </div>
+        </form>
     </div>
     <div class="examStatusContainer col-3">
         <div>
@@ -120,12 +117,38 @@
             $('nav .logo-container ul li a.results').removeClass('active');
             $('nav .logo-container ul li a.profile').removeClass('active');
         })
-        const answerNumber = document.querySelectorAll('.examContainer .answerContainer .answer .col-12');
-        answerNumber.forEach(div => {
-        const p = div.querySelector('p');
-        const span = div.querySelector('span');
-        span.style.height = `${div.offsetHeight}px`;
+        function updateTextareaRows(textarea, text) {
+  // Create a temporary textarea to calculate the number of rows needed
+          const tempTextarea = document.createElement('textarea');
+          tempTextarea.style.position = 'absolute';
+          tempTextarea.style.top = '-9999px';
+          tempTextarea.style.left = '-9999px';
+          tempTextarea.style.width = `${textarea.clientWidth}px`;
+          tempTextarea.style.fontSize = window.getComputedStyle(textarea).getPropertyValue('font-size');
+          tempTextarea.style.lineHeight = window.getComputedStyle(textarea).getPropertyValue('line-height');
+          tempTextarea.style.fontFamily = window.getComputedStyle(textarea).getPropertyValue('font-family');
+          tempTextarea.style.padding = window.getComputedStyle(textarea).getPropertyValue('padding');
+          tempTextarea.style.border = window.getComputedStyle(textarea).getPropertyValue('border');
+          tempTextarea.style.boxSizing = window.getComputedStyle(textarea).getPropertyValue('box-sizing');
+          tempTextarea.value = text;
+          document.body.appendChild(tempTextarea);
+
+          // Set the number of rows based on the textarea content
+          const contentHeight = tempTextarea.scrollHeight - parseInt(window.getComputedStyle(tempTextarea).getPropertyValue('padding-top')) - parseInt(window.getComputedStyle(tempTextarea).getPropertyValue('padding-bottom'));
+          textarea.rows = Math.max(1, Math.ceil(contentHeight / parseFloat(window.getComputedStyle(textarea).getPropertyValue('line-height'))));
+
+          // Remove the temporary textarea from the document
+          document.body.removeChild(tempTextarea);
+      }
+      const textarea = document.querySelectorAll('textarea');
+      $(document).ready(function(){
+        textarea.forEach(function(ta) {
+          updateTextareaRows(ta, ta.value);
         });
+      });
+
+
+
 
         const FULL_DASH_ARRAY = 283;
 const WARNING_THRESHOLD = 10;

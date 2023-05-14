@@ -65,7 +65,7 @@
     display: flex;
     justify-content: end;
 }
-.submitExamContainer form button{
+#examForm .submitExamContainer button{
     padding: 10px 20px;
     border:none;
     background-color: #e96d7f;
@@ -73,6 +73,13 @@
     color:white;
 }
 
+
+textarea {
+  width: 100%;
+  border:none;
+  outline:none;
+  background:none;
+}
 
 .mainContainer .examStatusContainer{
     margin: 2rem 0;
