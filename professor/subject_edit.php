@@ -1,27 +1,30 @@
 <?php
  @include '../config.php';
 
+// check if the form was submitted
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-if(isset($_POST['edit'])){
-    $id = mysqli_real_escape_string($conn , $_POST['id']);
-    $name = mysqli_real_escape_string($conn ,$_POST['name']);
+  // retrieve the subject ID and updated information from the form data
+  $subjectId = $_POST['editSubjectId'];
+  $subjectName = $_POST['editSubjectName'];
+  $createdAt = $_POST['editSubjectCreatedAt'];
 
+  $conn = mysqli_connect($host, $user, $password, $database);
 
+  if (!$conn) {
+    die("Error: Connection failed. " . mysqli_connect_error());
+  }
+
+  // update the subject information in the database
+  $query = "UPDATE subjects SET Name='$subjectName', Created_at='$createdAt' WHERE Id='$subjectId'";
+
+  if (mysqli_query($conn, $query)) {
+    echo "Subject updated successfully.";
+  } else {
+    echo "Error: " . $query . "<br>" . mysqli_error($conn);
+  }
+
+  // close the database connection
+  mysqli_close($conn);
 }
-
-
-$query = "UPDATE subject
-    SET
-    name = '$name'
-    WHERE
-    id = $id;";
-mysqli_query($conn, $query);
-
-
-
-
 ?>
-<script type="text/javascript">
-alert("Subject edited successfully.");
-window.location.href = "subjects.php";
-</script>
