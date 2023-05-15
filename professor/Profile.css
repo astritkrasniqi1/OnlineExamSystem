@@ -123,50 +123,50 @@ main {
   margin-bottom: 20px;
 }
 
-.exam-history table{
-  border-collapse:separate;
+.exam-history table {
+  border-collapse: separate;
   border-spacing: 0 10px;
   width: 100%;
 }
-.exam-history table tbody tr{
-  background:white;
+.exam-history table tbody tr {
+  background: white;
 }
-.exam-history table tbody tr td{
-  border-top:1px solid lightgray;
-  border-bottom:1px solid lightgray;
-  padding:0.5rem;
+.exam-history table tbody tr td {
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+  padding: 0.5rem;
 }
-.exam-history table tbody tr td:first-child{
-  border-top:1px solid lightgray;
-  border-bottom:1px solid lightgray;
+.exam-history table tbody tr td:first-child {
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
   border-left: 1px solid lightgray;
   border-radius: 5px 0 0 5px;
 }
-th{
+th {
   font-weight: 550;
   color: gray;
 }
-td{
+td {
   font-weight: 550;
   vertical-align: middle;
 }
-.exam-history table tbody tr td:last-child{
-  border-top:1px solid lightgray;
-  border-bottom:1px solid lightgray;
+.exam-history table tbody tr td:last-child {
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
   border-right: 1px solid lightgray;
   border-radius: 0 5px 5px 0;
 }
-.exam-history table thead tr{
+.exam-history table thead tr {
   border-style: none;
   border-color: #f1f1f3;
 }
-.exam-history table tbody tr td span{
+.exam-history table tbody tr td span {
   padding: 5px 15px;
   border-radius: 20px;
   display: flex;
   width: 90px;
   justify-content: center;
-} 
+}
 
 .exam-history a {
   color: #007bff;
@@ -228,10 +228,19 @@ footer .contact-info p {
 .EditProfile i {
   font-size: 20px;
 }
-.EditProfile input{
- margin:5px 0;
+.EditProfile input {
+  margin: 5px 0;
 }
 .EditProfile input::placeholder {
   font-size: 13px;
   padding-left: 3px;
+}
+.EditProfile button {
+  margin-top: 10px;
+  width: 50%;
+  border-radius: 5px;
+  align-self: end;
+  background-color: #007bff;
+  color: white;
+  border: none;
 }

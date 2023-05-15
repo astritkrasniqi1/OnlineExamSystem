@@ -23,8 +23,8 @@
 </head>
 <body style="background:#f1f1f3;">
     <?php @include 'navbar.php' ?>
-    <?php require 'studentsLogic.php'; ?>
-    <?php require 'NewStudentsLogic.php'; ?>
+    
+    
 <section>
 <div class="pageTitleContainer" >   
                <div>
@@ -38,7 +38,7 @@
                </div>
 </div>
     <div class="filters">
-        <div><input type="search" placeholder="Search student" /></div>
+        <div><form id="AllStudentsForm" method="POST"><input id="AllstudentFilter" type="search" placeholder="Search student" /></form></div>
         <div>
             <select>
                 <option>All</option>
@@ -49,6 +49,18 @@
         </div>
     </div>
 <div class="Allstudents">
+  <?php
+       @include '../config.php';
+       if (mysqli_connect_error()) {
+           echo "Failed to connect to MySQL: " .mysqli_connect_error();
+           exit();
+       }
+       
+       # Query the database
+       $allStudents = "SELECT Id,CONCAT(FirstName,' ',LastName) as StudentName,Email,Status FROM users where UserType = '1'";
+       $studentResultTable = mysqli_query($conn, $allStudents);
+
+         ?>
     <?php if(mysqli_num_rows($studentResultTable) == 0){?>
         <span class="text-danger">No results</span>
       <?php } 
@@ -87,7 +99,7 @@
 <div style="margin:2rem 8rem 1rem 8rem;"><span style="font-size:1.5rem; border-bottom:3px solid #f7b092;">New Students</span></div>
 
 <div class="filters">
-        <div><input type="search" placeholder="Search student" /></div>
+        <div><form id="NewStudentsForm" method="POST"><input type="search" placeholder="Search student" /></form></div>
         <div>
             <select>
                 <option>All</option>
@@ -99,6 +111,17 @@
     </div>
 
 <div class="NewStudents">
+  <?php
+  @include '../config.php';
+  if (mysqli_connect_error()) {
+      echo "Failed to connect to MySQL: " .mysqli_connect_error();
+      exit();
+  }
+
+  # Query the database
+  $newStudents = "SELECT Id, CONCAT(FirstName,' ',LastName) as StudentName, Email, Status FROM users WHERE UserType = '1' AND Created_at BETWEEN DATE_SUB(NOW(), INTERVAL 1 WEEK) AND NOW() ";
+  $NewstudentResultTable = mysqli_query($conn, $newStudents);
+  ?>
 <?php if(mysqli_num_rows($NewstudentResultTable) == 0){?>
         <span class="text-danger">No results</span>
       <?php } 
@@ -136,24 +159,81 @@
             $('nav .logo-container ul li a.subjects').removeClass('active');
     })
 
-    const studentTableTdList = document.querySelectorAll('.Allstudents .table tbody tr td span');  
+    const studentTableTdList = document.querySelectorAll('.Allstudents table tbody tr td span');
 
     studentTableTdList.forEach((td) => {
-    if (td.textContent === 'New') {
-    td.style.backgroundColor = '#ddf1fb';
-    td.style.color = '#53b7ec';
-    td.style.border = '1px solid #53b7ec';
-    } else if (td.textContent === 'Offline') {
-    td.style.backgroundColor = '#fbe2e5';
-    td.style.color = '#e96d7f';
-    td.style.border = '1px solid #e96d7f';
-    }else if (td.textContent === 'Online') {
-      td.style.backgroundColor = '#d5f6de';
+         if (td.textContent === 'Offline') {
+        td.style.backgroundColor = '#fbe2e5';
+        td.style.color = '#e96d7f';
+        td.style.border = '1px solid #e96d7f';
+        }else if (td.textContent === 'Online') {
+        td.style.backgroundColor = '#d5f6de';
         td.style.color = '#2ed15a';
         td.style.border = '1px solid #2ed15a';
-    }
-});
+        }
+    });
+    
 
+$(document).ready(function(){
+        $('#AllStudentsForm input').on('keydown', function() {
+            var studentFilter = $('#AllStudentsForm input').val();
+            $.ajax({
+      url: 'filterAllStudentsLogic.php',  
+      type: 'POST',
+      data: {
+        studentFilter: studentFilter
+      },
+      success: function(data) {
+        console.log(data);
+        
+        $('.Allstudents').html(data);
+        const AllstudentTableTdList = document.querySelectorAll('.Allstudents table tbody tr td span');
+        AllstudentTableTdList.forEach((td) => {
+        if (td.textContent === 'Offline') {
+        td.style.backgroundColor = '#fbe2e5';
+        td.style.color = '#e96d7f';
+        td.style.border = '1px solid #e96d7f';
+        }else if (td.textContent === 'Online') {
+        td.style.backgroundColor = '#d5f6de';
+        td.style.color = '#2ed15a';
+        td.style.border = '1px solid #2ed15a';
+        }
+    });
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log("Error: " + errorThrown);
+        console.log("Status: " + textStatus);
+        console.dir(jqXHR);
+      }
+    });
+        } )
+    } 
+    )
+
+    $(document).ready(function(){
+        $('#NewStudentsForm input').on('keydown', function() {
+            var studentFilter = $('#NewStudentsForm input').val();
+            $.ajax({
+      url: 'filterNewStudentsLogic.php',  
+      type: 'POST',
+      data: {
+        studentFilter: studentFilter
+      },
+      success: function(data) {
+        console.log(data);
+        
+        $('.NewStudents').html(data);
+        
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log("Error: " + errorThrown);
+        console.log("Status: " + textStatus);
+        console.dir(jqXHR);
+      }
+    });
+        } )
+    } 
+    )
 
 
 

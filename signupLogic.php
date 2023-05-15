@@ -1,4 +1,5 @@
-<?php
+<?php   
+
 // Load configuration and required libraries
 require_once 'config.php';
 require_once 'vendor/autoload.php';

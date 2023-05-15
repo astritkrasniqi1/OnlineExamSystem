@@ -39,16 +39,19 @@
 			</div>
 
             <?php $userData = mysqli_fetch_array($profesori);?>
-        <section class="EditProfile" style="display:none;">
+            <section class="EditProfile style="display:none;>
+        <form action="EditProfileLogic.php" method="POST">
                 <label>First Name</label>
-                <input type="text" value="<?php echo $userData['FirstName'];?>" placeholder="First Name" class="form-control"/>
+                <input type="text" name="first_name"value="<?php echo $userData['FirstName'];?>" placeholder="First Name" class="form-control"/>
                 <label>Last Name</label>
-                <input type="email" value="<?php echo $userData['LastName'];?>" placeholder="Last Name" class="form-control"/>
+                <input type="text" name="last_name" value="<?php echo $userData['LastName'];?>" placeholder="Last Name" class="form-control"/>
                 <label>Email</label>
-                <input type="phone" placeholder="Email" value="<?php echo $userData['Email'];?>" class="form-control"/>
+                <input type="email" name="email" placeholder="Email" value="<?php echo $userData['Email'];?>" class="form-control"/>
                 <label>Username</label>
-                <input type="text" placeholder="Username" value="<?php echo $userData['Username'];?>" class="form-control"/>
-        </section>
+                <input type="text" name="username" placeholder="Username" value="<?php echo $userData['Username'];?>" class="form-control"/>
+                <button  onclick="submitForm()">Save changes</button>
+            </form>
+            </section>
 		</section>
 		
 	<section class="exam-history col-8" >
@@ -123,5 +126,8 @@ editProfileButton.addEventListener('click', () => {
     editProfileSection.style.display = 'none';
   }
 });
+function submitForm() {
+    document.querySelector('.EditProfile form').submit();
+  }
 </script>
 </html>
