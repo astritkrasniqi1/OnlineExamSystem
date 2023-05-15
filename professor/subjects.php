@@ -107,8 +107,6 @@
     <input type="hidden" id="editSubjectId" name="editSubjectId">
     <label for="editSubjectName">Name:</label>
     <input type="text" id="editSubjectName" name="editSubjectName">
-    <label for="editSubjectCreatedAt">Created At:</label>
-    <input type="text" id="editSubjectCreatedAt" name="editSubjectCreatedAt">
     <button type="submit" id="editSubjectSubmit">Save</button>
   </form>
 </div>
@@ -135,7 +133,6 @@ $(document).on('click', '.editSubjectBtn', function(){
     // prefill the form fields with the data
     $('#editSubjectId').val(subjectId);
     $('#editSubjectName').val(subjectName);
-    $('#editSubjectCreatedAt').val(createdAt);
 
     // show the edit form
     $('#edit-subject-form').show();
@@ -143,25 +140,22 @@ $(document).on('click', '.editSubjectBtn', function(){
 
 
 $(document).on('submit', '#edit-subject', function(e) {
-  e.preventDefault();
 
   var subjectId = $('#editSubjectId').val();
   var subjectName = $('#editSubjectName').val();
-  var createdAt = $('#editSubjectCreatedAt').val();
 
   $.ajax({
     url: 'subject_edit.php',
     type: 'POST',
     data: {
-      subjectId: subjectId,
-      subjectName: subjectName,
-      createdAt: createdAt
+      editSubjectId: subjectId,
+      editSubjectName: subjectName
     },
     success: function(data) {
       console.log(data);
       // hide the form and reload the subject table
       $('#edit-subject-form').hide();
-      SubjectTable();
+      location.reload();
     },
     error: function(xhr, status, error) {
       console.error(error);
@@ -197,7 +191,7 @@ $(document).on('click', '.subjectTable table tbody tr td .delete-subject', funct
                         'success'
                     )
                     // Reload the table
-                    SubjectTable();
+                    location.reload();
                 },
                 error: function(xhr, status, error) {
                     console.error(error);
