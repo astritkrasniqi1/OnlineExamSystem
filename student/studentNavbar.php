@@ -35,6 +35,7 @@
             <li><a href="Dashboard.php" class="dashboard active">Dashboard</a></li>
             <li><a href="Results.php" class="results">Results</a></li>
             <li><a href="Profile.php" class="profile">Profile</a></li>
+            <li><a href="faqPageStudent.php">FAQ's</a></li>
         </ul>
     </div>
     <div class="links-container col-auto">

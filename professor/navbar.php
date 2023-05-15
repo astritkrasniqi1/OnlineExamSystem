@@ -38,6 +38,7 @@
             <li><a href="Students.php" class="students">Students</a></li>
             <li><a href="Subjects.php" class="subjects">Subjects</a></li>
             <li><a href="Profile.php" class="profile">Profile</a></li>
+            <li><a href="faqPage.php" class="faqPage">FAQ's</a></li>
         </ul>
     </div>
     <div class="links-container col-auto">
