@@ -1,10 +1,10 @@
 <?php 
-   @include '../config.php';
+   @include '../../config.php';
 
     session_start();
 
     if(!isset($_SESSION['professorUsername'])){
-        header('Location:login.php');
+        header('Location:../../login.php');
     }
 ?>
 
@@ -23,8 +23,8 @@
 </head>
 <body style="background:#f1f1f3;">
        <?php @include 'navbar.php' ?>
-       <?php require 'ProfileLogic.php'; ?>
-
+       <?php require '../Backend/ManageProfile/ProfileLogic.php'; ?>
+      <?php require '../Backend/ManageProfile/EditProfileLogic.php'?>
 	
 	<main>
 		<section class="user-profile col-4">
@@ -40,7 +40,7 @@
 
             <?php $userData = mysqli_fetch_array($profesori);?>
       <section class="EditProfile" style="display:none;">
-        <form action="EditProfileLogic.php" method="POST">
+        <form action="" method="POST">
                 <label>First Name</label>
                 <input type="text" name="first_name"value="<?php echo $userData['FirstName'];?>" placeholder="First Name" class="form-control"/>
                 <label>Last Name</label>
@@ -49,7 +49,7 @@
                 <input type="email" name="email" placeholder="Email" value="<?php echo $userData['Email'];?>" class="form-control"/>
                 <label>Username</label>
                 <input type="text" name="username" placeholder="Username" value="<?php echo $userData['Username'];?>" class="form-control"/>
-                <button  onclick="submitForm()">Save changes</button>
+                <button  type="submit" name="editProfileBtn">Save changes</button>
             </form>
             </section>
 		</section>

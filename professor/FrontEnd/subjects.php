@@ -1,10 +1,10 @@
 <?php 
-   @include '../config.php';
+   @include '../../config.php';
 
     session_start();
 
     if(!isset($_SESSION['professorUsername'])){
-        header('Location:login.php');
+        header('Location: ../../login.php');
     }
 ?>
 
@@ -30,7 +30,7 @@
 </head>
 <body style="background:#f1f1f3;">
     <?php @include 'navbar.php' ?>
-    <?php  require 'addSubjectLogic.php'?>
+    <?php  require '../Backend/ManageSubjects/addSubjectLogic.php'?>
 
 <section>
    <div class="pageTitleContainer" >   
@@ -145,7 +145,7 @@ $(document).on('submit', '#edit-subject', function(e) {
   var subjectName = $('#editSubjectName').val();
 
   $.ajax({
-    url: 'subject_edit.php',
+    url: '../Backend/ManageSubjects/subject_edit.php',
     type: 'POST',
     data: {
       editSubjectId: subjectId,
@@ -180,7 +180,7 @@ $(document).on('click', '.subjectTable table tbody tr td .delete-subject', funct
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({  
-                url: "subject_delete.php",
+                url: "../Backend/ManageSubjects/subject_delete.php",
                 type: "POST",
                 data: { subjectId: subjectId },
                 success: function(data) {
@@ -191,7 +191,6 @@ $(document).on('click', '.subjectTable table tbody tr td .delete-subject', funct
                         'success'
                     )
                     // Reload the table
-                    location.reload();
                 },
                 error: function(xhr, status, error) {
                     console.error(error);

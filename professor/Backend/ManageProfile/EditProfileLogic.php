@@ -1,5 +1,8 @@
 <?php 
-@include '../config.php';
+@include '../../../config.php';
+
+
+if(isset($_POST['editProfileBtn'])){
 if (mysqli_connect_error()) {
     echo "Failed to connect to MySQL: " .mysqli_connect_error();
     exit();
@@ -22,8 +25,6 @@ $stmt->close();
 $conn->close();
 
 // Redirect the user back to the profile page or display a success message
-header("Location: Profile.php");
-exit();
 
-
+}
 ?> 

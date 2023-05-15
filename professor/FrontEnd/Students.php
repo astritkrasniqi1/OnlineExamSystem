@@ -1,10 +1,10 @@
 <?php 
-   @include '../config.php';
+   @include '../../config.php';
 
     session_start();
 
     if(!isset($_SESSION['professorUsername'])){
-        header('Location:login.php');
+        header('Location:../../login.php');
     }
 ?>
 
@@ -178,7 +178,7 @@ $(document).ready(function(){
         $('#AllStudentsForm input').on('keydown', function() {
             var studentFilter = $('#AllStudentsForm input').val();
             $.ajax({
-      url: 'filterAllStudentsLogic.php',  
+      url: '../Backend/ManageStudents/filterAllStudentsLogic.php',  
       type: 'POST',
       data: {
         studentFilter: studentFilter
@@ -214,7 +214,7 @@ $(document).ready(function(){
         $('#NewStudentsForm input').on('keydown', function() {
             var studentFilter = $('#NewStudentsForm input').val();
             $.ajax({
-      url: 'filterNewStudentsLogic.php',  
+      url: '../Backend/ManageStudents/filterNewStudentsLogic.php',  
       type: 'POST',
       data: {
         studentFilter: studentFilter

@@ -1,5 +1,5 @@
 <?php 
-    @include '../config.php';
+    @include '../../../config.php';
 
     $questionIdForAddAnswer = isset($_POST['questionIdForAddAnswer']) ? $_POST['questionIdForAddAnswer'] : '';
 

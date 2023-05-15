@@ -1,5 +1,5 @@
 <?php
- @include '../config.php';
+ @include '../../../config.php';
  if(isset($_POST['addSubject'])){
     $subjectName=isset($_POST['subjectName']) ? $_POST['subjectName'] : '';
     $sql="INSERT INTO subject (Name,Created_at)values( '$subjectName',NOW())";

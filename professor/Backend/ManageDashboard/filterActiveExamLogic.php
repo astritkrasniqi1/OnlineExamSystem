@@ -1,5 +1,5 @@
 <?php 
-@include('../config.php');
+@include('../../../config.php');
 
 $activeExam = isset($_POST["activeExam"]) ? $_POST["activeExam"] : '';
 $sql = "SELECT e.Id as examId, s.Name as SubjectName, CONCAT(u.FirstName, ' ', u.LastName) as Professor,  e.Title as examTitle, e.StartDate, e.Duration, e.Status 
@@ -44,7 +44,7 @@ $result = mysqli_query($conn, $sql);
     $table .= '<thead>';
     $table .= '<tr>';
     $table .= '<th>ID</th>';
-    $table .= '<th>Title</th>';
+    $table .= '<th>Title</th>';         
     $table .= '<th>Subject</th>';
     $table .= '<th>Professor</th>';
     $table .= '<th>Start Date</th>';

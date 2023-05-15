@@ -1,5 +1,5 @@
 <?php
- @include '../config.php';
+ @include '../../../config.php';
 
 // check if the form was submitted
 

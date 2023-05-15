@@ -1,5 +1,5 @@
 <?php 
-    @include '../config.php';
+    @include '../../../config.php';
 
     $fromDate = isset($_POST['From']) ? date('Y-m-d', strtotime($_POST['From'])) :date('Y-m-d', strtotime($_POST['From']));
     $toDate = isset($_POST['To'])? date('Y-m-d', strtotime($_POST['To'])): date('Y-m-d', strtotime($_POST['To']));

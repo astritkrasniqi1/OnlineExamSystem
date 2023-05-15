@@ -1,6 +1,6 @@
 
 <?php 
-    @include '../config.php';
+    @include '../../config.php';
 
     session_start();
 
@@ -24,7 +24,7 @@
 </head>
 
 <body style="background:#f1f1f3;">
-    <?php require 'NewExamLogic.php' ?>
+    <?php require '../Backend/ManageExams/NewExamLogic.php' ?>
     <?php @include 'navbar.php' ?>
 
 
@@ -372,7 +372,7 @@ $(document).on('click', '#updateExam', function(){
 
                 $.ajax({
                 type: 'POST',
-                url: 'EditExamLogic.php',
+                url: '../Backend/ManageExams/EditExamLogic.php',
                 data: {
                     'examId': examId,
                     'examTitle': examTitle,
@@ -399,8 +399,8 @@ $(document).on('click', '#updateExam', function(){
                 var $row = $('tr[data-id="' + examId + '"]');
                 $row.find('td:eq(4)').text(examTitle);
                 $row.find('td:eq(2)').text(subjectName);
-                $row.find('td:eq(6)').text(startDate);
-                $row.find('td:eq(5)').text(duration + ' Min');
+                $row.find('td:eq(5)').text(startDate);
+                $row.find('td:eq(6)').text(duration + ' Min');
                 $row.find('td:eq(7) span').text(status);
 
                 // hide the update form and show success message
@@ -426,7 +426,7 @@ $(document).on('click', '#updateExam', function(){
 /*Display the question table*/
 function QuestionTable(examId){
     $.ajax({  
-       url: "QuestionTableLogic.php",
+       url: "../Backend/ManageQuestions/QuestionTableLogic.php",
         type: "POST",
         data: { examIdForAddQuestion: examId },
         success: function(data) {
@@ -443,7 +443,7 @@ function QuestionTable(examId){
 /*Display the answer table*/
 function AnswerTable(questionId){
     $.ajax({  
-        url: "AnswerTableLogic.php",
+        url: "../Backend/ManageAnswers/AnswerTableLogic.php",
         type: "POST",
         data: { questionIdForAddAnswer: questionId },
         success: function(data) {
@@ -465,7 +465,7 @@ function ExamBetweenDates(){
     var toDate = $('input[name="To"]').val();   
 
     $.ajax({
-      url: 'ExamBetweenDates.php',  
+      url: '../Backend/ManageExams/ExamBetweenDates.php',  
       type: 'POST',
       data: {
         'From': fromDate,
@@ -508,7 +508,7 @@ $(document).ready(function() {
     var toDate = $('input[name="To"]').val();   
 
     $.ajax({
-      url: 'ExamBetweenDates.php',  
+      url: '../Backend/ManageExams/ExamBetweenDates.php',  
       type: 'POST',
       data: {
         'From': fromDate,
@@ -557,7 +557,7 @@ $(document).on('click', '.check-exam-row', function(){
         console.log(examId);
          /*Question for selected exam*/
         $.ajax({  
-        url: "QuestionTableLogic.php",
+        url: "../Backend/ManageQuestions/QuestionTableLogic.php",
         type: "POST",
         data: { examIdForAddQuestion: examId },
         success: function(data) {
@@ -611,7 +611,7 @@ $(document).ready(function(){
         var points = $('#points-input').val();
 
         $.ajax({  
-            url: "NewQuestionLogic.php",
+            url: "../Backend/ManageQuestions/NewQuestionLogic.php",
             type: "POST",
             data: { 
                 question: question,
@@ -630,7 +630,7 @@ $(document).ready(function(){
                 $('#points-input').val('');
                 $('#question').val('');
                 $.ajax({  
-                url: "QuestionTableLogic.php",
+                url: "../Backend/ManageQuestions/QuestionTableLogic.php",
                 type: "POST",
                 data: { examIdForAddQuestion: examId },
                 success: function(data) {
@@ -689,7 +689,7 @@ $(document).on('click', '#updateQuestion', function(){
 
     // Send an AJAX request to the server with the updated data
     $.ajax({
-        url: 'EditQuestionLogic.php',
+        url: '../Backend/ManageQuestions/EditQuestionLogic.php',
         type: 'POST',
         data: {
             'questionId': questionId,
@@ -776,7 +776,7 @@ $(document).ready(function(){
         }
 
         $.ajax({  
-            url: "NewAnswerLogic.php",
+            url: "../Backend/ManageAnswers/NewAnswerLogic.php",
             type: "POST",
             data: { 
                 answer: answer,
@@ -798,7 +798,7 @@ $(document).ready(function(){
 
                     // Call the AnswerTableLogic.php to update the answer table
                     $.ajax({  
-                        url: "AnswerTableLogic.php",
+                        url: "../Backend/ManageAnswers/AnswerTableLogic.php",
                         type: "POST",
                         data: { questionIdForAddAnswer: questionId },
                         success: function(data) {
@@ -867,7 +867,7 @@ $(document).on('click', '.close-answer-form-btn', function(){
 
     // Send an AJAX request to the server with the updated data
     $.ajax({
-        url: 'EditAnswerLogic.php',
+        url: '../Backend/ManageAnswers/EditAnswerLogic.php',
         type: 'POST',
         data: {
             'answerIdForEditAnswer': answerId,
@@ -916,7 +916,7 @@ $(document).on('click', '.check-question-row', function(){
         console.log(examId);
          /*Question for selected exam*/
         $.ajax({  
-        url: "AnswerTableLogic.php",
+        url: "../Backend/ManageAnswers/AnswerTableLogic.php",
         type: "POST",
         data: { questionIdForAddAnswer: questionId },
         success: function(data) {
@@ -953,7 +953,7 @@ $(document).on('click', '.question-table table tbody tr td .delete', function(){
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({  
-                url: "DeleteQuestionLogic.php",
+                url: "../Backend/ManageQuestions/DeleteQuestionLogic.php",
                 type: "POST",
                 data: { questionId: questionId },
                 success: function(data) {
@@ -989,7 +989,7 @@ $(document).on('click', '.exam-table table tbody tr td .delete', function(){
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({  
-                url: "DeleteExamLogic.php",
+                url: "../Backend/ManageExams/DeleteExamLogic.php",
                 type: "POST",
                 data: { examId: examId },
                 success: function(data) {
@@ -1029,7 +1029,7 @@ $(document).on('click', '.answer-table table tbody tr td .delete', function(){
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({  
-                url: "DeleteAnswerLogic.php",
+                url: "../Backend/ManageAnswers/DeleteAnswerLogic.php",
                 type: "POST",
                 data: { answerId: answerId },
                 success: function(data) {
@@ -1057,7 +1057,7 @@ $(document).ready(function(){
         event.preventDefault();
         var examId = $('#examIdToCompleteExam').val();
         $.ajax({  
-                url: "completeExamLogic.php",
+                url: "../Backend/ManageExams/completeExamLogic.php",
                 type: "POST",
                 data: { examIdToCompleteExam: examId },
                 success: function(data) {

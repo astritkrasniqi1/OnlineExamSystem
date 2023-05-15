@@ -1,5 +1,5 @@
 <?php
-    @include '../config.php';
+    @include '../../../config.php';
 if (mysqli_connect_error()) {
     echo "Failed to connect to MySQL: " .mysqli_connect_error();
     exit();
