@@ -24,40 +24,57 @@
 </head>
 <body style="background:#f1f1f3;">
     <?php @include 'studentNavbar.php'?>
+    <?php require 'generateExam.php'?>
+    <?php require 'submitExam.php' ?>
     <div style="margin:1.5rem 8rem;" class="mainContainer">
     <div class="secondaryContainer col-9">
       <form action="" method="post" id="examForm">
-        <?php for($i=0; $i<=2; $i++){?>
+        <input type="text" hidden name="subject" value="<?php echo $examRow['Subject'] ?>">
+        <input type="text" hidden name="professor" value="<?php echo  $examRow['Professor'] ?>">
+
         <div class="examContainer">
+        <?php 
+        
+        while($questionRow = mysqli_fetch_array($questionResult)){ ?>
             <div class="questionContainer">
                 <div class="questionPoints">
                     <span>
                       Question 
-                      <input type="text" value="questionId" readonly name="questionId" style="font-size:14px;outline:none;text-align:start; background:none;border:none;color:gray;">
+                      <input type="text" value="<?php echo $questionRow['Id']; ?>" readonly name="questionId" style="font-size:14px;outline:none;text-align:start; background:none;border:none;color:gray;">
                     </span>
                     <span>
-                      <input type="text" id="questionPoints" value="questionPoints" readonly name="questionPoints" style="font-size:14px;outline:none;text-align:end;color:gray;background:none;border:none;">
+                      <input type="text" id="questionPoints" value="<?php echo $questionRow['Points']; ?>" readonly name="questionPoints" style="font-size:14px;outline:none;text-align:end;color:gray;background:none;border:none;">
                       points</span>
                 </div>
                 <div class="questionTitle">
-                    <textarea name="question" readonly id="" cols="30">Question Lorem ipsum dolor sit amet consectetur adipisicing elit.</textarea>
+                    <textarea name="question" readonly id="" cols="30"><?php echo $questionRow['Title'] ?></textarea>
                 </div>
             </div>
-
+            <?php  $answers ="SELECT * from studentanswers where StudentQuestionId = '{$questionRow['Id']}'";
+                   $answerResult = mysqli_query($conn, $answers);
+                   while($answerRow = mysqli_fetch_array($answerResult)){
+            ?>
             <div class="answerContainer">
-                <?php for($j=0; $j<=3; $j++){?>
                 <div class="answer">
-                    <input type="checkbox" name="checkedAnswer" class="form-check-input col-2">
+                    <input type="text" hidden name="answerId" value="<?php echo $answerRow['Id'] ?>">
+                    <input type="checkbox" value ="<?php echo $answerRow['Status'] ?>" name="checkedAnswer" class="form-check-input col-2">
                     <div class="col-12">
-                        <textarea name="answer" readonly id="" cols="30">Answer Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo aliquam ad incidunt mollitia vero laboriosam expedita dolor officiis repudiandae veniam quaerat blanditiis, commodi amet maiores rerum praesentium. Illum, cupiditate cumque!</textarea>
+                        <textarea name="answer" readonly id="" cols="30"><?php echo $answerRow['Title'] ?></textarea>
                     </div>
+                
                 </div>
-            <?php }?>
             </div>
+          <?php 
+          if ($answerRow['Status'] == '1') {
+          $totalPoints += $questionRow['Points'];
+              }
+            }
+          }?>
+          <input type="text" hidden name="totalPoints" value="<?php echo $totalPoints ?>">
         </div>
-        <?php }?>
+
         <div class="submitExamContainer">
-          <button type="submit">Submit exam</button>
+          <button type="submit" name="submitExam">Submit exam</button>
         </div>
         </form>
     </div>
