@@ -39,7 +39,7 @@
 			</div>
 
             <?php $userData = mysqli_fetch_array($profesori);?>
-            <section class="EditProfile style="display:none;>
+      <section class="EditProfile" style="display:none;">
         <form action="EditProfileLogic.php" method="POST">
                 <label>First Name</label>
                 <input type="text" name="first_name"value="<?php echo $userData['FirstName'];?>" placeholder="First Name" class="form-control"/>

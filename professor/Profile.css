@@ -237,10 +237,10 @@ footer .contact-info p {
 }
 .EditProfile button {
   margin-top: 10px;
-  width: 50%;
+  width: 100%;
+  padding: 5px 20px;
   border-radius: 5px;
-  align-self: end;
-  background-color: #007bff;
-  color: white;
-  border: none;
+  background-color: #eb7c8c;
+color:white;
+border:none;  
 }

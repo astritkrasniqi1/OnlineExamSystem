@@ -1054,6 +1054,7 @@ $(document).on('click', '.answer-table table tbody tr td .delete', function(){
 
 $(document).ready(function(){
     $('#completeExamForm').on('submit', function(event){
+        event.preventDefault();
         var examId = $('#examIdToCompleteExam').val();
         $.ajax({  
                 url: "completeExamLogic.php",

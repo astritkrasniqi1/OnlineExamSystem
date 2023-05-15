@@ -45,7 +45,7 @@
                 $update = "UPDATE users SET Status='1' WHERE Id={$_SESSION['professorID']} and UserType='0' and verificationStatus='1'";
                 mysqli_query($conn, $update);
                 // Set cookie to remember user
-                setcookie('remember_user', $row['Id'], time() + 86400, "/"); // cookie expires in 30 days
+                setcookie('remember_user', $row['Id'], time() + 86400, "/");
                 header("Location:professor/Dashboard.php");
             }
             elseif($row['UserType'] == '1'){
@@ -54,7 +54,7 @@
                 $update = "UPDATE users SET Status='1' WHERE Id={$_SESSION['studentID']} and UserType='1' and verificationStatus='1'";
                 mysqli_query($conn, $update);
                 // Set cookie to remember user
-                setcookie('remember_user', $row['Id'], time() + 86400, "/"); // cookie expires in 30 days
+                setcookie('remember_user', $row['Id'], time() + 86400, "/");
                 header('Location: student/Dashboard.php');
             }
         }

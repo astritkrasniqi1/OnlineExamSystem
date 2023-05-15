@@ -21,10 +21,16 @@ $sql = "select Id, Concat(FirstName, ' ', LastName) as StudentName, Email, Statu
     else{
     while($row = mysqli_fetch_array($result)) {
         $tableRows .= '<tr data-id="' . $row['Id'] . '">';
-        
         $tableRows .= '<td>' . $row['Id'] . '</td>';
         $tableRows .= '<td>' . $row['StudentName'] . '</td>';
         $tableRows .= '<td>' . $row['Email'] . '</td>';
+        $tableRows .= '<td><span>';
+        if ($row['Status'] == '0') {
+            $tableRows .= 'Offline';
+        } elseif ($row['Status'] == '1') {
+            $tableRows .= 'Online';
+        } 
+        $tableRows .= '</span> </td>';
         
         
        

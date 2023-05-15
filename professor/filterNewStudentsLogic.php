@@ -38,7 +38,6 @@ $sql = "select Id, Concat(FirstName, ' ', LastName) as StudentName, Email, Statu
     $table .= '<th>ID</th>';
     $table .= '<th>Student Name</th>';
     $table .= '<th>Email</th>';
-    $table .= '<th>Status</th>';
     $table .= '</tr>';
     $table .= '</thead>';
     $table .= '<tbody >';
