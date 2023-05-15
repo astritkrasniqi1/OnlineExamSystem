@@ -1,5 +1,5 @@
 <?php 
-    @include '../config.php';
+    @include '../../config.php';
 
     session_start();
 
@@ -24,18 +24,18 @@
 </head>
 <body style="background:#f1f1f3;">
     <?php @include 'studentNavbar.php'?>
-    <?php require 'generateExam.php'?>
-    <?php require 'submitExam.php' ?>
+    <?php require '../Backend/ManageExam/generateExam.php'?>
+    <?php require '../Backend/ManageExam/submitExam.php' ?>
     <div style="margin:1.5rem 8rem;" class="mainContainer">
     <div class="secondaryContainer col-9">
       <form action="" method="post" id="examForm">
         <input type="text" hidden name="subject" value="<?php echo $examRow['Subject'] ?>">
         <input type="text" hidden name="professor" value="<?php echo  $examRow['Professor'] ?>">
-
-        <div class="examContainer">
+  
         <?php 
         
         while($questionRow = mysqli_fetch_array($questionResult)){ ?>
+        <div class="examContainer">
             <div class="questionContainer">
                 <div class="questionPoints">
                     <span>
@@ -56,22 +56,18 @@
             ?>
             <div class="answerContainer">
                 <div class="answer">
-                    <input type="text" hidden name="answerId" value="<?php echo $answerRow['Id'] ?>">
-                    <input type="checkbox" value ="<?php echo $answerRow['Status'] ?>" name="checkedAnswer" class="form-check-input col-2">
+                    <input type="checkbox" value ="<?php echo $answerRow['Id'] ?>" name="checkedAnswer[]" class="form-check-input col-2">
                     <div class="col-12">
                         <textarea name="answer" readonly id="" cols="30"><?php echo $answerRow['Title'] ?></textarea>
                     </div>
-                
                 </div>
             </div>
-          <?php 
-          if ($answerRow['Status'] == '1') {
-          $totalPoints += $questionRow['Points'];
-              }
-            }
-          }?>
+            <?php }?>
           <input type="text" hidden name="totalPoints" value="<?php echo $totalPoints ?>">
         </div>
+        <?php 
+            }
+          ?>
 
         <div class="submitExamContainer">
           <button type="submit" name="submitExam">Submit exam</button>

@@ -4,10 +4,10 @@
     session_start();
 
 // Check for remember_user cookie
-    if(isset($_COOKIE['remember_user'])) {
+    if(isset($_COOKIE['remember_professor'])) {
     // Get user details from database using cookie value
-        $userId = mysqli_real_escape_string($conn, $_COOKIE['remember_user']);
-        $sql = "SELECT * FROM users WHERE Id = '$userId' and verificationStatus='1'";
+        $professorId = mysqli_real_escape_string($conn, $_COOKIE['remember_professor']);
+        $sql = "SELECT * FROM users WHERE Id = '$professorId' and verificationStatus='1'";
         $result = mysqli_query($conn, $sql);
         if(mysqli_num_rows($result) > 0) {
             $row = mysqli_fetch_array($result);
@@ -16,14 +16,22 @@
                 $_SESSION['professorID'] = $row['Id'];
                 $update = "UPDATE users SET Status='1' WHERE Id={$_SESSION['professorID']} and UserType='0' and verificationStatus='1'";
                 mysqli_query($conn, $update);
-                header("Location:professor/Dashboard.php");
+                header("Location:professor/FrontEnd/Dashboard.php");
             }
-            elseif($row['UserType'] == '1'){
+        }
+    }
+    if(isset($_COOKIE['remember_student'])) {
+        $studentId = mysqli_real_escape_string($conn, $_COOKIE['remember_student']);
+        $sql = "SELECT * FROM users WHERE Id = '$studentId' and verificationStatus='1'";
+        $result = mysqli_query($conn, $sql);
+        if(mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_array($result);
+            if($row['UserType'] == '1'){
                 $_SESSION['studentUsername'] = $row['FirstName'] .' ' .$row['LastName'];
                 $_SESSION['studentID'] = $row['Id'];
                 $update = "UPDATE users SET Status='1' WHERE Id={$_SESSION['studentID']} and UserType='1' and verificationStatus='1'";
                 mysqli_query($conn, $update);
-                header('Location: student/Dashboard.php');
+                header('Location: student/FrontEnd/Dashboard.php');
             }
         }
     }
@@ -45,8 +53,8 @@
                 $update = "UPDATE users SET Status='1' WHERE Id={$_SESSION['professorID']} and UserType='0' and verificationStatus='1'";
                 mysqli_query($conn, $update);
                 // Set cookie to remember user
-                setcookie('remember_user', $row['Id'], time() + 86400, "/");
-                header("Location:professor/Dashboard.php");
+                setcookie('remember_professor', $_SESSION['professorID'], time() + 86400, "/");
+                header("Location:professor/FrontEnd/Dashboard.php");
             }
             elseif($row['UserType'] == '1'){
                 $_SESSION['studentUsername'] = $row['FirstName'] .' ' .$row['LastName'];
@@ -54,8 +62,8 @@
                 $update = "UPDATE users SET Status='1' WHERE Id={$_SESSION['studentID']} and UserType='1' and verificationStatus='1'";
                 mysqli_query($conn, $update);
                 // Set cookie to remember user
-                setcookie('remember_user', $row['Id'], time() + 86400, "/");
-                header('Location: student/Dashboard.php');
+                setcookie('remember_student', $_SESSION['StudentID'], time() + 86400, "/");
+                header('Location: student/FrontEnd/Dashboard.php');
             }
         }
         

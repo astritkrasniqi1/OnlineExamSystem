@@ -1,5 +1,5 @@
 <?php
-    @include '../config.php';
+    @include '../../../config.php';
 
 
 if(isset($_POST['joinExamBtn'])){
@@ -29,13 +29,13 @@ if(isset($_POST['joinExamBtn'])){
         $selectAnswersResult = mysqli_query($conn, $selectAnswers);
     
         while($selectAnswersRow = mysqli_fetch_array($selectAnswersResult)){
-            $insertStudentAnswers = "INSERT INTO studentanswers(StudentQuestionId, QuestionId, AnswerId, Professor, Title, Status, Created_at)
-            VALUES('{$insertedStudentQuestionId}', '{$selectAnswersRow['QuestionId']}', '{$selectAnswersRow['Id']}', '{$selectAnswersRow['Professor']}', '{$selectAnswersRow['Title']}', '{$selectAnswersRow['Status']}', NOW())";
+            $insertStudentAnswers = "INSERT INTO studentanswers(StudentQuestionId, QuestionId, AnswerId, Professor, Title, Status,SelectedAnswer, Created_at)
+            VALUES('{$insertedStudentQuestionId}', '{$selectAnswersRow['QuestionId']}', '{$selectAnswersRow['Id']}', '{$selectAnswersRow['Professor']}', '{$selectAnswersRow['Title']}', '{$selectAnswersRow['Status']}', '0', NOW())";
             mysqli_query($conn, $insertStudentAnswers);
         }
     }
 
-    header("location: http://localhost/Online-Exam-System/student/Exam.php?examId={$insertedStudentExamId}");
+    header("location: http://localhost/Online-Exam-System/student/FrontEnd/Exam.php?examId={$insertedStudentExamId}");
 }
     
 

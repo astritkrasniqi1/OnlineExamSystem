@@ -1,15 +1,3 @@
-<?php 
-    @include '../config.php';
-
-    session_start();
-
-    if(!isset($_SESSION['studentUsername'])){
-        header('Location: ../login.php');
-    }   
-?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,7 +31,7 @@
         <div>
             <span class="profile-name" style="display:flex; align-items:center;">Hi, <?php echo $_SESSION['studentUsername'] ?>&nbsp; <i onclick="OpenDropdown();" class='bx bx-chevron-down' style="cursor:pointer;font-size:20px;"></i></span>
             <div class="profile-dropdown" style="display:none;">
-                <a href="../logoutLogic.php"><i class='bx bx-exit' ></i>&nbsp;Logout</a>
+                <a href="../../logoutLogic.php"><i class='bx bx-exit' ></i>&nbsp;Logout</a>
             </div>
 
         </div>

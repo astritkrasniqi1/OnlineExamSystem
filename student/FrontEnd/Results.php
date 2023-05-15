@@ -1,3 +1,13 @@
+<?php
+    @include '../../config.php';
+
+    session_start();
+
+    if(!isset($_SESSION['studentUsername'])){
+        header('Location: ../../login.php');
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +22,8 @@
     <link rel="stylesheet" href="results.css">
 </head>
 <body style="background:#f1f1f3;">
-    <?php include 'studentNavbar.php' ?>    
+    <?php include 'studentNavbar.php' ?>  
+    <?php require '../Backend/ManageResults/resultsLogic.php';?>  
 
 <div style="margin: 1.5rem 8rem;">
                 <div class="title-examSelect-container">
@@ -23,16 +34,18 @@
                           echo $pageTitle;  
                     ?>
                     </h2>
-                        <select name="" id="">
+                    <form action="" method="post">
+                        <select name="examId" id="">
                             <option value="">Exam 1</option>
                             <option value="">Exam 2</option>
                         </select>
+                    </form>
                </div>
                
                <div class="examScore">
                     <span style="font-size: 20px;">Your score</span>
                     <div class="box">
-                        <div class="chart" data-percent="90">90%</div>
+                        <div class="chart" data-percent="<?php echo number_format(($scoreRow['Score']/$maxPointsRow['MaxPoints'])*100, 2)?>"><?php echo number_format(($scoreRow['Score']/$maxPointsRow['MaxPoints'])*100, 2)?>%</div>
                     </div>
                 </div>
 

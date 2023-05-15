@@ -1,10 +1,10 @@
 <?php 
-    @include '../config.php';
+    @include '../../config.php';
 
     session_start();
 
     if(!isset($_SESSION['studentUsername'])){
-        header('Location: login.php');
+        header('Location: ../../login.php');
     }
 
 
@@ -26,7 +26,7 @@
 </head>
 <body style="background:#f1f1f3;">
     <?php @include 'studentNavbar.php' ?>
-    <?php require 'joinExamLogic.php';?>
+    <?php require '../Backend/ManageExam/joinExamLogic.php';?>
 
     <div style="margin:1.5rem 8rem;">
         <h2>Dashboard</h2>
@@ -267,7 +267,7 @@
         var examId = $('.exam').val();
         $.ajax({
             type: "POST",
-            url: "selectExamLogic.php",
+            url: "../Backend/ManageExam/selectExamLogic.php",
             data: { examId: examId },
             success: function(response){
                 var data = JSON.parse(response);

@@ -741,7 +741,7 @@ $(document).on('click', '.close-answer-form-btn', function(){
 
 //Design for the td span in asnwer table for Status: Correct, Incorrect 
 function AnswerTableTdList(){
-    const answerTableTdList = document.querySelectorAll('.answer-table table tbody tr td span');
+   const answerTableTdList = document.querySelectorAll('.answer-table table tbody tr td span');
   
   answerTableTdList.forEach((td) => {
         if(td.textContent === 'Incorrect') {
@@ -761,7 +761,8 @@ function AnswerTableTdList(){
 
 
 
-  //Inserting the answer into the answer table
+  
+//Inserting the answer into the answer table
 $(document).ready(function(){
     $('#answer-form').on('submit', function(event){
         event.preventDefault();
@@ -786,10 +787,11 @@ $(document).ready(function(){
             },
             success: function(data) {
                 console.log(data);
-                if(data == 'There can only be one correct answer per question') {
+                if(data.trim() === 'There can only be one correct answer per question') {
                     $('#moreThanOneCorrectAnswerError').html(data);
                     $('#answerStatus').prop('checked',false);
-                } else {
+                } 
+                else {
                     $('#moreThanOneCorrectAnswerError').html("");
                     $('#add-answer-form').hide();
                     $('#questionIdForAddAnswer').val("");

@@ -46,7 +46,7 @@
         <div >
             <span class="profile-name" style="display:flex; align-items:center;">Hi, <?php echo $_SESSION['professorUsername'] ?>&nbsp; <i onclick="OpenDropdown();" class='bx bx-chevron-down' style="cursor:pointer;font-size:20px;"></i></span>
             <div class="profile-dropdown" style="display:none;">
-                <a href="../logoutLogic.php"><i class='bx bx-exit' ></i>&nbsp;Logout</a>
+                <a href="../../logoutLogic.php"><i class='bx bx-exit' ></i>&nbsp;Logout</a>
             </div>
 
         </div>

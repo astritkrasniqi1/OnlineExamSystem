@@ -1,10 +1,10 @@
 <?php 
-   @include '../config.php';
+   @include '../../config.php';
 
     session_start();
 
     if(!isset($_SESSION['studentUsername'])){
-        header('Location:login.php');
+        header('Location:../../login.php');
     }
 ?>
 
@@ -23,7 +23,7 @@
 </head>
 <body style="background:#f1f1f3;">
        <?php @include 'studentNavbar.php' ?>
-       <?php require 'StudentProfileLogic.php';?>
+       <?php require '../Backend/ManageProfile/StudentProfileLogic.php';?>
 	
 	<main>
 		<section class="user-profile col-4">
