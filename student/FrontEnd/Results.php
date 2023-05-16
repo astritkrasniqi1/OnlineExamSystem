@@ -51,31 +51,56 @@
 
                 <div>
                 <div style="margin-top:2rem;"><span style="font-size:1.5rem; border-bottom:3px solid #f7b092;">Answer Key</span></div>
-                    <div class="answerKeyContainer row">
+                
+                <?php 
+                    while ($answerRow = mysqli_fetch_array($answerResult)){ 
+                    ?>
+                        <div class="answerKeyContainer row">
                         <div class="questionContainer col-5 ">
-                            <div><span>Question 1</span></div>
-                            <div><p>What are cells?</p></div>
+                            <div><span>Question <?php echo $answerRow['QuestionId'] ?></span></div>
+                            <div><p><?php echo $answerRow['QuestionTitle'] ?></p></div>
                         </div>
                         <div class="answersContainer col-7">
-                            <div>
-                                <span>A</span>
-                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis nesciunt minus veniam laborum saepe, doloremque aut placeat. Qui eos, corporis quidem eveniet reiciendis, sapiente quod quas blanditiis ad, libero repudiandae!</p>
+                            <?php
+                            $option = 'A'; 
+                            do {
+                            ?>
+                            <div class="<?php if (($answerRow['Status'] == '1' && $answerRow['SelectedAnswer'] == '1') || ($answerRow['Status'] == '1' && $answerRow['SelectedAnswer'] == '0')) { 
+                                echo 'correct';
+                                }else if(($answerRow['Status'] == '0' && $answerRow['SelectedAnswer'] == '1')){
+                                echo 'incorrect';
+                                }
+                                elseif((($answerRow['Status'] == '1' || $answerRow['Status'] == '0')  && $answerRow['SelectedAnswer'] == '0')){
+                                    echo '';
+                                }
+                                else{
+                                    echo '';
+                                }
+                                ?>" style="position:relative">
+                                <span class="col-auto"><?php echo $option; ?></span>
+                                <p class="col-11"><?php echo $answerRow['AnswerTitle']; ?></p>
+                                <span style="position:absolute; width:auto; margin:10px 0px 0 10px; border:none; bottom:0;right:0; font-size:12px"><?php if (($answerRow['Status'] == '1' && $answerRow['SelectedAnswer'] == '1') || ($answerRow['Status'] == '0' && $answerRow['SelectedAnswer'] == '1')){
+                                        echo 'Your answer';
+                                }
+                                elseif(($answerRow['Status'] == '1' && $answerRow['SelectedAnswer'] == '0')){
+                                    echo 'Correct answer';
+                                }
+                                else{
+                                    echo '';
+                                }?></span>
                             </div>
-                            <div class="correct">
-                                <span>B</span>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium soluta distinctio id est, expedita nostrum voluptatem consectetur minus. Enim animi tempora suscipit mollitia rem veritatis non nam unde placeat minima?</p>
-                            </div>
-                            <div>
-                                <span>C</span>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia corporis, quaerat nostrum veritatis eius beatae eum suscipit totam facere esse quis quasi cum aut libero tempore nam saepe exercitationem ad.</p>
-                            </div>
-                            <div class="incorrect">
-                                <span>D</span>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eius ratione vero voluptate quibusdam voluptates, impedit aspernatur perspiciatis vitae necessitatibus adipisci magni ex iure temporibus facere quisquam? Impedit, facere dolore!</p>
-                            </div>
+                            <?php
+                                $option++; 
+                            } while ($answerRow = mysqli_fetch_array($answerResult)); // Use a do-while loop
+                            ?>
                         </div>
                     </div>
+                    <?php
+                    }
+                    ?>
+                    
                 </div>
+                
 
 
 </div>
