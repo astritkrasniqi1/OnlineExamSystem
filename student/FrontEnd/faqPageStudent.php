@@ -30,6 +30,7 @@
 <body>
 <?php 
 require('studentNavBar.php');
+require('../Backend/ManageFAQ/faqPageLogic.php');
 
 ?>
 

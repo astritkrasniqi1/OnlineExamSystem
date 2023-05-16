@@ -18,6 +18,7 @@
 <body>
 <?php 
 require('navbar.php');
+require('../Backend/ManageFAQ/faqPageLogic.php');
 ?>
     <div class="container-fluid ps-md-0">
         <div class="row g-0">
