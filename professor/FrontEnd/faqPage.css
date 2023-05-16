@@ -1,17 +1,10 @@
 body{
     font-family: 'Work Sans', sans-serif;
 }
-.faq-heading{
-    border-bottom: #777;
-    padding: 20px 60px;
-}
 .faq-container{
 display: flex;
-justify-content: center;
+justify-content: start;
 flex-direction: column;
-
-
-
 }
 .hr-line{
   width: 75%;
@@ -24,18 +17,18 @@ flex-direction: column;
     color: #444;
     cursor: pointer;
     padding: 30px 20px;
-    width: 80%;
+    width: 100%;
     border: none;
     outline: none;
     transition: 0.4s;
     margin: auto;
-    font-size: 25px;
+    font-size: 16px;
 
 }
 .faq-body{
     margin: auto;
     /* text-align: center; */
-   width: 30%; 
+   width: 100%; 
    padding: auto;
    
 }
@@ -53,7 +46,8 @@ flex-direction: column;
     background-color: white;
     display: none;
     overflow: hidden;
-    width: 70%;
+    font-size: 13px;
+    width: 100%;
 }
 
 .faq-page:after {

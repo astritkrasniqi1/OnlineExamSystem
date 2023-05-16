@@ -1,8 +1,3 @@
-<?php 
-@include('navbar.php');
-
-?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,17 +10,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="faqPage.css">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
-    
-
+<?php 
+require('navbar.php');
+?>
     <div class="container-fluid ps-md-0">
         <div class="row g-0">
           <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image">
-          <main>
+<main style="margin:1.5rem 8rem;">
 
-<h1 class="faq-heading">FAQ'S</h1>
+<h2 class="faq-heading" style="">FAQ'S</h2>
 <section class="faq-container">
     <div class="faq-one" >
 
@@ -127,13 +126,13 @@
 
 </section>
 </main>
-          </div>
+        </div>
           <div class="col-md-8 col-lg-6">
             <div class="login d-flex align-items-center py-5">
               <div class="container">
                 <div class="row">
                   <div class="col-md-9 col-lg-8 mx-auto">
-                    <h2 class="text-center login-heading mb-5 fw-bold">How we can help you?</h2>
+                    <h3 class="text-center login-heading mb-5 fw-bold">How we can help you?</h3>
                     <!-- Sign In Form -->
                     <form method="post">
                     <?php 
@@ -178,17 +177,13 @@
                         <label for="floatingInput">Username</label>
                       </div>
                       <div class="form-floating mb-3">
-                        <input type="text" class="form-control" required name="question" id="question" placeholder="Questiom">
-                        <label for="floatingPassword">Question</label>
+                        <textarea class="form-control" style="height:150px;" required name="question" id="question" placeholder="Question"></textarea>
+                        <label for="floatingQuestion">Question</label>
                       </div>
                       
       
                       <div class="d-grid">
-                        <button class="btn btn-lg btn-login text-uppercase fw-bold mb-2" name="signupBtn" style="background: #1d1b31;color:white" type="submit">Ask Question</button>
-                        <div class=" mt-3 row d-flex justify-content-between">
-                          <a class="small col" href="#" style="color:#1d1b31"></a>
-                         
-                        </div>
+                        <button class="btn btn-lg btn-login text-uppercase fw-bold mb-2" name="signupBtn" style="background: #e96d7f;color:white" type="submit">Ask Question</button>
                       </div>
       
                     </form>
@@ -199,7 +194,17 @@
           </div>
         </div>
     <script src="faqPage.js"></script>
+    <script>
+      $(document).ready(function() {
+            $('nav .logo-container ul li a.dashboard').removeClass('active');
+            $('nav .logo-container ul li a.exams').removeClass('active');
+            $('nav .logo-container ul li a.subjects').removeClass('active');
+            $('nav .logo-container ul li a.students').removeClass('active');
+            $('nav .logo-container ul li a.results').removeClass('active');
+            $('nav .logo-container ul li a.profile').removeClass('active');   
+            $('nav .logo-container ul li a.faqPage').addClass('active');  
+    })
+</script>
 </body>
-
 
 </html>

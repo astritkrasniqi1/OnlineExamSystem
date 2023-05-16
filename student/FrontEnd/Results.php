@@ -36,12 +36,17 @@
                     </h2>
                     <form action="" method="post">
                         <select name="examId" id="">
-                            <option value="">Exam 1</option>
-                            <option value="">Exam 2</option>
+                        <?php $sql="Select Id, Title from studentexam where DATE(ExamStartDate) = DATE(NOW())";
+                            $result = mysqli_query($conn,$sql);
+                            while($row = mysqli_fetch_array($result)){
+                            ?>
+                            <option value="<?php echo $row['Id'] ?>"><?php echo $row['Title'] ?></option>
+                        <?php }?>
                         </select>
+                        <button type="submit" style="padding:5px 20px;border-radius:5px;background:#e96d7f;border:none;color:white; ">Submit</button>
                     </form>
                </div>
-               
+        <?php if(!empty($examId)) { ?>
                <div class="examScore">
                     <span style="font-size: 20px;">Your score</span>
                     <div class="box">
@@ -58,12 +63,13 @@
                         </div>
                         <div class="answersContainer col-7">
                             <div>
-                                <span>A</span>
-                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis nesciunt minus veniam laborum saepe, doloremque aut placeat. Qui eos, corporis quidem eveniet reiciendis, sapiente quod quas blanditiis ad, libero repudiandae!</p>
+                                <span class="col-auto">A</span>
+                                <p class="col-11">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis nesciunt minus veniam laborum saepe, doloremque aut placeat. Qui eos, corporis quidem eveniet reiciendis, sapiente quod quas blanditiis ad, libero repudiandae!</p>
                             </div>
-                            <div class="correct">
+                            <div class="correct" style="position:relative;">
                                 <span>B</span>
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium soluta distinctio id est, expedita nostrum voluptatem consectetur minus. Enim animi tempora suscipit mollitia rem veritatis non nam unde placeat minima?</p>
+                                <span style="width:auto;margin:10px 0px 0 10px;position:absolute;border:none; bottom:0; right: 0rem;font-size:12px;">Your answer</span>
                             </div>
                             <div>
                                 <span>C</span>
@@ -76,6 +82,7 @@
                         </div>
                     </div>
                 </div>
+            <?php }?>
 
 
 </div>
@@ -86,6 +93,7 @@
             $('nav .logo-container ul li a.dashboard').removeClass('active');
             $('nav .logo-container ul li a.results').addClass('active');
             $('nav .logo-container ul li a.profile').removeClass('active');
+            $('nav .logo-container ul li a.faqPage').removeClass('active');
     })
     $(function() {
     $('.chart').easyPieChart({

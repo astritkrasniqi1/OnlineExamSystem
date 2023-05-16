@@ -1,8 +1,15 @@
+
 <?php 
-@include('studentNavBar.php');
+    @include '../../config.php';
+
+    session_start();
+
+    if(!isset($_SESSION['studentUsername'])){
+        header('Location: ../../login.php');
+    }
+
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,11 +21,17 @@
     <title>FAQ PAGE</title>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="faqPageStudent.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/easy-pie-chart/2.1.6/jquery.easypiechart.min.js"></script>
 
 </head>
 
 <body>
-    
+<?php 
+require('studentNavBar.php');
+
+?>
 
     <div class="container-fluid ps-md-0">
         <div class="row g-0">
@@ -199,6 +212,14 @@
           </div>
         </div>
     <script src="faqPageStudent.js"></script>
+    <script>
+              $(document).ready(function() {
+            $('nav .logo-container ul li a.dashboard').removeClass('active');
+            $('nav .logo-container ul li a.results').removeClass('active');
+            $('nav .logo-container ul li a.profile').removeClass('active');
+            $('nav .logo-container ul li a.faqPage').addClass('active');
+        })
+    </script>
 </body>
 
 

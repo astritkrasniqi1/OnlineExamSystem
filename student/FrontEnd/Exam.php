@@ -129,6 +129,7 @@
             $('nav .logo-container ul li a.dashboard').removeClass('active');
             $('nav .logo-container ul li a.results').removeClass('active');
             $('nav .logo-container ul li a.profile').removeClass('active');
+            $('nav .logo-container ul li a.faqPage').removeClass('active');
         })
         function updateTextareaRows(textarea, text) {
   // Create a temporary textarea to calculate the number of rows needed

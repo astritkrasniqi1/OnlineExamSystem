@@ -12,7 +12,7 @@ $checkedAnswers = $_POST['checkedAnswer'];
 $answerTitle = $_POST['answer'];
 $totalPoints = $_POST['totalPoints'];
 $student = $_SESSION['studentID'];
-$updateStudentExam = "UPDATE studentexam set EndTime = now() where Id = $studentExamId and Student='{$student}'";
+$updateStudentExam = "UPDATE studentexam set EndTime = NOW() where Id = $studentExamId and Student='{$student}'";
 $updateStudentExamResult = mysqli_query($conn, $updateStudentExam);
 
 foreach ($checkedAnswers as $checkedAnswer) {

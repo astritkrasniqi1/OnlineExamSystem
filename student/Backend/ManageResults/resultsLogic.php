@@ -2,12 +2,13 @@
     @include '../../../config.php';
 
 
-if(isset($_GET['examId'])){
-    $examId = $_GET['examId'];
-   }
-   else{
-    $examId = $_POST['examId'];
-}
+    $examId = '';
+
+    if (isset($_POST['examId'])) {
+        $examId = $_POST['examId'];
+    } elseif (isset($_GET['examId'])) {
+        $examId = $_GET['examId'];
+    }
 
    $MaxPoints = "Select Sum(Points) as MaxPoints from studentquestions where StudentExamId = '{$examId}'";
 
