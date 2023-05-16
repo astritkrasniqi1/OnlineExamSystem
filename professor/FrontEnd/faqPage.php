@@ -184,7 +184,7 @@ require('../Backend/ManageFAQ/faqPageLogic.php');
                       
       
                       <div class="d-grid">
-                        <button class="btn btn-lg btn-login text-uppercase fw-bold mb-2" name="signupBtn" style="background: #e96d7f;color:white" type="submit">Ask Question</button>
+                        <button class="btn btn-lg btn-login text-uppercase fw-bold mb-2" name="askQuestion" style="background: #e96d7f;color:white" type="submit">Ask Question</button>
                       </div>
       
                     </form>

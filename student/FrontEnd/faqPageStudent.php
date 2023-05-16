@@ -37,9 +37,9 @@ require('../Backend/ManageFAQ/faqPageLogic.php');
     <div class="container-fluid ps-md-0">
         <div class="row g-0">
           <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image">
-          <main>
+          <main style="margin:1.5rem 8rem;">
 
-<h1 class="faq-heading">FAQ'S</h1>
+<h2 class="faq-heading">FAQ'S</h2>
 <section class="faq-container">
     <div class="faq-one" >
 
@@ -147,7 +147,7 @@ require('../Backend/ManageFAQ/faqPageLogic.php');
               <div class="container">
                 <div class="row">
                   <div class="col-md-9 col-lg-8 mx-auto">
-                    <h2 class="text-center login-heading mb-5 fw-bold">How we can help you?</h2>
+                    <h3 class="text-center login-heading mb-5 fw-bold">How we can help you?</h3>
                     <!-- Sign In Form -->
                     <form method="post">
                     <?php 
@@ -192,17 +192,13 @@ require('../Backend/ManageFAQ/faqPageLogic.php');
                         <label for="floatingInput">Username</label>
                       </div>
                       <div class="form-floating mb-3">
-                        <input type="text" class="form-control" required name="question" id="question" placeholder="Questiom">
-                        <label for="floatingPassword">Question</label>
+                        <textarea class="form-control" style="height:150px;" required name="question" id="question" placeholder="Question"></textarea>
+                        <label for="floatingQuestion">Question</label>
                       </div>
                       
       
                       <div class="d-grid">
-                        <button class="btn btn-lg btn-login text-uppercase fw-bold mb-2" name="signupBtn" style="background: #1d1b31;color:white" type="submit">Ask Question</button>
-                        <div class=" mt-3 row d-flex justify-content-between">
-                          <a class="small col" href="#" style="color:#1d1b31"></a>
-                         
-                        </div>
+                        <button class="btn btn-lg btn-login text-uppercase fw-bold mb-2" name="askQuestion" style="background: #e96d7f;color:white" type="submit">Ask Question</button>
                       </div>
       
                     </form>
