@@ -58,17 +58,22 @@
                 <div style="margin-top:2rem;"><span style="font-size:1.5rem; border-bottom:3px solid #f7b092;">Answer Key</span></div>
                 
                 <?php 
-                    while ($answerRow = mysqli_fetch_array($answerResult)){ 
+                    while ($questionRow = mysqli_fetch_array($questionResult)){ 
                     ?>
                         <div class="answerKeyContainer row">
                         <div class="questionContainer col-5 ">
-                            <div><span>Question <?php echo $answerRow['QuestionId'] ?></span></div>
-                            <div><p><?php echo $answerRow['QuestionTitle'] ?></p></div>
+                            <div><span>Question <?php echo $questionRow['Id'] ?></span></div>
+                            <div><p><?php echo $questionRow['Title'] ?></p></div>
                         </div>
                         <div class="answersContainer col-7">
                             <?php
                             $option = 'A'; 
-                            do {
+                            $answers = "SELECT  a.Title as AnswerTitle, a.QuestionId as QuestionId, a.AnswerId as AnswerId, a.Status as Status, a.SelectedAnswer as SelectedAnswer, q.Title as QuestionTitle
+                            FROM studentanswers a
+                            JOIN studentquestions q ON a.StudentQuestionId = q.Id
+                            WHERE q.StudentExamId = '$examId' and a.StudentQuestionId = '{$questionRow['Id']}'";
+                            $answerResult = mysqli_query($conn, $answers);
+                            while($answerRow = mysqli_fetch_array($answerResult)){
                             ?>
                             <div class="<?php if (($answerRow['Status'] == '1' && $answerRow['SelectedAnswer'] == '1') || ($answerRow['Status'] == '1' && $answerRow['SelectedAnswer'] == '0')) { 
                                 echo 'correct';
@@ -95,8 +100,7 @@
                                 }?></span>
                             </div>
                             <?php
-                                $option++; 
-                            } while ($answerRow = mysqli_fetch_array($answerResult)); // Use a do-while loop
+                             } $option++;  // Use a do-while loop
                             ?>
                         </div>
                     </div>
