@@ -46,6 +46,7 @@
                 <input type="phone" placeholder="Email" value="<?php echo $userData['Email'];?>" class="form-control"/>
                 <label>Username</label>
                 <input type="text" placeholder="Username" value="<?php echo $userData['Username'];?>" class="form-control"/>
+                <button  type="submit" name="editProfileBtn">Save changes</button>
         </section>
 		</section>
 		
@@ -117,5 +118,8 @@ editProfileButton.addEventListener('click', () => {
     editProfileSection.style.display = 'none';
   }
 });
+function submitForm() {
+    document.querySelector('.EditProfile form').submit();
+  }
 </script>
 </html>
