@@ -22,6 +22,7 @@ $stmt->execute();
 
 // Close the statement and database connection
 $stmt->close();
+
 $conn->close();
 
 // Redirect the user back to the profile page or display a success message
