@@ -56,9 +56,10 @@
 		
 	<section class="exam-history col-8" >
             <div class="Position">
-             <button class="overview"><i class="bi bi-book"></i>&nbsp;Overview</button>
-             <button class="change-password"><i class="bi bi-key"></i>&nbsp;Change Password</button>
+             <button class="overview" onclick="showExamHistory()"><i class="bi bi-book"></i>&nbsp;Overview</button>
+             <button class="change-password" onclick="showChangePassword()"><i class="bi bi-key"></i>&nbsp;Change Password</button>
             </div>
+            <div class="ExamHistory">
 			<h2>Exam History</h2>
             <?php if(mysqli_num_rows($ExamHistory) == 0){?>
         <span class="text-danger">No results</span>
@@ -87,7 +88,20 @@
 
 				</tbody>
 			</table>
+      </div>
+      <section class="ChangePassword" style="display:none;">
+    <form action="change_password.php" method="POST">
+        <label>Current Password</label>
+        <input type="password" name="current_password" placeholder="Current Password" class="form-control"/>
+        <label>New Password</label>
+        <input type="password" name="new_password" placeholder="New Password" class="form-control"/>
+        <label>Confirm New Password</label>
+        <input type="password" name="confirm_password" placeholder="Confirm New Password" class="form-control"/>
+        <button type="submit">Change Password</button>
+    </form>
+                </section>
 		</section>
+   
 	</main>
 </body>
 
@@ -109,11 +123,17 @@ overviewBtn.classList.add('active');
 overviewBtn.addEventListener('click', () => {
   overviewBtn.classList.add('active');
   passwordBtn.classList.remove('active');
+
+
+
 });
 
 passwordBtn.addEventListener('click', () => {
+  const ChangePasswordSection = document.querySelector('.ChangePassword');
+    const ExamHistory = document.querySelector('.ExamHistory');
   passwordBtn.classList.add('active');
   overviewBtn.classList.remove('active');
+ 
 });
    
         const editProfileButton = document.querySelector('.edit-profile');
@@ -129,5 +149,17 @@ editProfileButton.addEventListener('click', () => {
 function submitForm() {
     document.querySelector('.EditProfile form').submit();
   }
+
+  function showExamHistory() {
+    document.querySelector(".ExamHistory").style.display = "block";
+    document.querySelector(".ChangePassword").style.display = "none";
+  }
+
+  function showChangePassword() {
+    document.querySelector(".ExamHistory").style.display = "none";
+    document.querySelector(".ChangePassword").style.display = "block";
+  }
+
+
 </script>
 </html>

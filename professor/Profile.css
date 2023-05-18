@@ -77,8 +77,7 @@ main {
   margin-right: 10px;
 }
 
-.edit-profile:hover,
-.view-exam-history:hover {
+.edit-profile:hover {
   background-color: #0062cc;
 }
 .Position {
@@ -117,26 +116,26 @@ main {
   flex-direction: column;
 }
 
-.exam-history h2 {
+.exam-history .ExamHistory h2 {
   font-size: 24px;
   margin-top: 2rem;
   margin-bottom: 20px;
 }
 
-.exam-history table {
+.exam-history .ExamHistorytable {
   border-collapse: separate;
   border-spacing: 0 10px;
   width: 100%;
 }
-.exam-history table tbody tr {
+.exam-history .ExamHistorytable tbody tr {
   background: white;
 }
-.exam-history table tbody tr td {
+.exam-history .ExamHistorytable tbody tr td {
   border-top: 1px solid lightgray;
   border-bottom: 1px solid lightgray;
   padding: 0.5rem;
 }
-.exam-history table tbody tr td:first-child {
+.exam-history .ExamHistory table tbody tr td:first-child {
   border-top: 1px solid lightgray;
   border-bottom: 1px solid lightgray;
   border-left: 1px solid lightgray;
@@ -150,17 +149,17 @@ td {
   font-weight: 550;
   vertical-align: middle;
 }
-.exam-history table tbody tr td:last-child {
+.exam-history .ExamHistory table tbody tr td:last-child {
   border-top: 1px solid lightgray;
   border-bottom: 1px solid lightgray;
   border-right: 1px solid lightgray;
   border-radius: 0 5px 5px 0;
 }
-.exam-history table thead tr {
+.exam-history .ExamHistory table thead tr {
   border-style: none;
   border-color: #f1f1f3;
 }
-.exam-history table tbody tr td span {
+.exam-history .ExamHistory table tbody tr td span {
   padding: 5px 15px;
   border-radius: 20px;
   display: flex;
@@ -168,12 +167,12 @@ td {
   justify-content: center;
 }
 
-.exam-history a {
+.exam-history .ExamHistory a {
   color: #007bff;
   text-decoration: none;
 }
 
-.exam-history a:hover {
+.exam-history .ExamHistory a:hover {
   color: #0062cc;
 }
 
@@ -243,4 +242,15 @@ footer .contact-info p {
   background-color: #007bff;
   color: white;
   border: none;
+}
+.ChangePassword input {
+  width: 40%;
+}
+.ChangePassword button {
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #eb7c8c;
+  color: white;
+  padding: 10px 15px;
 }
