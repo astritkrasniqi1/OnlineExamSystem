@@ -24,7 +24,6 @@
 <body style="background:#f1f1f3;">
        <?php @include 'navbar.php' ?>
        <?php require '../Backend/ManageProfile/ProfileLogic.php'; ?>
-      <?php require '../Backend/ManageProfile/EditProfileLogic.php'?>
 	
 	<main>
 		<section class="user-profile col-4">
@@ -38,11 +37,11 @@
                 <?php }?>
 			</div>
 
-            <?php $userData = mysqli_fetch_array($profesori);?>
+    <?php $userData = mysqli_fetch_array($profesori);?>
       <section class="EditProfile" style="display:none;">
-        <form action="" method="POST">
+        <form action="../Backend/ManageProfile/EditProfileLogic.php" method="POST">
                 <label>First Name</label>
-                <input type="text" name="first_name"value="<?php echo $userData['FirstName'];?>" placeholder="First Name" class="form-control"/>
+                <input type="text" name="first_name" value="<?php echo $userData['FirstName'];?>" placeholder="First Name" class="form-control"/>
                 <label>Last Name</label>
                 <input type="text" name="last_name" value="<?php echo $userData['LastName'];?>" placeholder="Last Name" class="form-control"/>
                 <label>Email</label>
@@ -66,7 +65,7 @@
       <?php } 
         if(mysqli_num_rows($ExamHistory)> 0){
         ?>
-			<table>
+			<table class="ExamHistorytable">
 				<thead>
 					<tr>
 							<th>Exam Name</th>
@@ -90,14 +89,15 @@
 			</table>
       </div>
       <section class="ChangePassword" style="display:none;">
-    <form action="change_password.php" method="POST">
+    <form action="../Backend/ManageProfile/change_password.php" method="POST">
+      <input type="text" hidden name="usernameToChangePassword" value="<?php echo $userData['Username'];?>">
         <label>Current Password</label>
         <input type="password" name="current_password" placeholder="Current Password" class="form-control"/>
         <label>New Password</label>
         <input type="password" name="new_password" placeholder="New Password" class="form-control"/>
         <label>Confirm New Password</label>
         <input type="password" name="confirm_password" placeholder="Confirm New Password" class="form-control"/>
-        <button type="submit">Change Password</button>
+        <button type="submit" name="changePasswordBtn">Change Password</button>
     </form>
                 </section>
 		</section>
@@ -146,10 +146,6 @@ editProfileButton.addEventListener('click', () => {
     editProfileSection.style.display = 'none';
   }
 });
-function submitForm() {
-    document.querySelector('.EditProfile form').submit();
-  }
-
   function showExamHistory() {
     document.querySelector(".ExamHistory").style.display = "block";
     document.querySelector(".ChangePassword").style.display = "none";

@@ -92,7 +92,7 @@
       <td> <?php echo $subjectRow['Created_at']?> </td>
       <td> 
         <button class="editSubjectBtn" id="editSubjectButton"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</button>
-        <button class="delete-subject"><i class="fa-solid fa-trash-can"></i>&nbsp;Delete</button>
+        <button class="delete-subject delete"><i class="fa-solid fa-trash-can"></i>&nbsp;Delete</button>
       </td> 
     
     </tr>
@@ -102,7 +102,10 @@
 
 </div>
 <div id="edit-subject-form" style="display:none">
+<div style="display:flex;flex-direction:row; justify-content:space-between;">
   <h2>Edit Subject</h2>
+  <i class="fa-solid fa-x close-edit-subject-form" style="cursor:pointer;"></i>
+  </div>
   <form id="edit-subject" method="POST">
     <input type="hidden" id="editSubjectId" name="editSubjectId">
     <label for="editSubjectName">Name:</label>
@@ -219,8 +222,10 @@ $(document).on('click', '.subjectTable table tbody tr td .delete-subject', funct
         $('#edit-subject-form').show();
     });
 
-    $(document).on('click', '.close-button', function(){
+    $(document).on('click', '.close-edit-subject-form', function(){
         $('#edit-subject-form').hide();
     })
+
+
 </script>
 </html>

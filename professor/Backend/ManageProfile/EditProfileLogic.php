@@ -24,6 +24,9 @@ $stmt->execute();
 $stmt->close();
 $conn->close();
 
+
+
+header("location: http://localhost/Online-Exam-System/professor/FrontEnd/Profile.php");
 // Redirect the user back to the profile page or display a success message
 
 }
