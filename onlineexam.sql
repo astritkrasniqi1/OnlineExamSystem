@@ -103,3 +103,15 @@
         Created_at datetime,
         primary key(Id)
     );
+
+    create table faq(
+        Id int auto_increment,
+        FirstName varchar(50),
+        LastName varchar(50),
+        Email varchar(150),
+        UserId int,
+        Question varchar(20000),
+        Answer varchar(20000),
+        primary key(Id),
+        foreign key(UserId) references users(Id)
+    );
