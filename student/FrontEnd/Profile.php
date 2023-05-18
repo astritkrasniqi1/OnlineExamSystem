@@ -24,6 +24,7 @@
 <body style="background:#f1f1f3;">
        <?php @include 'studentNavbar.php' ?>
        <?php require '../Backend/ManageProfile/StudentProfileLogic.php';?>
+       <?php require '../Backend/ManageProfile/EditStudentProfileLogic.php';?>
 	
 	<main>
 		<section class="user-profile col-4">
@@ -37,17 +38,17 @@
                 <?php }?>
 			</div>
             <?php $userData = mysqli_fetch_array($studenti);?>
-            <section class="EditProfile" style="display:none;">
+            <form class="EditProfile" style="display:none;" method="post">
                 <label>First Name</label>
-                <input type="text" value="<?php echo $userData['FirstName'];?>" placeholder="First Name" class="form-control"/>
+                <input type="text" name="first_name" value="<?php echo $userData['FirstName'];?>" placeholder="First Name" class="form-control"/>
                 <label>Last Name</label>
-                <input type="email" value="<?php echo $userData['LastName'];?>" placeholder="Last Name" class="form-control"/>
+                <input type="text" name="last_name" value="<?php echo $userData['LastName'];?>" placeholder="Last Name" class="form-control"/>
                 <label>Email</label>
-                <input type="phone" placeholder="Email" value="<?php echo $userData['Email'];?>" class="form-control"/>
+                <input type="email" name="email" placeholder="Email" value="<?php echo $userData['Email'];?>" class="form-control"/>
                 <label>Username</label>
-                <input type="text" placeholder="Username" value="<?php echo $userData['Username'];?>" class="form-control"/>
+                <input type="text" name="username" placeholder="Username" value="<?php echo $userData['Username'];?>" class="form-control"/>
                 <button  type="submit" name="editProfileBtn">Save changes</button>
-        </section>
+            </form>
 		</section>
 		
 	<section class="exam-history col-8" >
@@ -118,8 +119,5 @@ editProfileButton.addEventListener('click', () => {
     editProfileSection.style.display = 'none';
   }
 });
-function submitForm() {
-    document.querySelector('.EditProfile form').submit();
-  }
 </script>
 </html>

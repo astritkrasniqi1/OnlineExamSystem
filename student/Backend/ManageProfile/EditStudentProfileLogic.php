@@ -25,6 +25,8 @@ $stmt->close();
 
 $conn->close();
 
+header("location: Profile.php");
+
 // Redirect the user back to the profile page or display a success message
 
 }
