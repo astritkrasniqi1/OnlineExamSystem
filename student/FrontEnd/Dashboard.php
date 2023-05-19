@@ -52,8 +52,8 @@
         <a href="#" class="">
             <div>
             <i class="fa-solid fa-chart-simple" style="color:#a3abb6;"></i>&nbsp;
-            <div class="col-auto"><span>Average Grade</span>
-            <h5>8.69</h5></div>    
+            <div class="col-auto"><span>Average Score</span>
+            <h5>98%</h5></div>    
             </div>
         </a>
         

@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="results.css">
 </head>
 <body style="background:#f1f1f3;">
-    <?php include 'studentNavbar.php' ?>  
+    <?php @include 'studentNavbar.php' ?>  
     <?php require '../Backend/ManageResults/resultsLogic.php';?>  
 
 <div style="margin: 1.5rem 8rem;">
@@ -36,7 +36,7 @@
                     </h2>
                     <form action="" method="post">
                         <select name="examId" id="">
-                        <?php $sql="Select Id, Title from studentexam where DATE(ExamStartDate) = DATE(NOW())";
+                        <?php $sql="Select Id, Title from studentexam where Student = '{$_SESSION['studentID']}'";
                             $result = mysqli_query($conn,$sql);
                             while($row = mysqli_fetch_array($result)){
                             ?>
@@ -47,12 +47,48 @@
                     </form>
                </div>
         <?php if(!empty($examId)) { ?>
+            <div class="resultsOverview">
                <div class="examScore">
                     <span style="font-size: 20px;">Your score</span>
                     <div class="box">
                         <div class="chart" data-percent="<?php echo number_format(($scoreRow['Score']/$maxPointsRow['MaxPoints'])*100, 2)?>"><?php echo number_format(($scoreRow['Score']/$maxPointsRow['MaxPoints'])*100, 2)?>%</div>
                     </div>
                 </div>
+                <div class="resultsStatistics">
+                    <div class="statistics">
+                    <i class="fa-solid fa-certificate"></i>&nbsp;
+                        <div class="col-auto">
+                            <span>Status</span>
+                            <h5 class="passed-failed-status"><?php $grade = number_format(($scoreRow['Score']/$maxPointsRow['MaxPoints'])*100, 2);  
+                            if($grade >= 50){
+                                echo 'Passed';
+                            }
+                            else{
+                                echo 'Failed';
+                            }
+                            ?>
+                            </h5>
+                        </div>    
+                    </div>
+                    <div class="statistics">
+                    <i class="fa-solid fa-check" style="color: #93ccad;"></i>&nbsp;
+                        <div class="col-auto">
+                            <span>Correct</span>
+                            <h5><?php
+                                echo $countRightAnswersRow['CorrectAnswers'];
+                            ?></h5>
+                        </div>    
+                    </div>
+                    <div class="statistics">
+                        <i class="fa-solid fa-circle-xmark" style="color: #e96d7f;"></i>&nbsp;
+                        <div class="col-auto">
+                            <span>Wrong</span>
+                            <h5><?php echo $countWrongAnswersRow['WrongAnswers']?></h5>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+
 
                 <div>
                 <div style="margin-top:2rem;"><span style="font-size:1.5rem; border-bottom:3px solid #f7b092;">Answer Key</span></div>
@@ -122,16 +158,32 @@
             $('nav .logo-container ul li a.profile').removeClass('active');
             $('nav .logo-container ul li a.faqPage').removeClass('active');
     })
-    $(function() {
+
+    $(document).ready(function() {
+    var score = <?php echo number_format(($scoreRow['Score']/$maxPointsRow['MaxPoints'])*100, 2)?>;
+    var barColor = score >= 50 ? "#2ed15a" : "#ff0000"; // Green if score >= 50, otherwise red
+    
     $('.chart').easyPieChart({
         size: 250,  
-        barColor: "#2ed15a",
+        barColor: barColor,
         scaleLength: 0,
         lineWidth: 10,
         trackColor: "#f5f5f5",
         lineCap: "circle",
-        animate: 2000,
+        animate: 2000
     });
+});
+
+$(document).ready(function() {
+    if($('.passed-failed-status').html() == 'Passed'){
+        $('.passed-failed-status').css('color', '#2ed15a');
+        $('.fa-certificate').css('color', '#2ed15a')
+    }
+    else{
+        $('.passed-failed-status').css('color', '#e96d7f');
+        $('.fa-certificate').css('color', '#e96d7f');
+    }
+
 });
 
 // Get all the answer key divs

@@ -81,14 +81,27 @@
             <div id="timer">
             </div>
         <div>
+            <?php
+            $examId = $_GET['examId'];
+            $getExam = "SELECT Time(e.StartDate) AS ExamTime, TIME_TO_SEC(TIMEDIFF(ADDTIME(e.StartDate, SEC_TO_TIME(e.Duration * 60)), NOW()))AS RemainingTime,  Concat(FirstName, ' ', LastName) as Professor, s.Name as Subject ,  Time(ADDTIME(e.StartDate, SEC_TO_TIME(e.Duration * 60))) AS EndTime,
+             e.Duration FROM studentexam se join exam e on se.ExamId = e.Id join users u on se.Professor = u.Id join subject s on se.Subject=s.Id 
+             WHERE se.Id = '$examId'";
+            $getExamResult = mysqli_query($conn, $getExam);
+            $getExamRow = mysqli_fetch_array($getExamResult);
+            $examTime = $getExamRow['ExamTime'];
+            $duration = $getExamRow['Duration'];
+            $endTime = $getExamRow['EndTime'];
+            $remainingTime = $getExamRow['RemainingTime'];
+            
+            ?>
             <div class="examSpecifications">
                 <i class="fa-regular fa-clock" style="color:#f7b092; border-radius:50% "></i>
                     <div>
                         <span style="font-size: 15px; ">
                             Start time - End time
                         </span>
-                        <span style="font-size: 13px;">
-                          12:00 - 13:20
+                        <span class="time" style="font-size: 13px;">
+                          <?php echo $examTime?> - <?php echo $endTime?> 
                         </span>
                     </div>
                 </div>
@@ -99,7 +112,7 @@
                         Subject
                     </span>
                     <span style="font-size: 13px; ">
-                        Subject Name
+                        <?php echo $getExamRow['Subject'] ?>
                     </span>
                 </div>
             </div>
@@ -110,7 +123,7 @@
                         Professor
                     </span>
                     <span style="font-size:13px;">
-                        Professor name
+                    <?php echo $getExamRow['Professor'] ?>
                     </span>
                 </div>
             </div>
@@ -125,6 +138,8 @@
 
 
     <script>
+
+      
         $(document).ready(function() {
             $('nav .logo-container ul li a.dashboard').removeClass('active');
             $('nav .logo-container ul li a.results').removeClass('active');
@@ -163,8 +178,7 @@
 
 
 
-
-        const FULL_DASH_ARRAY = 283;
+const FULL_DASH_ARRAY = 283;
 const WARNING_THRESHOLD = 10;
 const ALERT_THRESHOLD = 5;
 
@@ -182,7 +196,10 @@ const COLOR_CODES = {
   }
 };
 
-const TIME_LIMIT =7200;
+
+//Get the remaining time
+
+const TIME_LIMIT = <?php echo $remainingTime ?>;
 let timePassed = 0;
 let timeLeft = TIME_LIMIT;
 let timerInterval = null;

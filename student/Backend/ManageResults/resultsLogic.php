@@ -14,10 +14,32 @@ else{
 }
 
 
-   $MaxPoints = "Select Sum(Points) as MaxPoints from studentquestions where StudentExamId = '{$examId}'";
+   $MaxPoints = "Select Sum(Points) as MaxPoints from studentquestions sq join studentexam se
+   on sq.StudentExamId = se.Id where StudentExamId = '{$examId}' and se.Student = '{$_SESSION['studentID']}'";
 
    $Score = "Select Sum(Points) as Score from studentquestions as sq join studentanswers as sa 
-    on sa.StudentQuestionId = sq.Id where sq.StudentExamId = '{$examId}' and sa.Status = '1' and sa.SelectedAnswer='1'";
+    on sa.StudentQuestionId = sq.Id join studentexam se on sq.StudentExamId = se.Id 
+    where sq.StudentExamId = '{$examId}' and sa.Status = '1' and sa.SelectedAnswer='1' and se.Student = '{$_SESSION['studentID']}'";
+
+
+    //Select the count of the correct answers
+    $countRightAnswers="Select Count(*) as CorrectAnswers from studentanswers sa join studentquestions sq 
+    on sa.StudentQuestionId=sq.Id 
+    join studentexam se on sq.StudentExamId = se.Id  
+    where sa.Status='1' and sa.SelectedAnswer='1' and sq.StudentExamId = '$examId' and se.Student = '{$_SESSION['studentID']}' ";
+    $countRightAnswersResult = mysqli_query($conn, $countRightAnswers);
+    $countRightAnswersRow = mysqli_fetch_array($countRightAnswersResult);
+
+
+    //Select the count of the wrong answers
+    $countWrongAnswers="Select Count(*) as WrongAnswers from studentanswers sa join studentquestions sq 
+    on sa.StudentQuestionId=sq.Id 
+    join studentexam se on sq.StudentExamId = se.Id  
+    where sa.Status='0' and sa.SelectedAnswer='1' and sq.StudentExamId = '$examId' and se.Student = '{$_SESSION['studentID']}' ";
+    $countWrongAnswersResult = mysqli_query($conn, $countWrongAnswers);
+    $countWrongAnswersRow = mysqli_fetch_array($countWrongAnswersResult);
+
+    //Select the count of the answeres that were not answered
 
    $scoreResult = mysqli_query($conn, $Score);
 
@@ -28,6 +50,7 @@ else{
    $maxPointsRow = mysqli_fetch_array($maxPointsResult);
 
 
-   $questions = "Select Id, Title from studentquestions where StudentExamId = '{$examId}'";
+   $questions = "Select sq.Id, sq.  Title from studentquestions sq join studentexam se 
+   on sq.StudentExamid=se.Id where StudentExamId = '{$examId}' and se.Student='{$_SESSION['studentID']}'";
    $questionResult = mysqli_query($conn, $questions);
 ?>
