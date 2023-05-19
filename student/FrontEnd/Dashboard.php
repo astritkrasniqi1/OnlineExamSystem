@@ -158,6 +158,7 @@
     <h3 style="margin:0;">Today's exam</h3>
     <div class="startExam">
             <div class="studentExamSettings" style="margin:0;">
+            <span class="text-danger d-flex justify-content-center"><?php echo $error ?></span>
                 <div>
                 <select class="selectExam" name="" id="" style="width:100%;padding:10px;border-radius:5px;">
                     <option value="0" selected disabled>Select exam</option>

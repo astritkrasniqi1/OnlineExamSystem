@@ -175,17 +175,14 @@
 });
 
 $(document).ready(function() {
-    if($('.passed-failed-status').html() == 'Passed'){
-        $('.passed-failed-status').css('color', '#2ed15a');
-        $('.fa-certificate').css('color', '#2ed15a')
-    }
-    else{
-        $('.passed-failed-status').css('color', '#e96d7f');
-        $('.fa-certificate').css('color', '#e96d7f');
-    }
-
-});
-
+      if ($('.passed-failed-status').html().trim() === 'Passed') {
+        $('.passed-failed-status').addClass('passed').removeClass('failed');
+        $('.fa-certificate').addClass('passed').removeClass('failed');
+      } else {
+        $('.passed-failed-status').addClass('failed').removeClass('passed');
+        $('.fa-certificate').addClass('failed').removeClass('passed');
+      }
+    });
 // Get all the answer key divs
 const answerKeyDivs = document.querySelectorAll('.answerKeyContainer .answersContainer div');
 

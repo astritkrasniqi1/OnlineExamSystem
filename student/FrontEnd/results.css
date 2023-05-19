@@ -178,5 +178,12 @@
     font-size:25px;
     margin: 0;
 }
+
+.passed{
+    color: #2ed15a;
+}
+.failed{
+    color: #e96d7f;
+}
   
   

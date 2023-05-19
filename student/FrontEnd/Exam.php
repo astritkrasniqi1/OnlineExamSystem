@@ -83,7 +83,7 @@
         <div>
             <?php
             $examId = $_GET['examId'];
-            $getExam = "SELECT Time(e.StartDate) AS ExamTime, TIME_TO_SEC(TIMEDIFF(ADDTIME(e.StartDate, SEC_TO_TIME(e.Duration * 60)), NOW()))AS RemainingTime,  Concat(FirstName, ' ', LastName) as Professor, s.Name as Subject ,  Time(ADDTIME(e.StartDate, SEC_TO_TIME(e.Duration * 60))) AS EndTime,
+            $getExam = "SELECT Time(e.StartDate) AS ExamTime, TIME_TO_SEC(TIMEDIFF(ADDTIME(e.StartDate, SEC_TO_TIME(e.Duration * 60)) , NOW())) AS RemainingTime,  Concat(FirstName, ' ', LastName) as Professor, s.Name as Subject ,  Time(ADDTIME(e.StartDate, SEC_TO_TIME(e.Duration * 60))) AS EndTime,
              e.Duration FROM studentexam se join exam e on se.ExamId = e.Id join users u on se.Professor = u.Id join subject s on se.Subject=s.Id 
              WHERE se.Id = '$examId'";
             $getExamResult = mysqli_query($conn, $getExam);
@@ -123,7 +123,7 @@
                         Professor
                     </span>
                     <span style="font-size:13px;">
-                    <?php echo $getExamRow['Professor'] ?>
+                    <?php echo $getExamRow['RemainingTime'] ?>
                     </span>
                 </div>
             </div>
