@@ -1,6 +1,7 @@
 <?php 
 @include '../../../config.php';
 
+session_start();
 
 if(isset($_POST['editProfileBtn'])){
 if (mysqli_connect_error()) {
@@ -20,12 +21,14 @@ $stmt = $conn->prepare("UPDATE users SET FirstName=?, LastName=?, Email=? WHERE 
 $stmt->bind_param("ssss", $firstName, $lastName, $email, $username);
 $stmt->execute();
 
+$_SESSION['studentUsername'] = $firstName .' ' .$lastName;
+
 // Close the statement and database connection
 $stmt->close();
 
 $conn->close();
 
-header("location: Profile.php");
+header("location:http://localhost/Online-Exam-System/student/FrontEnd/Profile.php");
 
 // Redirect the user back to the profile page or display a success message
 

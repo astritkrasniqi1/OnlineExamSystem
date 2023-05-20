@@ -1,6 +1,7 @@
 <?php 
 @include '../../../config.php';
 
+session_start();
 
 if(isset($_POST['editProfileBtn'])){
 if (mysqli_connect_error()) {
@@ -19,6 +20,8 @@ if ($conn->connect_error) {
 $stmt = $conn->prepare("UPDATE users SET FirstName=?, LastName=?, Email=? WHERE Username=?");
 $stmt->bind_param("ssss", $firstName, $lastName, $email, $username);
 $stmt->execute();
+
+$_SESSION['professorUsername'] = $firstName .' ' .$lastName;
 
 // Close the statement and database connection
 $stmt->close();

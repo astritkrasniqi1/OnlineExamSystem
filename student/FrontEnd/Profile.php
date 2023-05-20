@@ -24,21 +24,20 @@
 <body style="background:#f1f1f3;">
        <?php @include 'studentNavbar.php' ?>
        <?php require '../Backend/ManageProfile/StudentProfileLogic.php';?>
-       <?php require '../Backend/ManageProfile/EditStudentProfileLogic.php';?>
 	
 	<main>
 		<section class="user-profile col-4">
 			
 			<div class="user-details">
-            <?php while($professors = mysqli_fetch_array($Professors)) {
+        <?php while($students = mysqli_fetch_array($Students)) {
           ?>
-				<h1><?php echo $professors['professorName'] ?></h1>
-				<p><?php echo $professors['Email'] ?></p>
+				<h1><?php echo $students['studentName'] ?></h1>
+				<p><?php echo $students['Email'] ?></p>
 				<button class="edit-profile" onclick="toggleEditProfile()">Edit Profile</button>
                 <?php }?>
 			</div>
             <?php $userData = mysqli_fetch_array($studenti);?>
-            <form class="EditProfile" style="display:none;" method="post">
+            <form class="EditProfile" action="../Backend/ManageProfile/EditStudentProfileLogic.php" style="display:none;" method="post">
                 <label>First Name</label>
                 <input type="text" name="first_name" value="<?php echo $userData['FirstName'];?>" placeholder="First Name" class="form-control"/>
                 <label>Last Name</label>

@@ -48,7 +48,7 @@
                 <input type="email" name="email" placeholder="Email" value="<?php echo $userData['Email'];?>" class="form-control"/>
                 <label>Username</label>
                 <input type="text" name="username" placeholder="Username" value="<?php echo $userData['Username'];?>" class="form-control"/>
-                <button  type="submit" name="editProfileBtn">Save changes</button>
+                <button type="submit" name="editProfileBtn">Save changes</button>
             </form>
             </section>
 		</section>
