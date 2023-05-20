@@ -53,7 +53,7 @@
                 <form method="POST">
                 <select id="examSelect" name="examId">
                 <option value="0" selected disabled>Select exam</option>
-                    <?php $selectExam = "SELECT Id AS ExamId, Title AS ExamName, Duration AS ExamDuration from exam  
+                    <?php $selectExam = "SELECT Id AS ExamId, Title AS ExamName, Duration as ExamDuration from exam
                                         WHERE Status = '1'";
 
                             $selectExamResult = mysqli_query($conn, $selectExam);
@@ -119,23 +119,21 @@
             <div class="col-auto"><span>Total Passed Students</span>
             <h5>
             <?php
-            $count = 0;
-                 while( $selectRow2 = mysqli_fetch_array($selectResults)){
-
-                $score1 = "SELECT SUM(Points) as Score from studentquestions sq
-                join studentexam se on sq.StudentExamId = se.Id 
-                join studentanswers sa on sa.StudentQuestionId = sq.Id
-                where se.ExamId = $examId and sa.Status = '1' and sa.SelectedAnswer = '1'
-                and se.Student = '{$selectRow2['StudentId']}'";
-
-                $scoreResult1= mysqli_query($conn, $score1);
-                $scoreRow1 = mysqli_fetch_array($scoreResult1);
-                if(number_format(($scoreRow1['Score'] / $maxRow['MaxPoints']) * 100,2)>=50){
-                    $count++;
-                }
-                 }
-                 echo $count;
-                 ?>
+                $sql = "SELECT COUNT(*) as PassedStudents FROM (
+                    SELECT se.Student
+                    FROM studentexam se
+                    JOIN studentquestions sq ON sq.StudentExamId = se.Id
+                    JOIN studentanswers sa ON sa.StudentQuestionId = sq.Id
+                    WHERE se.ExamId = $examId
+                        AND sa.Status = '1'
+                        AND sa.SelectedAnswer = '1'
+                    GROUP BY se.Student
+                    HAVING SUM(sq.Points) / ({$maxRow['MaxPoints']}) * 100 >= 50
+                ) AS Passed";
+                $result = mysqli_query($conn, $sql);
+                $row = mysqli_fetch_array($result);
+                echo $row['PassedStudents'];
+                ?>
             </h5></div>    
             </div>
         </a>
@@ -144,24 +142,20 @@
             <i class="fa-solid fa-circle-xmark" style="color:#e96d7f;"></i>&nbsp;
             <div class="col-auto"><span>Total Failed Students</span>
             <h5><?php
-                $count = 0;
-                 while( $selectRow1 = mysqli_fetch_array($selectResults)){
-
-                $score2 = "SELECT SUM(Points) as Score from studentquestions sq
-                join studentexam se on sq.StudentExamId = se.Id 
-                join studentanswers sa on sa.StudentQuestionId = sq.Id
-                where se.ExamId = $examId and sa.Status = '1' and sa.SelectedAnswer = '1'
-                and se.Student = '{$selectRow1['StudentId']}'";
-
-                $scoreResult2= mysqli_query($conn, $score2);
-                $scoreRow2 = mysqli_fetch_array($scoreResult2);
-                if(number_format(($scoreRow2['Score'] / $maxRow['MaxPoints']) * 100,2)<50){
-                    $count++;
-                }else{
-                    $count = 0;
-                }
-               
-                 } echo $count;
+                $sql = "SELECT COUNT(*) as FailedStudents FROM (
+                    SELECT se.Student
+                    FROM studentexam se
+                    JOIN studentquestions sq ON sq.StudentExamId = se.Id
+                    JOIN studentanswers sa ON sa.StudentQuestionId = sq.Id
+                    WHERE se.ExamId = $examId
+                        AND sa.Status = '1'
+                        AND sa.SelectedAnswer = '1'
+                    GROUP BY se.Student
+                    HAVING SUM(sq.Points) / ({$maxRow['MaxPoints']}) * 100 < 50
+                ) AS Passed";
+                $result = mysqli_query($conn, $sql);
+                $row = mysqli_fetch_array($result);
+                echo $row['FailedStudents'];
                  ?></h5></div>    
             </div>
         </a>
@@ -175,7 +169,10 @@
         <a href="#" class=""><div>
         <i class="fa-solid fa-chart-simple" style="color:#a3abb6;"></i>&nbsp;
             <div class="col-auto"><span>Average Score</span>
-            <h5>400</h5></div>
+            <h5><?php
+                
+                ?>
+            </h5></div>
         </div>
         </a>
         </div>
@@ -206,25 +203,29 @@
             </thead>
             <tbody>
                 <?php
-                 while( $selectRow = mysqli_fetch_array($selectResults)){
-
-                $score = "SELECT SUM(Points) as Score from studentquestions sq
-                join studentexam se on sq.StudentExamId = se.Id 
-                join studentanswers sa on sa.StudentQuestionId = sq.Id
-                where se.ExamId = $examId and sa.Status = '1' and sa.SelectedAnswer = '1'
-                and se.Student = '{$selectRow['StudentId']}'";
-
-                $scoreResult= mysqli_query($conn, $score);
-                $scoreRow = mysqli_fetch_array($scoreResult);
-
+                 while ($selectRow = mysqli_fetch_array($selectResults)) {
+                    $score = "SELECT SUM(Points) as Score
+                              FROM studentquestions sq
+                              JOIN studentexam se ON sq.StudentExamId = se.Id 
+                              JOIN studentanswers sa ON sa.StudentQuestionId = sq.Id
+                              WHERE se.Id = '{$selectRow['StudentExamId']}' AND sa.Status = '1' AND sa.SelectedAnswer = '1'
+                              group by se.Student";
+                              $sql = "Select Count(Student) as JoinedStudents from studentexam where ExamId = $examId";
+                              $result = mysqli_query($conn,$sql);
+                            $row = mysqli_fetch_array($result);
+                
+                    $scoreResult = mysqli_query($conn, $score);
+                    $scoreRow = mysqli_fetch_array($scoreResult);
                  ?>
                 <tr>
-                    <td><?php echo $selectRow['ExamId'] ?></td>
+                    <td><?php echo $selectRow['StudentId'] ?></td>
                     <td><?php echo $selectRow['StudentName'] ?></td>
-                    <td><?php if(number_format(($scoreRow['Score'] / $maxRow['MaxPoints']) * 100,2) >= 50){
-                    echo "Passed"; }
-                    else{echo "Failed"; } ?></td>
-                    <td><?php echo number_format(($scoreRow['Score'] / $maxRow['MaxPoints']) * 100,2) ?>%</td>
+                    <td><?php if(number_format(($scoreRow['Score'] / $maxRow['MaxPoints']) * 100 * $row['JoinedStudents'],2) >= 50){
+                            echo "Passed"; 
+                        }
+                    else{echo "Failed"; 
+                    } ?></td>
+                    <td><?php echo number_format(($scoreRow['Score'] / $maxRow['MaxPoints']) * 100 * $row['JoinedStudents'],2) ?>%</td>
                 </tr>
                 <?php }?>
             </tbody>
