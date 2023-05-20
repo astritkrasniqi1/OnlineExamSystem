@@ -1,5 +1,5 @@
 <?php 
-    @include '../config.php';
+    @include '../../config.php';
 
     session_start();
 
@@ -28,6 +28,7 @@
 </head>
 <body  style="background:#f1f1f3;">
     <?php @include 'navbar.php' ?>
+    <?php  require '../Backend/ManageResults/ResultsTable.php'?>
 
 <section>
 <div class="pageTitleContainer" >   
@@ -49,21 +50,48 @@
         <div class="examOverview" style="flex-wrap:wrap;">
         <div class="examResults">
             <div class="examName">
-                <select>
-                    <option>Testi 1</option>
+                <form method="POST">
+                <select id="examSelect" name="examId">
+                <option value="0" selected disabled>Select exam</option>
+                    <?php $selectExam = "SELECT Id AS ExamId, Title AS ExamName, Duration AS ExamDuration from exam  
+                                        WHERE Status = '1'";
+
+                            $selectExamResult = mysqli_query($conn, $selectExam);
+                            if(mysqli_num_rows($selectExamResult) > 0){
+                                while($selectExamRow = mysqli_fetch_assoc($selectExamResult)){
+                        ?>
+                        <option class="exam" value="<?php echo $selectExamRow['ExamId'] ?>">
+                            <?php echo $selectExamRow['ExamName'] ?>
+                        </option>
+                        <?php 
+                                }
+                            }
+                        ?>
                 </select>
+                <button type="submit" name="submitResultsBtn">Submit</button>
+                </form>
+        
             </div>  
             <div class="">
-                <label><i class="fa-regular fa-clock"></i>&nbsp;30 Min</label>
+                <label><i class="fa-regular fa-clock"></i>&nbsp;<span id="examDuration"></span></label>
             </div>
-        
+            <?php if(!empty($examId)){ ?>
         </div>
         <div class="examCards">
         <a href="#" class=""><div>
             <i class="fa-solid fa-user-graduate" style="color:#f7b092;"></i>&nbsp;
             <div class="col-auto">
             <span>Total Students</span>
-            <h5>400</h5>
+            <h5><?php
+                    if(isset($_POST['submitResultsBtn'])){
+                    $sql = "Select Count(*) as StudentCount from users where UserType='1'";
+                    $result = mysqli_query($conn,$sql);
+                    if(mysqli_num_rows($result)>0){
+                        $row = mysqli_fetch_array($result);
+                        echo $row['StudentCount'];
+                    }
+                }
+                ?></h5>
             </div>  
         </div>
         </a>
@@ -71,7 +99,17 @@
         <a href="#" class=""><div>
         <i class="fa-solid fa-check" style="color:#53b7ec;"></i>&nbsp;
             <div class="col-auto"><span>Joined Students</span>
-            <h5>400</h5></div>
+            <h5><?php
+                if(isset($_POST['submitResultsBtn'])){
+                    $sql = "Select Count(Student) as JoinedStudents from studentexam where ExamId = $examId";
+                    $result = mysqli_query($conn,$sql);
+                    if(mysqli_num_rows($result)>0){
+                        $row = mysqli_fetch_array($result);
+                        echo $row['JoinedStudents'];
+                    }
+                }
+            
+            ?></h5></div>
             
         </div>
         </a>
@@ -79,14 +117,52 @@
             <div>
             <i class="fa-solid fa-font-awesome" style="color:#93ccad;"></i>&nbsp;
             <div class="col-auto"><span>Total Passed Students</span>
-            <h5>400</h5></div>    
+            <h5>
+            <?php
+            $count = 0;
+                 while( $selectRow2 = mysqli_fetch_array($selectResults)){
+
+                $score1 = "SELECT SUM(Points) as Score from studentquestions sq
+                join studentexam se on sq.StudentExamId = se.Id 
+                join studentanswers sa on sa.StudentQuestionId = sq.Id
+                where se.ExamId = $examId and sa.Status = '1' and sa.SelectedAnswer = '1'
+                and se.Student = '{$selectRow2['StudentId']}'";
+
+                $scoreResult1= mysqli_query($conn, $score1);
+                $scoreRow1 = mysqli_fetch_array($scoreResult1);
+                if(number_format(($scoreRow1['Score'] / $maxRow['MaxPoints']) * 100,2)>=50){
+                    $count++;
+                }
+                 }
+                 echo $count;
+                 ?>
+            </h5></div>    
             </div>
         </a>
         <a href="#" class="">
             <div>
             <i class="fa-solid fa-circle-xmark" style="color:#e96d7f;"></i>&nbsp;
             <div class="col-auto"><span>Total Failed Students</span>
-            <h5>400</h5></div>    
+            <h5><?php
+                $count = 0;
+                 while( $selectRow1 = mysqli_fetch_array($selectResults)){
+
+                $score2 = "SELECT SUM(Points) as Score from studentquestions sq
+                join studentexam se on sq.StudentExamId = se.Id 
+                join studentanswers sa on sa.StudentQuestionId = sq.Id
+                where se.ExamId = $examId and sa.Status = '1' and sa.SelectedAnswer = '1'
+                and se.Student = '{$selectRow1['StudentId']}'";
+
+                $scoreResult2= mysqli_query($conn, $score2);
+                $scoreRow2 = mysqli_fetch_array($scoreResult2);
+                if(number_format(($scoreRow2['Score'] / $maxRow['MaxPoints']) * 100,2)<50){
+                    $count++;
+                }else{
+                    $count = 0;
+                }
+               
+                 } echo $count;
+                 ?></h5></div>    
             </div>
         </a>
         <a href="#" class=""><div>
@@ -119,42 +195,42 @@
     </div>
 
     <div class="studentResultTable">
-    <table class="table ">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Student Name</th>
-      <th scope="col">Passed/Failed</th>
-      <th scope="col">Score</th>
-      <th scope="col">Grade</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td scope="row">1</td>
-      <td>Mark</td>
-      <td>Passed</td>
-      <td>96%</td>
-      <td>10</td>
-    </tr>
-    <tr>
-      <td scope="row">2</td>
-      <td>Jacob</td>
-      <td>Passed</td>
-      <td>95%</td>
-      <td>10</td>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Student Name</th>
+                    <th>Passed/Failed</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                 while( $selectRow = mysqli_fetch_array($selectResults)){
 
-    </tr>
-    <tr>
-      <td scope="row">3</td>
-      <td>Larry the Bird</td>
-      <td>Passed</td>
-      <td>100%</td>
-      <td>10</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+                $score = "SELECT SUM(Points) as Score from studentquestions sq
+                join studentexam se on sq.StudentExamId = se.Id 
+                join studentanswers sa on sa.StudentQuestionId = sq.Id
+                where se.ExamId = $examId and sa.Status = '1' and sa.SelectedAnswer = '1'
+                and se.Student = '{$selectRow['StudentId']}'";
+
+                $scoreResult= mysqli_query($conn, $score);
+                $scoreRow = mysqli_fetch_array($scoreResult);
+
+                 ?>
+                <tr>
+                    <td><?php echo $selectRow['ExamId'] ?></td>
+                    <td><?php echo $selectRow['StudentName'] ?></td>
+                    <td><?php if(number_format(($scoreRow['Score'] / $maxRow['MaxPoints']) * 100,2) >= 50){
+                    echo "Passed"; }
+                    else{echo "Failed"; } ?></td>
+                    <td><?php echo number_format(($scoreRow['Score'] / $maxRow['MaxPoints']) * 100,2) ?>%</td>
+                </tr>
+                <?php }?>
+            </tbody>
+        </table>
+    </div>
+    <?php }?>
 </section>
 
 
@@ -167,6 +243,9 @@
             $('nav .logo-container ul li a.results').addClass('active');
             $('nav .logo-container ul li a.profile').removeClass('active');
     })
+
+
+
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js" integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i" crossorigin="anonymous"></script>
