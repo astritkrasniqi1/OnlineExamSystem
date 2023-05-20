@@ -52,7 +52,6 @@
             <div class="examName">
                 <form method="POST">
                 <select id="examSelect" name="examId">
-                <option value="0" selected disabled>Select exam</option>
                     <?php $selectExam = "SELECT Id AS ExamId, Title AS ExamName, Duration as ExamDuration from exam
                                         WHERE Status = '1'";
 
@@ -68,7 +67,7 @@
                             }
                         ?>
                 </select>
-                <button type="submit" name="submitResultsBtn">Submit</button>
+                <button type="submit" style="color:white; background:#e96d7f; padding:5px 20px; border-radius:5px;border:none; " name="submitResultsBtn">Show Results</button>
                 </form>
         
             </div>  
@@ -203,7 +202,8 @@
             </thead>
             <tbody>
                 <?php
-                 while ($selectRow = mysqli_fetch_array($selectResults)) {
+                    $selectResults = mysqli_query($conn, $selectResultsTable);
+                    while ($selectRow = mysqli_fetch_array($selectResults)) {
                     $score = "SELECT SUM(Points) as Score
                               FROM studentquestions sq
                               JOIN studentexam se ON sq.StudentExamId = se.Id 
@@ -220,12 +220,12 @@
                 <tr>
                     <td><?php echo $selectRow['StudentId'] ?></td>
                     <td><?php echo $selectRow['StudentName'] ?></td>
-                    <td><?php if(number_format(($scoreRow['Score'] / $maxRow['MaxPoints']) * 100 * $row['JoinedStudents'],2) >= 50){
+                    <td><?php if(number_format(($scoreRow['Score'] / $maxRow['MaxPoints']) * 100,2) >= 50){
                             echo "Passed"; 
                         }
                     else{echo "Failed"; 
                     } ?></td>
-                    <td><?php echo number_format(($scoreRow['Score'] / $maxRow['MaxPoints']) * 100 * $row['JoinedStudents'],2) ?>%</td>
+                    <td><?php echo number_format(($scoreRow['Score'] / $maxRow['MaxPoints']) * 100,2) ?>%</td>
                 </tr>
                 <?php }?>
             </tbody>

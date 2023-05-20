@@ -7,7 +7,8 @@ if(isset($_POST['submitResultsBtn'])){
     $maxPoints = "SELECT SUM(Points) as MaxPoints
                   FROM studentquestions sq
                   JOIN studentexam se ON sq.StudentExamId = se.Id
-                  WHERE se.ExamId = '{$examId}'";
+                  WHERE se.ExamId = '{$examId}'
+                  group BY se.Id";
     
     $maxResult = mysqli_query($conn, $maxPoints);
     $maxRow = mysqli_fetch_array($maxResult);
