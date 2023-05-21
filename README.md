@@ -19,8 +19,8 @@
 
 ## Udhëzimet e konfigurimit
 
-###  Krijoni nje database te re ne MySQL te quajtu 'onlineexam'.
-### Vendosni të gjitha files dhe folders.
+####  Krijoni nje database te re ne MySQL te quajtu 'onlineexam'.
+#### Vendosni të gjitha skedarët dhe dosjet.
 
 
 ## Autoret:
