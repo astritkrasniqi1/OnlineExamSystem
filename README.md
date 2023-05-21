@@ -36,8 +36,8 @@
 ####  Hapni projektin
 
 ## Antaret e grupit:
-#### Astrit Krasniqi 
-#### Anjeza Gashi 
 #### Alketa Zekaj
+#### Anjeza Gashi 
+#### Astrit Krasniqi 
 #### Blert Osmani 
 #### Diart Maraj
