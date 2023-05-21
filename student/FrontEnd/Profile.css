@@ -245,3 +245,14 @@
   border:none;  
   }
   
+  .ChangePassword input {
+    width: 40%;
+  }
+  .ChangePassword button {
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #eb7c8c;
+    color: white;
+    padding: 10px 15px;
+  }
