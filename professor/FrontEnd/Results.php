@@ -72,7 +72,16 @@
         
             </div>  
             <div class="">
-                <label><i class="fa-regular fa-clock"></i>&nbsp;<span id="examDuration"></span></label>
+                <label><i class="fa-regular fa-clock"></i>&nbsp;<?php
+                    if(isset($_POST['submitResultsBtn'])){
+                    $sql = "Select Duration as ExamDuration from exam where Id = $examId";
+                    $result = mysqli_query($conn,$sql);
+                    if(mysqli_num_rows($result)>0){
+                        $row = mysqli_fetch_array($result);
+                        echo $row['ExamDuration'];
+                    }
+                }
+                ?> Min</label>
             </div>
             <?php if(!empty($examId)){ ?>
         </div>
