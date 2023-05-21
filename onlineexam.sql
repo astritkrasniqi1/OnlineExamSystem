@@ -100,6 +100,7 @@
         Professor int,
         Title varchar(20000),
         Status char(1),
+        SelectedAnswer char(1),
         Created_at datetime,
         primary key(Id)
     );

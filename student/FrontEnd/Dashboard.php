@@ -26,8 +26,8 @@
     <title>Document</title>
 </head>
 <body style="background:#f1f1f3;">
-    <?php @include 'studentNavbar.php' ?>
     <?php require '../Backend/ManageExam/joinExamLogic.php';?>
+    <?php @include 'studentNavbar.php' ?>
 
     <div style="margin:1.5rem 8rem;">
         <h2>Dashboard</h2>
