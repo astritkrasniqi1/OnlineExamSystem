@@ -123,7 +123,7 @@
                         Professor
                     </span>
                     <span style="font-size:13px;">
-                    <?php echo $getExamRow['RemainingTime'] ?>
+                    <?php echo $getExamRow['Professor'] ?>
                     </span>
                 </div>
             </div>

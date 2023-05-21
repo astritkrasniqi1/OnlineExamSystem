@@ -9,18 +9,22 @@ if(isset($_POST['submitResultsBtn'])){
                   JOIN studentexam se ON sq.StudentExamId = se.Id
                   WHERE se.ExamId = '{$examId}'
                   group BY se.Id";
-    
     $maxResult = mysqli_query($conn, $maxPoints);
-    $maxRow = mysqli_fetch_array($maxResult);
+    if ($maxResult !== false) {
+        if (mysqli_num_rows($maxResult) > 0) {
+            $maxRow = mysqli_fetch_array($maxResult);
+        } else {
+            $maxRow = null;
+    } 
     
     $selectResultsTable = "SELECT se.Id as StudentExamId, u.Id as StudentId, CONCAT(FirstName, ' ', LastName) as StudentName
                            FROM studentexam se 
                            JOIN users u ON se.Student = u.Id
-                           WHERE se.ExamId = '{$examId}' AND se.Status = '1'
+                           WHERE se.ExamId = '{$examId}'
                            group by se.Id";
     
     $selectResults = mysqli_query($conn, $selectResultsTable);
 
-}
+}}
 
 ?>

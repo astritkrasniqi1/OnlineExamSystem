@@ -52,14 +52,14 @@
             <div class="examName">
                 <form method="POST">
                 <select id="examSelect" name="examId">
-                    <?php $selectExam = "SELECT Id AS ExamId, Title AS ExamName, Duration as ExamDuration from exam
-                                        WHERE Status = '1'";
+                    <?php $selectExam = "SELECT Id AS ExamId, Title AS ExamName, Duration as ExamDuration from exam";?>
 
-                            $selectExamResult = mysqli_query($conn, $selectExam);
+                    <?php $selectExamResult = mysqli_query($conn, $selectExam);
                             if(mysqli_num_rows($selectExamResult) > 0){
                                 while($selectExamRow = mysqli_fetch_assoc($selectExamResult)){
+                                $selected = ($selectExamRow['ExamId'] == $_POST['examId']) ? 'selected' : '';
                         ?>
-                        <option class="exam" value="<?php echo $selectExamRow['ExamId'] ?>">
+                        <option class="exam" <?php echo $selected ?> value="<?php echo $selectExamRow['ExamId'] ?>">
                             <?php echo $selectExamRow['ExamName'] ?>
                         </option>
                         <?php 
@@ -82,14 +82,12 @@
             <div class="col-auto">
             <span>Total Students</span>
             <h5><?php
-                    if(isset($_POST['submitResultsBtn'])){
                     $sql = "Select Count(*) as StudentCount from users where UserType='1'";
                     $result = mysqli_query($conn,$sql);
                     if(mysqli_num_rows($result)>0){
                         $row = mysqli_fetch_array($result);
                         echo $row['StudentCount'];
                     }
-                }
                 ?></h5>
             </div>  
         </div>
@@ -99,14 +97,12 @@
         <i class="fa-solid fa-check" style="color:#53b7ec;"></i>&nbsp;
             <div class="col-auto"><span>Joined Students</span>
             <h5><?php
-                if(isset($_POST['submitResultsBtn'])){
-                    $sql = "Select Count(Student) as JoinedStudents from studentexam where ExamId = $examId";
+                    $sql = "Select Count(Distinct Student) as JoinedStudents from studentexam where ExamId = $examId";
                     $result = mysqli_query($conn,$sql);
                     if(mysqli_num_rows($result)>0){
                         $row = mysqli_fetch_array($result);
                         echo $row['JoinedStudents'];
                     }
-                }
             
             ?></h5></div>
             
@@ -127,11 +123,22 @@
                         AND sa.Status = '1'
                         AND sa.SelectedAnswer = '1'
                     GROUP BY se.Student
-                    HAVING SUM(sq.Points) / ({$maxRow['MaxPoints']}) * 100 >= 50
+                    HAVING SUM(sq.Points) / " . ($maxRow !== null ? "'{$maxRow['MaxPoints']}'" : "NULL") . " * 100 >= 50
                 ) AS Passed";
-                $result = mysqli_query($conn, $sql);
+            
+            $result = mysqli_query($conn, $sql);
+            
+            if (mysqli_num_rows($result)> 0) {
                 $row = mysqli_fetch_array($result);
-                echo $row['PassedStudents'];
+            
+                if ($row['PassedStudents'] !== null) {
+                    echo $row['PassedStudents'];
+                } else {
+                    echo 'No results at the moment';
+                }
+            } else {
+                echo 'No results at the moment';
+            }     
                 ?>
             </h5></div>    
             </div>
@@ -150,28 +157,48 @@
                         AND sa.Status = '1'
                         AND sa.SelectedAnswer = '1'
                     GROUP BY se.Student
-                    HAVING SUM(sq.Points) / ({$maxRow['MaxPoints']}) * 100 < 50
+                    HAVING SUM(sq.Points) / ". ($maxRow !== null ? "'{$maxRow['MaxPoints']}'" : "NULL") . " * 100 < 50
                 ) AS Passed";
-                $result = mysqli_query($conn, $sql);
+                    
+            $result = mysqli_query($conn, $sql);
+            
+            if (mysqli_num_rows($result)> 0) {
                 $row = mysqli_fetch_array($result);
-                echo $row['FailedStudents'];
+            
+                if ($row['FailedStudents'] !== null) {
+                    echo $row['FailedStudents'];
+                } else {
+                    echo 'No results at the moment';
+                }
+            } else {
+                echo 'No results at the moment';
+            } 
                  ?></h5></div>    
             </div>
         </a>
         <a href="#" class=""><div>
         <i class="fa-solid fa-circle-exclamation" style="color:#b9b1e5;"></i> &nbsp;
             <div class="col-auto"><span>Absent Students</span>
-            <h5>400</h5></div>
+            <h5>
+            <?php
+                $countJoinedStudents = "Select Count(Distinct Student) as JoinedStudents from studentexam where ExamId = $examId";
+                $countJoinedStudentsResult = mysqli_query($conn,$countJoinedStudents);
+                $joinedStudents = mysqli_fetch_array($countJoinedStudentsResult);
+                $countAllStudents = "Select Count(*) as StudentCount from users where UserType='1'";
+                $countAllStudentsResult = mysqli_query($conn,$countAllStudents);
+                $allStudents = mysqli_fetch_array($countAllStudentsResult);
+
+                echo $allStudents['StudentCount'] - $joinedStudents['JoinedStudents'];
+                
+            ?>
+            </h5></div>
             
         </div>
         </a>
         <a href="#" class=""><div>
         <i class="fa-solid fa-chart-simple" style="color:#a3abb6;"></i>&nbsp;
             <div class="col-auto"><span>Average Score</span>
-            <h5><?php
-                
-                ?>
-            </h5></div>
+            <h5 class="avarageScore"></h5></div>
         </div>
         </a>
         </div>
@@ -210,9 +237,6 @@
                               JOIN studentanswers sa ON sa.StudentQuestionId = sq.Id
                               WHERE se.Id = '{$selectRow['StudentExamId']}' AND sa.Status = '1' AND sa.SelectedAnswer = '1'
                               group by se.Student";
-                              $sql = "Select Count(Student) as JoinedStudents from studentexam where ExamId = $examId";
-                              $result = mysqli_query($conn,$sql);
-                            $row = mysqli_fetch_array($result);
                 
                     $scoreResult = mysqli_query($conn, $score);
                     $scoreRow = mysqli_fetch_array($scoreResult);
@@ -220,12 +244,12 @@
                 <tr>
                     <td><?php echo $selectRow['StudentId'] ?></td>
                     <td><?php echo $selectRow['StudentName'] ?></td>
-                    <td><?php if(number_format(($scoreRow['Score'] / $maxRow['MaxPoints']) * 100,2) >= 50){
+                    <td><span><?php if(number_format(($scoreRow['Score'] / $maxRow['MaxPoints']) * 100,2) >= 50){
                             echo "Passed"; 
                         }
                     else{echo "Failed"; 
-                    } ?></td>
-                    <td><?php echo number_format(($scoreRow['Score'] / $maxRow['MaxPoints']) * 100,2) ?>%</td>
+                    } ?></span> </td>
+                    <td class="scoresTd"><?php echo number_format(($scoreRow['Score'] / $maxRow['MaxPoints']) * 100,2) ?>%</td>
                 </tr>
                 <?php }?>
             </tbody>
@@ -244,6 +268,38 @@
             $('nav .logo-container ul li a.results').addClass('active');
             $('nav .logo-container ul li a.profile').removeClass('active');
     })
+
+    $(document).ready(function(){
+  var sum = 0;
+  var scoreTdCount = $('.scoresTd').length;
+  
+  $('.scoresTd').each(function() {
+    var scoreTdContent = $(this).html();
+    var score = parseFloat(scoreTdContent.replace('%',''));
+    if (!isNaN(score)) {
+      sum += score;
+    }
+  });
+
+  var averageScore = (sum / scoreTdCount).toFixed(2);
+  $('.avarageScore').html(averageScore + '%');
+});
+
+
+const studentResultTableTdList = document.querySelectorAll('.studentResultTable table tbody tr td span');
+        studentResultTableTdList.forEach((td) => {
+        td.style.border = '1px solid #53b7ec';
+        if (td.textContent === 'Failed') {
+        td.style.backgroundColor = '#fbe2e5';
+        td.style.color = '#e96d7f';
+        td.style.border = '1px solid #e96d7f';
+        }else if (td.textContent === 'Passed') {
+        td.style.backgroundColor = '#d5f6de';
+        td.style.color = '#2ed15a';
+        td.style.border = '1px solid #2ed15a';
+        }
+    })
+
 
 
 

@@ -440,11 +440,17 @@ td{
     justify-content: center;
 }
 
+.studentExam .studentExamResultsContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+}
 .studentExam .studentExamResultsContainer .statisticsOverview {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    gap:2.5rem;
 }
 .studentExam .studentExamResultsContainer .statisticsOverview  .CompletedExams{
     background:white;

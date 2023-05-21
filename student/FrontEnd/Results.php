@@ -39,8 +39,9 @@
                         <?php $sql="Select Id, Title from studentexam where Student = '{$_SESSION['studentID']}'";
                             $result = mysqli_query($conn,$sql);
                             while($row = mysqli_fetch_array($result)){
+                                $selected = ($row['Id'] == $_POST['examId']) ? 'selected' : '';
                             ?>
-                            <option value="<?php echo $row['Id'] ?>"><?php echo $row['Title'] ?></option>
+                            <option <?php echo $selected ?> value="<?php echo $row['Id'] ?>"><?php echo $row['Title'] ?></option>
                         <?php }?>
                         </select>
                         <button type="submit" style="padding:5px 20px;border-radius:5px;background:#e96d7f;border:none;color:white; ">Submit</button>

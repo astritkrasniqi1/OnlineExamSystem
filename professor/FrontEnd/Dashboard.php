@@ -159,29 +159,6 @@
         </div>
         </a>
     </div>
-
-    <div class="recentExam">
-        <h3>Recent Exam Results</h3>
-        <div class="recentExamContent row">
-        <div class="statsContainer col">
-            <div class="title">
-                <p>Exam</p>
-            </div>
-            <div class="content">
-                <span>From: </span>
-                <span>To: </span>
-            </div>
-        </div>
-        <div class="statsContainer col">
-            <div class="title"><p>Avarage Score</p></div>
-            <div class="graphics col"><img class="img-thumbnail" src="https://cdn.pixabay.com/photo/2018/03/30/15/11/deer-3275594__480.jpg" alt=""></div>
-        </div>
-        <div class="statsContainer col">
-            <div class="title"><p>Student Stats</p></div>
-            <div class="graphics"><img class="img-thumbnail" src="https://img.freepik.com/free-vector/geometric-wallpaper-japanese-style_52683-34401.jpg?w=2000" alt=""></div>
-        </div>
-        </div>
-    </div>
     <div style="margin:4rem 8rem 1rem 8rem;"><span style="font-size:1.5rem; border-bottom:3px solid #f7b092;">Online Students</span></div>
 
     <div class="filters">
