@@ -4,26 +4,38 @@
 
 ## Funksionet e disponueshme:
 
-### Faqja e profesorit
+### Faqja e profesorit:
 #### Dashboard 
 #### Exams 
 #### Results
 #### Students 
 #### Subjects 
-### Faqja e studentit 
+### Faqja e studentit: 
 #### Dashboard 
 #### Exam
 #### Results 
 #### Profile 
+
 ### FAQ 
 
+## Veglat e perdoruar:
+### PHP & Mysql,
+### Html5,
+### Css, 
+### Bootstrap,
+### Fontawesome,
+### Api,
+### Ajax,
+### Javascript dhe jquery
+
+
 ## Udhëzimet e konfigurimit
+####  Krijoni nje database te re ne MySQL te quajtur 'onlineexam'.
+####  Vendosni të gjitha skedarët dhe dosjet ne folderin e xamppit.
+####  Beni run xampp control (Apache server dhe Mysql server)
+####  Hapni projektin
 
-####  Krijoni nje database te re ne MySQL te quajtu 'onlineexam'.
-#### Vendosni të gjitha skedarët dhe dosjet.
-
-
-## Autoret:
+## Antaret e grupit:
 #### Astrit Krasniqi 
 #### Anjeza Gashi 
 #### Alketa Zekaj
