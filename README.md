@@ -18,15 +18,15 @@
 
 ### FAQ 
 
-## Veglat e perdoruar:
-### PHP & Mysql,
-### Html5,
-### Css, 
-### Bootstrap,
-### Fontawesome,
-### Api,
-### Ajax,
-### Javascript dhe jquery
+## Veglat e perdorura:
+#### PHP & Mysql,
+#### Html5,
+#### Css, 
+#### Bootstrap,
+#### Fontawesome,
+#### Api,
+#### Ajax,
+#### Javascript dhe jquery
 
 
 ## Udhëzimet e konfigurimit
