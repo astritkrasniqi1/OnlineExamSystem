@@ -147,7 +147,7 @@ require('../Backend/ManageFAQ/faqPageLogic.php');
               <div class="container">
                 <div class="row">
                   <div class="col-md-9 col-lg-8 mx-auto">
-                    <h3 class="text-center login-heading mb-5 fw-bold">How we can help you?</h3>
+                    <h3 class="text-center login-heading mb-5 fw-bold">How can we help you?</h3>
                     <!-- Sign In Form -->
                     <form method="post">
                     <?php 

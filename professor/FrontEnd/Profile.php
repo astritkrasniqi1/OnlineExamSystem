@@ -70,7 +70,6 @@
 					<tr>
 							<th>Exam Name</th>
 							<th>Date Started</th>
-							<th>Score</th>
 							<th>Action</th>
 					</tr>
 				</thead>
@@ -80,8 +79,7 @@
 					<tr> 
 						<td><?php echo $Exams['Title'] ?></td>
 						<td><?php echo $Exams['StartDate'] ?></td>
-						<td>90%</td>
-						<td><a href="#">View Result</a></td>
+						<td><a href="Results.php">View Results</a></td>
 					</tr>
                     <?php }}?>
 
@@ -99,7 +97,7 @@
         <input type="password" name="confirm_password" placeholder="Confirm New Password" class="form-control"/>
         <button type="submit" name="changePasswordBtn">Change Password</button>
     </form>
-                </section>
+    </section>
 		</section>
    
 	</main>
