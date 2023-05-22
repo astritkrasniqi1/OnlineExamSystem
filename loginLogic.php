@@ -66,7 +66,5 @@
                 header('Location: student/FrontEnd/Dashboard.php');
             }
         }
-        
-
     }
 ?>

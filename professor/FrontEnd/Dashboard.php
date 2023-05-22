@@ -128,7 +128,6 @@
                     @include '../config.php';
                     $sql = "Select Count(*) as ExamCount from exam where Status='1'";
                     $result = mysqli_query($conn, $sql);
-
                     if(mysqli_num_rows($result)> 0){
                         $row = mysqli_fetch_array($result);
                         echo $row['ExamCount'];
@@ -148,7 +147,7 @@
                     @include '../config.php';
                     $sql = "Select Count(*) as SubjectCount from subject";
                     $result = mysqli_query($conn, $sql);
-
+                    
                     if(mysqli_num_rows($result)> 0){
                         $row = mysqli_fetch_array($result);
                         echo $row['SubjectCount'];
