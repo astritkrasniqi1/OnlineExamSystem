@@ -193,7 +193,6 @@ $(document).on('click', '.subjectTable table tbody tr td .delete-subject', funct
                         '',
                         'success'
                     )
-                    // Reload the table
                 },
                 error: function(xhr, status, error) {
                     console.error(error);
