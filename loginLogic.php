@@ -14,7 +14,7 @@
             if($row['UserType'] == '0'){
                 $_SESSION['professorUsername'] = $row['FirstName'] .' ' .$row['LastName'];
                 $_SESSION['professorID'] = $row['Id'];
-                $update = "UPDATE users SET Status='1' WHERE Id={$_SESSION['professorID']} and UserType='0' and verificationStatus='1'";
+                $update = "UPDATE users SET Status='1' WHERE Id={$_SESSION['professorID']} and UserType='0'" ;
                 mysqli_query($conn, $update);
                 header("Location:professor/FrontEnd/Dashboard.php");
             }
@@ -29,7 +29,7 @@
             if($row['UserType'] == '1'){
                 $_SESSION['studentUsername'] = $row['FirstName'] .' ' .$row['LastName'];
                 $_SESSION['studentID'] = $row['Id'];
-                $update = "UPDATE users SET Status='1' WHERE Id={$_SESSION['studentID']} and UserType='1' and verificationStatus='1'";
+                $update = "UPDATE users SET Status='1' WHERE Id={$_SESSION['studentID']} and UserType='1' ";
                 mysqli_query($conn, $update);
                 header('Location: student/FrontEnd/Dashboard.php');
             }
@@ -41,7 +41,7 @@
         $username = mysqli_real_escape_string($conn, $_POST['username']);
         $password = md5($_POST['password']);
 
-        $sql = "Select * from users where Username='$username' and Password='$password' and verificationStatus='1'";
+        $sql = "Select * from users where Username='$username' and Password='$password' ";
 
         $result = mysqli_query($conn, $sql);
 
@@ -50,7 +50,7 @@
             if($row['UserType'] == '0'){
                 $_SESSION['professorUsername'] = $row['FirstName'] .' ' .$row['LastName'];
                 $_SESSION['professorID'] = $row['Id'];
-                $update = "UPDATE users SET Status='1' WHERE Id={$_SESSION['professorID']} and UserType='0' and verificationStatus='1'";
+                $update = "UPDATE users SET Status='1' WHERE Id={$_SESSION['professorID']} and UserType='0' ";
                 mysqli_query($conn, $update);
                 // Set cookie to remember user
                 setcookie('remember_professor', $row['professorID'], time() + 86400, "/");
@@ -59,7 +59,7 @@
             elseif($row['UserType'] == '1'){
                 $_SESSION['studentUsername'] = $row['FirstName'] .' ' .$row['LastName'];
                 $_SESSION['studentID'] = $row['Id'];
-                $update = "UPDATE users SET Status='1' WHERE Id={$_SESSION['studentID']} and UserType='1' and verificationStatus='1'";
+                $update = "UPDATE users SET Status='1' WHERE Id={$_SESSION['studentID']} and UserType='1'";
                 mysqli_query($conn, $update);
                 // Set cookie to remember user
                 setcookie('remember_student', $row['Id'], time() + 86400, "/");

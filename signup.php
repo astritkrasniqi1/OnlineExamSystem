@@ -92,7 +92,7 @@
                         <button class="btn btn-lg btn-login text-uppercase fw-bold mb-2" name="signupBtn" style="background: #1d1b31;color:white" type="submit">Sign up</button>
                         <div class=" mt-3 row d-flex justify-content-between">
                           <a class="small col" href="#" style="color:#1d1b31"></a>
-                          <p class="login-heading mb-4 col-auto"><a href="login.php" style="color:#1d1b31">I have an account</a></p>
+                          <p class="login-heading mb-4 col-auto"><a href="index.php" style="color:#1d1b31">I have an account</a></p>
                         </div>
                       </div>
       

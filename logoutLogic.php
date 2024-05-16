@@ -22,6 +22,6 @@ if (mysqli_num_rows($result) > 0) {
     session_unset();
     session_destroy(); 
 }
-    header('location: login.php');
+    header('location: index.php');
 
 ?>

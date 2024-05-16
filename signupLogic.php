@@ -1,11 +1,10 @@
-<?php   
-
+<?php
 // Load configuration and required libraries
 require_once 'config.php';
 require_once 'vendor/autoload.php';
 
-
 // Initialize errors array
+$errors = [];
 
 session_start();
 
@@ -20,57 +19,27 @@ if (isset($_POST['signupBtn'])) {
     $password = md5($_POST['password']);
     $confirmPassword = md5($_POST['confirmPassword']);
 
-    $userExists = "Select * from users where username = '$username'";
+    $userExistsQuery = "SELECT * FROM users WHERE username = '$username'";
+    $result = mysqli_query($conn, $userExistsQuery);
 
-    $result =  mysqli_query($conn,$userExists);
-    if(mysqli_num_rows($result)>0){
-        $error[] = "User already exists!";
-    }
-    else{
+    if (mysqli_num_rows($result) > 0) {
+        $errors[] = "User already exists!";
+    } else {
+        if ($password != $confirmPassword) {
+            $errors[] = "Passwords do not match!";
+        } else {
+            // Insert user into the database
+            $sql = "INSERT INTO users (FirstName, LastName, UserType, Email, Username, Password, Status, Created_at)
+                    VALUES ('$firstName', '$lastName', '$userType', '$emailAddress', '$username', '$password', '0', NOW())";
 
-        if($password != $confirmPassword){
-            $error[] = "Passwords do not match!";
-        }
-        else{
-
-        // Generate verification code and save it to database
-        $verificationCode = rand(100000, 999999);
-        $sql = "INSERT INTO users (FirstName, LastName, UserType, Email, Username, Password, VerificationCode, VerificationStatus, Status, Created_at)
-        VALUES ('$firstName', '$lastName', '$userType', '$emailAddress', '$username', '$password', '$verificationCode', '0', '0', NOW())";
-        mysqli_query($conn, $sql);
-
-        $userId = mysqli_insert_id($conn);
-
-        // Send verification email using SendGrid
-        $email = new \SendGrid\Mail\Mail();
-        // Set the verification URL as a substitution value
-    // Set the HTML content of the email using your SendGrid template, with the substitution value included
-        $email->setFrom("OXamSystem@outlook.com", "Online Exam System");
-        $email->setTemplateId("d-833c2d2044ca4ccaa800d4860b01fe1e");
-        $email->addDynamicTemplateData("verificationCode", $verificationCode);
-        $email->addDynamicTemplateData("userId", $userId);
-        $email->addTo($emailAddress, $firstName . " " . $lastName);
-        /*$email->addContent(
-            "text/plain",
-            "To finish creating your account please click the link to verify your email: <a href='http://localhost/Online-Exam-System/verify-email.php?code={$verificationCode}'>Verify Email</a>"
-        );*/
-        
-        $sendgrid = new \SendGrid($SENDGRID_API_KEY);
-        try {
-            $response = $sendgrid->send($email);
-            // Check response status code and headers for errors
-            if ($response->statusCode() >= 400) {
-                throw new Exception('Error sending email: ' . $response->body());
-            }   
-            // Redirect to login page after successful sign up
-            $_SESSION["success"] = "Please check your email. We've sent a link to verify your account";
-            header('Location:signup.php');
-            exit();
-        } catch (Exception $e) {
-            $errors[] = 'Error sending email: ' . $e->getMessage();
-        }
+            if (mysqli_query($conn, $sql)) {
+                $_SESSION["success"] = "Account created successfully. Please login.";
+                header('Location: index.php');
+                exit();
+            } else {
+                $errors[] = "Error: " . mysqli_error($conn);
+            }
         }
     }
-
 }
 ?>
